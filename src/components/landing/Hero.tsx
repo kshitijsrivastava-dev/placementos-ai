@@ -20,16 +20,10 @@ export function Hero() {
             Stop guessing. PlacementOS is the AI-powered command center engineers use to track DSA mastery, simulate FAANG interviews, and ship interview-ready resumes.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link
-              to="/dashboard"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
-            >
+            <Link to="/dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
               Start Prep Now <ArrowRight className="size-4" />
             </Link>
-            <a
-              href="#dashboard"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 font-bold rounded-xl backdrop-blur-sm hover:bg-white/10 transition-colors"
-            >
+            <a href="#dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 font-bold rounded-xl backdrop-blur-sm hover:bg-white/10 transition-colors">
               <Play className="size-4" /> Watch Demo
             </a>
           </div>
@@ -48,7 +42,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Dashboard preview mockup */}
         <div className="animate-in-up [animation-delay:200ms] relative">
           <div className="absolute -inset-8 bg-[image:var(--gradient-glow)] blur-3xl opacity-60 pointer-events-none" />
           <div className="relative glass-strong border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
@@ -81,11 +74,7 @@ function MiniDashboard() {
       </div>
       <div className="flex items-end gap-1.5 h-24">
         {bars.map((h, i) => (
-          <div
-            key={i}
-            className={`flex-1 rounded-t-sm ${i === 4 ? "bg-primary shadow-[0_0_20px_rgba(59,130,246,0.4)]" : "bg-primary/25"}`}
-            style={{ height: `${h}%` }}
-          />
+          <div key={i} className={`flex-1 rounded-t-sm ${i === 4 ? "bg-primary shadow-[0_0_20px_rgba(59,130,246,0.4)]" : "bg-primary/25"}`} style={{ height: `${h}%` }} />
         ))}
       </div>
       <div className="grid grid-cols-2 gap-3">
