@@ -164,6 +164,9 @@
 .animate-in-up { animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-fade { animation: fade-in 0.6s ease-out both; }
 
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.animate-shimmer { animation: shimmer 2.5s linear infinite; }
+
 /* Custom 24-col grid for heatmap */
 .grid-cols-24 { grid-template-columns: repeat(24, minmax(0, 1fr)); }
 .grid-cols-53 { grid-template-columns: repeat(53, minmax(0, 1fr)); }
