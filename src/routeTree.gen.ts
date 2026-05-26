@@ -16,6 +16,7 @@ import { Route as DashboardRoadmapRouteImport } from './routes/dashboard.roadmap
 import { Route as DashboardResumeRouteImport } from './routes/dashboard.resume'
 import { Route as DashboardMockInterviewRouteImport } from './routes/dashboard.mock-interview'
 import { Route as DashboardDsaRouteImport } from './routes/dashboard.dsa'
+import { Route as DashboardAptitudeRouteImport } from './routes/dashboard.aptitude'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
@@ -52,10 +53,16 @@ const DashboardDsaRoute = DashboardDsaRouteImport.update({
   path: '/dsa',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardAptitudeRoute = DashboardAptitudeRouteImport.update({
+  id: '/aptitude',
+  path: '/aptitude',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
@@ -74,6 +82,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/dashboard/aptitude'
     | '/dashboard/dsa'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard/aptitude'
     | '/dashboard/dsa'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
@@ -102,6 +113,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/dashboard/aptitude'
     | '/dashboard/dsa'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
@@ -165,10 +177,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDsaRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/aptitude': {
+      id: '/dashboard/aptitude'
+      path: '/aptitude'
+      fullPath: '/dashboard/aptitude'
+      preLoaderRoute: typeof DashboardAptitudeRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
 interface DashboardRouteChildren {
+  DashboardAptitudeRoute: typeof DashboardAptitudeRoute
   DashboardDsaRoute: typeof DashboardDsaRoute
   DashboardMockInterviewRoute: typeof DashboardMockInterviewRoute
   DashboardResumeRoute: typeof DashboardResumeRoute
@@ -177,6 +197,7 @@ interface DashboardRouteChildren {
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAptitudeRoute: DashboardAptitudeRoute,
   DashboardDsaRoute: DashboardDsaRoute,
   DashboardMockInterviewRoute: DashboardMockInterviewRoute,
   DashboardResumeRoute: DashboardResumeRoute,
@@ -195,3 +216,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
