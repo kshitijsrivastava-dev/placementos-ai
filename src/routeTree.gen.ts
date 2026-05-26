@@ -15,6 +15,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardRoadmapRouteImport } from './routes/dashboard.roadmap'
 import { Route as DashboardResumeRouteImport } from './routes/dashboard.resume'
 import { Route as DashboardMockInterviewRouteImport } from './routes/dashboard.mock-interview'
+import { Route as DashboardGoalsRouteImport } from './routes/dashboard.goals'
 import { Route as DashboardDsaRouteImport } from './routes/dashboard.dsa'
 import { Route as DashboardAptitudeRouteImport } from './routes/dashboard.aptitude'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
@@ -49,6 +50,11 @@ const DashboardMockInterviewRoute = DashboardMockInterviewRouteImport.update({
   path: '/mock-interview',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardGoalsRoute = DashboardGoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardDsaRoute = DashboardDsaRouteImport.update({
   id: '/dsa',
   path: '/dsa',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
+  '/dashboard/goals': typeof DashboardGoalsRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
   '/dashboard/roadmap': typeof DashboardRoadmapRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
+  '/dashboard/goals': typeof DashboardGoalsRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
   '/dashboard/roadmap': typeof DashboardRoadmapRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/aptitude': typeof DashboardAptitudeRoute
   '/dashboard/dsa': typeof DashboardDsaRoute
+  '/dashboard/goals': typeof DashboardGoalsRoute
   '/dashboard/mock-interview': typeof DashboardMockInterviewRoute
   '/dashboard/resume': typeof DashboardResumeRoute
   '/dashboard/roadmap': typeof DashboardRoadmapRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/aptitude'
     | '/dashboard/dsa'
+    | '/dashboard/goals'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
     | '/dashboard/roadmap'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/aptitude'
     | '/dashboard/dsa'
+    | '/dashboard/goals'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
     | '/dashboard/roadmap'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/aptitude'
     | '/dashboard/dsa'
+    | '/dashboard/goals'
     | '/dashboard/mock-interview'
     | '/dashboard/resume'
     | '/dashboard/roadmap'
@@ -182,6 +194,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMockInterviewRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/goals': {
+      id: '/dashboard/goals'
+      path: '/goals'
+      fullPath: '/dashboard/goals'
+      preLoaderRoute: typeof DashboardGoalsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/dsa': {
       id: '/dashboard/dsa'
       path: '/dsa'
@@ -210,6 +229,7 @@ interface DashboardRouteChildren {
   DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardAptitudeRoute: typeof DashboardAptitudeRoute
   DashboardDsaRoute: typeof DashboardDsaRoute
+  DashboardGoalsRoute: typeof DashboardGoalsRoute
   DashboardMockInterviewRoute: typeof DashboardMockInterviewRoute
   DashboardResumeRoute: typeof DashboardResumeRoute
   DashboardRoadmapRoute: typeof DashboardRoadmapRoute
@@ -220,6 +240,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAnalyticsRoute: DashboardAnalyticsRoute,
   DashboardAptitudeRoute: DashboardAptitudeRoute,
   DashboardDsaRoute: DashboardDsaRoute,
+  DashboardGoalsRoute: DashboardGoalsRoute,
   DashboardMockInterviewRoute: DashboardMockInterviewRoute,
   DashboardResumeRoute: DashboardResumeRoute,
   DashboardRoadmapRoute: DashboardRoadmapRoute,
