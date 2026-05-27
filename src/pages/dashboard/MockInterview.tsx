@@ -1,10 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { Mic, Video, Play, MessageSquare, Sparkles, Volume2 } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/mock-interview")({
-  component: MockInterview,
-});
 
 const transcript = [
   { who: "AI", text: "Welcome Alex. Today we're going to walk through a system design problem: design a URL shortener at scale. Where would you like to start?" },
@@ -94,3 +89,5 @@ function MockInterview() {
     </div>
   );
 }
+
+export default MockInterview;

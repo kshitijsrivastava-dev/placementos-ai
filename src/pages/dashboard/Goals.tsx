@@ -1,10 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { Target, Plus } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/goals")({
-  component: Goals,
-});
 
 const goals = [
   { name: "Solve 500 LeetCode problems", current: 412, target: 500, deadline: "Mar 15" },
@@ -54,3 +49,5 @@ function Goals() {
     </div>
   );
 }
+
+export default Goals;

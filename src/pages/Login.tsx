@@ -1,9 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthShell, AuthInput } from "@/components/auth/AuthShell";
-
-export const Route = createFileRoute("/login")({
-  component: Login,
-});
 
 function Login() {
   const navigate = useNavigate();
@@ -16,7 +12,7 @@ function Login() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          navigate({ to: "/dashboard" });
+          navigate("/dashboard");
         }}
       >
         <AuthInput label="Email" type="email" placeholder="you@university.edu" required />
@@ -31,3 +27,5 @@ function Login() {
     </AuthShell>
   );
 }
+
+export default Login;

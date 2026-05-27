@@ -1,10 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { Calculator, Brain, MessageCircle, Globe } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/aptitude")({
-  component: AptitudePage,
-});
 
 const sections = [
   { icon: Calculator, name: "Quantitative", solved: 240, total: 400, accuracy: "84%" },
@@ -60,3 +55,5 @@ function AptitudePage() {
     </div>
   );
 }
+
+export default AptitudePage;

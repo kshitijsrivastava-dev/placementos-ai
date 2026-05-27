@@ -1,10 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/roadmap")({
-  component: Roadmap,
-});
 
 const phases = [
   {
@@ -106,3 +101,5 @@ function Roadmap() {
     </div>
   );
 }
+
+export default Roadmap;

@@ -1,13 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Activity, Code2, Flame, Target, Sparkles, ArrowUpRight, CheckCircle2, Clock } from "lucide-react";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
-
-export const Route = createFileRoute("/dashboard/")({
-  component: DashboardHome,
-});
 
 function DashboardHome() {
   return (
@@ -178,3 +173,5 @@ function DashboardHome() {
     </div>
   );
 }
+
+export default DashboardHome;

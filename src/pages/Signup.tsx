@@ -1,9 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthShell, AuthInput } from "@/components/auth/AuthShell";
-
-export const Route = createFileRoute("/signup")({
-  component: Signup,
-});
 
 function Signup() {
   const navigate = useNavigate();
@@ -16,7 +12,7 @@ function Signup() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          navigate({ to: "/dashboard" });
+          navigate("/dashboard");
         }}
       >
         <AuthInput label="Full Name" placeholder="Alex Chen" required />
@@ -32,3 +28,5 @@ function Signup() {
     </AuthShell>
   );
 }
+
+export default Signup;

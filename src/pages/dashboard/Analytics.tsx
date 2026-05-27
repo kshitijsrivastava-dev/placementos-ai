@@ -1,11 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
-
-export const Route = createFileRoute("/dashboard/analytics")({
-  component: Analytics,
-});
 
 function Analytics() {
   return (
@@ -71,3 +66,5 @@ function Analytics() {
     </div>
   );
 }
+
+export default Analytics;

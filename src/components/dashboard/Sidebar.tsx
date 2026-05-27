@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   Code2,
@@ -25,7 +25,7 @@ const nav = [
 ] as const;
 
 export function Sidebar() {
-  const path = useRouterState({ select: (s) => s.location.pathname });
+  const path = useLocation().pathname;
   return (
     <aside className="hidden lg:flex flex-col w-64 shrink-0 h-screen sticky top-0 border-r border-border bg-sidebar p-5 gap-6">
       <Link to="/" className="flex items-center gap-2">

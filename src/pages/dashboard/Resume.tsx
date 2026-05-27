@@ -1,11 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { FileText, Upload, Sparkles, CheckCircle2, AlertCircle, XCircle } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/resume")({
-  component: ResumePage,
-});
 
 function ResumePage() {
   return (
@@ -89,3 +84,5 @@ function ResumePage() {
     </div>
   );
 }
+
+export default ResumePage;

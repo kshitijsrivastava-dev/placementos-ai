@@ -1,11 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { Code2, Filter, Search } from "lucide-react";
-
-export const Route = createFileRoute("/dashboard/dsa")({
-  component: DSAPage,
-});
 
 const patterns = [
   { name: "Arrays & Hashing", solved: 42, total: 50, color: "primary" },
@@ -115,3 +110,5 @@ function DSAPage() {
     </div>
   );
 }
+
+export default DSAPage;
