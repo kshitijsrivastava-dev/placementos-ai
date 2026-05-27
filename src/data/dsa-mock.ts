@@ -1,4 +1,4 @@
-import type { DSAQuestion, DSATopic } from "@/types/dsa";
+import type { DSAQuestion, DSATopic, ImportanceTier } from "@/types/dsa";
 
 export const DSA_TOPICS: DSATopic[] = [
   { id: "arrays", name: "Arrays", slug: "arrays", description: "Hash maps, two-sum patterns, in-place mutations", problemCount: 48 },
@@ -17,7 +17,9 @@ export const DSA_TOPICS: DSATopic[] = [
   { id: "bit-manipulation", name: "Bit Manipulation", slug: "bit-manipulation", description: "XOR tricks, masks, bit counts", problemCount: 16 },
 ];
 
-export const DSA_QUESTIONS: DSAQuestion[] = [
+type BaseQuestion = Omit<DSAQuestion, "askedScore" | "importanceTier" | "lastAttemptedDaysAgo">;
+
+const BASE_QUESTIONS: BaseQuestion[] = [
   {
     id: "q-1",
     title: "Two Sum",
@@ -665,6 +667,51 @@ export const DSA_QUESTIONS: DSAQuestion[] = [
     frequency: "low",
   },
 ];
+
+function parseLastAttemptedDaysAgo(value?: string): number {
+  if (!value || value === "—") return 9999;
+  const v = value.trim().toLowerCase();
+  if (v === "today") return 0;
+  if (v === "yesterday") return 1;
+
+  const d = v.match(/^(\d+)\s*d\s*ago$/);
+  if (d) return Number(d[1]);
+
+  const w = v.match(/^(\d+)\s*w\s*ago$/);
+  if (w) return Number(w[1]) * 7;
+
+  const mo = v.match(/^(\d+)\s*mo\s*ago$/);
+  if (mo) return Number(mo[1]) * 30;
+
+  // Unknown format: treat as older.
+  return 9999;
+}
+
+function deriveAskedScore(q: BaseQuestion): number {
+  const frequencyScore = q.frequency === "high" ? 60 : q.frequency === "medium" ? 35 : 15;
+  const companyScore = Math.min(70, q.companies.length * 14);
+  const acceptanceScore = q.acceptance * 0.4; // 0..40
+  const statusScore =
+    q.status === "solved" ? 18 : q.status === "attempted" ? 10 : q.status === "reviewing" ? 6 : 0;
+
+  return Math.round(frequencyScore + companyScore + acceptanceScore + statusScore);
+}
+
+function deriveImportanceTier(score: number): ImportanceTier {
+  if (score >= 115) return "Must Do";
+  if (score >= 95) return "Very Important";
+  return "High Frequency";
+}
+
+export const DSA_QUESTIONS: DSAQuestion[] = BASE_QUESTIONS.map((q) => {
+  const askedScore = deriveAskedScore(q);
+  return {
+    ...q,
+    askedScore,
+    importanceTier: deriveImportanceTier(askedScore),
+    lastAttemptedDaysAgo: parseLastAttemptedDaysAgo(q.lastAttempted),
+  };
+});
 
 export function getTopicById(id: string): DSATopic | undefined {
   return DSA_TOPICS.find((t) => t.id === id);

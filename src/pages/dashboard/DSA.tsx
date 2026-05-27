@@ -14,13 +14,23 @@ function DSAPage() {
     topicProgress,
     globalStats,
     filteredQuestions,
+    pagedQuestions,
+    page,
+    pageCount,
+    pageSize,
     totalQuestions,
+    setPage,
     toggleBookmark,
     setTopic,
     setSearch,
     toggleDifficulty,
     toggleStatus,
     setBookmarkedOnly,
+    toggleCompany,
+    toggleImportanceTier,
+    setSortBy,
+    companyOptions,
+    setPageSize,
     clearFilters,
     hasActiveFilters,
   } = useDsaPractice();
@@ -84,19 +94,60 @@ function DSAPage() {
           totalCount={totalQuestions}
           bookmarkCount={bookmarkedIds.size}
           hasActiveFilters={hasActiveFilters}
+          companyOptions={companyOptions}
           onSearchChange={setSearch}
           onToggleDifficulty={toggleDifficulty}
           onToggleStatus={toggleStatus}
           onBookmarkedOnlyChange={setBookmarkedOnly}
+          onToggleCompany={toggleCompany}
+          onToggleImportanceTier={toggleImportanceTier}
+          onSortByChange={setSortBy}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
           onClear={clearFilters}
         />
 
         <div className="mt-6 pt-6 border-t border-border">
           <DSAQuestionList
-            questions={filteredQuestions}
+            questions={pagedQuestions}
             bookmarkedIds={bookmarkedIds}
             onToggleBookmark={toggleBookmark}
+            selectedCompanies={filters.companies}
+            onToggleCompany={toggleCompany}
           />
+        </div>
+
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-[11px] font-mono text-muted-foreground">
+            Page{" "}
+            <span className="text-foreground font-semibold">
+              {page} / {pageCount}
+            </span>{" "}
+            · showing{" "}
+            <span className="text-foreground font-semibold">
+              {Math.min(pageSize, filteredQuestions.length - (page - 1) * pageSize)}
+            </span>{" "}
+            of {filteredQuestions.length}
+          </p>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setPage(Math.max(1, page - 1))}
+              disabled={page <= 1}
+              className="h-9 px-4 rounded-xl border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage(Math.min(pageCount, page + 1))}
+              disabled={page >= pageCount}
+              className="h-9 px-4 rounded-xl border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </Card>
     </div>

@@ -4,30 +4,58 @@ import { cn } from "@/lib/utils";
 import type { DSAQuestion } from "@/types/dsa";
 import { BookmarkButton } from "./BookmarkButton";
 import { DifficultyBadge } from "./DifficultyBadge";
+import { ImportanceTierBadge } from "./ImportanceTierBadge";
+import { InterviewFrequencyBadge } from "./InterviewFrequencyBadge";
 import { QuestionStatusIcon } from "./QuestionStatusIcon";
 
-const frequencyStyle = {
+const frequencyIconStyle: Record<DSAQuestion["frequency"], string> = {
   high: "text-success",
   medium: "text-warning",
   low: "text-muted-foreground",
-} as const;
+};
 
-function CompanyPills({ companies }: { companies: string[] }) {
-  const visible = companies.slice(0, 2);
+function CompanyChips({
+  companies,
+  selectedCompanies,
+  onToggleCompany,
+  maxVisible = 3,
+}: {
+  companies: string[];
+  selectedCompanies: string[];
+  onToggleCompany: (company: string) => void;
+  maxVisible?: number;
+}) {
+  const visible = companies.slice(0, maxVisible);
   const extra = companies.length - visible.length;
 
   return (
     <div className="flex flex-wrap gap-1 justify-end">
-      {visible.map((c) => (
-        <span
-          key={c}
-          className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-subtle text-muted-foreground border border-border"
-        >
-          {c}
-        </span>
-      ))}
+      {visible.map((c) => {
+        const active = selectedCompanies.includes(c);
+        return (
+          <button
+            key={c}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleCompany(c);
+            }}
+            aria-pressed={active}
+            className={cn(
+              "text-[10px] font-mono px-1.5 py-0.5 rounded border transition-colors",
+              active
+                ? "bg-primary/10 border-primary/30 text-primary"
+                : "bg-subtle text-muted-foreground border-border hover:bg-surface-hover hover:text-foreground",
+            )}
+          >
+            {c}
+          </button>
+        );
+      })}
       {extra > 0 && (
-        <span className="text-[10px] font-mono text-muted-foreground">+{extra}</span>
+        <span className="text-[10px] font-mono text-muted-foreground">
+          +{extra}
+        </span>
       )}
     </div>
   );
@@ -38,11 +66,15 @@ function QuestionRow({
   index,
   bookmarked,
   onToggleBookmark,
+  selectedCompanies,
+  onToggleCompany,
 }: {
   question: DSAQuestion;
   index: number;
   bookmarked: boolean;
   onToggleBookmark: () => void;
+  selectedCompanies: string[];
+  onToggleCompany: (company: string) => void;
 }) {
   const topic = getTopicById(question.topicId);
 
@@ -54,7 +86,9 @@ function QuestionRow({
       )}
     >
       <td className="py-3 pl-4 pr-2 w-10">
-        <span className="text-[10px] font-mono text-muted-foreground">{index}</span>
+        <span className="text-[10px] font-mono text-muted-foreground">
+          {index}
+        </span>
       </td>
       <td className="py-3 pr-2 w-10">
         <QuestionStatusIcon status={question.status} />
@@ -81,7 +115,9 @@ function QuestionRow({
         </div>
       </td>
       <td className="py-3 pr-4 hidden md:table-cell">
-        <span className="text-xs text-muted-foreground">{topic?.name ?? "—"}</span>
+        <span className="text-xs text-muted-foreground">
+          {topic?.name ?? "—"}
+        </span>
       </td>
       <td className="py-3 pr-4">
         <DifficultyBadge difficulty={question.difficulty} />
@@ -92,22 +128,22 @@ function QuestionRow({
         </span>
       </td>
       <td className="py-3 pr-4 hidden xl:table-cell">
-        <div className="flex items-center gap-1 justify-end">
-          <TrendingUp
-            className={cn("size-3", frequencyStyle[question.frequency])}
-          />
-          <span
-            className={cn(
-              "text-[10px] font-mono uppercase",
-              frequencyStyle[question.frequency],
-            )}
-          >
-            {question.frequency}
-          </span>
+        <div className="flex flex-col items-end gap-1 justify-center">
+          <div className="flex items-center gap-2">
+            <TrendingUp
+              className={cn("size-3", frequencyIconStyle[question.frequency])}
+            />
+            <InterviewFrequencyBadge frequency={question.frequency} />
+          </div>
+          <ImportanceTierBadge tier={question.importanceTier} />
         </div>
       </td>
       <td className="py-3 pr-4 hidden lg:table-cell">
-        <CompanyPills companies={question.companies} />
+        <CompanyChips
+          companies={question.companies}
+          selectedCompanies={selectedCompanies}
+          onToggleCompany={onToggleCompany}
+        />
       </td>
       <td className="py-3 pr-4 hidden sm:table-cell">
         <span className="text-[10px] font-mono text-muted-foreground">
@@ -126,11 +162,15 @@ function QuestionCard({
   index,
   bookmarked,
   onToggleBookmark,
+  selectedCompanies,
+  onToggleCompany,
 }: {
   question: DSAQuestion;
   index: number;
   bookmarked: boolean;
   onToggleBookmark: () => void;
+  selectedCompanies: string[];
+  onToggleCompany: (company: string) => void;
 }) {
   const topic = getTopicById(question.topicId);
 
@@ -158,15 +198,16 @@ function QuestionCard({
             </div>
             <BookmarkButton active={bookmarked} onClick={onToggleBookmark} />
           </div>
+
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <span className="text-[10px] font-mono text-muted-foreground">
               {topic?.name}
             </span>
             <DifficultyBadge difficulty={question.difficulty} />
-            <span className="text-[10px] font-mono text-muted-foreground">
-              {question.acceptance.toFixed(1)}% acc.
-            </span>
+            <InterviewFrequencyBadge frequency={question.frequency} />
+            <ImportanceTierBadge tier={question.importanceTier} />
           </div>
+
           <div className="flex flex-wrap gap-1 mb-3">
             {question.tags.map((tag) => (
               <span
@@ -177,8 +218,15 @@ function QuestionCard({
               </span>
             ))}
           </div>
+
           <div className="flex items-center justify-between gap-2">
-            <CompanyPills companies={question.companies} />
+            <CompanyChips
+              companies={question.companies}
+              selectedCompanies={selectedCompanies}
+              onToggleCompany={onToggleCompany}
+              maxVisible={4}
+            />
+
             {question.lastAttempted && (
               <span className="text-[10px] font-mono text-muted-foreground shrink-0">
                 {question.lastAttempted}
@@ -196,17 +244,23 @@ export function DSAQuestionList({
   questions,
   bookmarkedIds,
   onToggleBookmark,
+  selectedCompanies,
+  onToggleCompany,
 }: {
   questions: DSAQuestion[];
   bookmarkedIds: Set<string>;
   onToggleBookmark: (id: string) => void;
+  selectedCompanies: string[];
+  onToggleCompany: (company: string) => void;
 }) {
   if (questions.length === 0) {
     return (
       <div className="py-16 text-center">
-        <p className="text-sm text-muted-foreground">No problems match your filters.</p>
+        <p className="text-sm text-muted-foreground">
+          No problems match your filters.
+        </p>
         <p className="text-xs font-mono text-muted-foreground mt-1">
-          Try clearing difficulty or status filters.
+          Try clearing company, importance, or status filters.
         </p>
       </div>
     );
@@ -248,6 +302,8 @@ export function DSAQuestionList({
                 index={i + 1}
                 bookmarked={bookmarkedIds.has(q.id)}
                 onToggleBookmark={() => onToggleBookmark(q.id)}
+                selectedCompanies={selectedCompanies}
+                onToggleCompany={onToggleCompany}
               />
             ))}
           </tbody>
@@ -262,6 +318,8 @@ export function DSAQuestionList({
             index={i + 1}
             bookmarked={bookmarkedIds.has(q.id)}
             onToggleBookmark={() => onToggleBookmark(q.id)}
+            selectedCompanies={selectedCompanies}
+            onToggleCompany={onToggleCompany}
           />
         ))}
       </div>

@@ -1,4 +1,11 @@
-import type { Difficulty, DSAFilters, DSAQuestion, DSATopic, QuestionStatus } from "@/types/dsa";
+import type {
+  Difficulty,
+  DSAFilters,
+  DSAQuestion,
+  DSATopic,
+  ImportanceTier,
+  QuestionStatus,
+} from "@/types/dsa";
 
 export const DIFFICULTY_STYLES: Record<Difficulty, string> = {
   Easy: "text-success bg-success/10 border-success/20",
@@ -39,6 +46,21 @@ export function filterQuestions(
     if (filters.bookmarkedOnly && !bookmarkedIds.has(question.id)) {
       return false;
     }
+
+    if (
+      filters.companies.length > 0 &&
+      !question.companies.some((c) => filters.companies.includes(c))
+    ) {
+      return false;
+    }
+
+    if (
+      filters.importanceTiers.length > 0 &&
+      !filters.importanceTiers.includes(question.importanceTier)
+    ) {
+      return false;
+    }
+
     if (!q) return true;
 
     const haystack = [
@@ -120,4 +142,30 @@ export function computeGlobalStats(questions: DSAQuestion[]) {
     hard: { solved: hard.filter((q) => q.status === "solved").length, total: hard.length, pct: pctSolved(hard) },
     acceptance: acceptance.toFixed(1),
   };
+}
+
+export type CompanyStats = { company: string; questionCount: number };
+
+export function computeCompanyStats(questions: DSAQuestion[]): CompanyStats[] {
+  const map = new Map<string, number>();
+  for (const q of questions) {
+    for (const c of q.companies) {
+      map.set(c, (map.get(c) ?? 0) + 1);
+    }
+  }
+
+  return [...map.entries()]
+    .map(([company, questionCount]) => ({ company, questionCount }))
+    .sort((a, b) => b.questionCount - a.questionCount || a.company.localeCompare(b.company));
+}
+
+export function importanceWeight(tier: ImportanceTier): number {
+  switch (tier) {
+    case "Must Do":
+      return 3;
+    case "Very Important":
+      return 2;
+    case "High Frequency":
+      return 1;
+  }
 }
