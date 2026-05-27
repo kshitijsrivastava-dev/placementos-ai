@@ -9,7 +9,7 @@ function seededIntensity(i: number) {
 }
 
 const intensityClass = [
-  "bg-white/5",
+  "bg-subtle",
   "bg-primary/25",
   "bg-primary/50",
   "bg-primary/75",

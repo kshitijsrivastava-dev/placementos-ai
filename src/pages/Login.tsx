@@ -21,7 +21,7 @@ function Login() {
           Launch Console →
         </button>
       </form>
-      <button className="w-full mt-3 py-3 bg-white/[0.03] border border-border rounded-xl font-semibold text-sm hover:bg-white/[0.06]">
+      <button className="w-full mt-3 py-3 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
         Continue with Google
       </button>
     </AuthShell>

@@ -16,7 +16,7 @@ export function CTA() {
           <Link to="/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-bold rounded-full hover:scale-105 transition-transform">
             Deploy My Roadmap <ArrowRight className="size-4" />
           </Link>
-          <Link to="/dashboard" className="inline-flex items-center px-8 py-4 bg-white/5 border border-white/10 font-bold rounded-full hover:bg-white/10 transition-colors">
+          <Link to="/dashboard" className="inline-flex items-center px-8 py-4 bg-surface border border-border font-bold rounded-full hover:bg-surface-hover transition-colors">
             Explore Dashboard
           </Link>
         </div>

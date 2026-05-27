@@ -27,8 +27,8 @@ const recent = [
 ];
 
 const diffColor = {
-  Easy: "text-[oklch(0.72_0.18_155)] bg-[oklch(0.72_0.18_155/0.1)]",
-  Medium: "text-[oklch(0.78_0.17_75)] bg-[oklch(0.78_0.17_75/0.1)]",
+  Easy: "text-success bg-success/10",
+  Medium: "text-warning bg-warning/10",
   Hard: "text-destructive bg-destructive/10",
 } as const;
 
@@ -48,10 +48,10 @@ function DSAPage() {
           { label: "Hard", value: "40/740", pct: 5 },
           { label: "Acceptance", value: "78.4%", pct: 78 },
         ].map((s) => (
-          <div key={s.label} className="p-5 rounded-2xl bg-white/[0.02] border border-border">
+          <div key={s.label} className="p-5 rounded-2xl bg-surface border border-border">
             <div className="text-xs text-muted-foreground uppercase font-mono mb-2">{s.label}</div>
             <div className="text-2xl font-bold font-mono mb-3">{s.value}</div>
-            <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
               <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${s.pct}%` }} />
             </div>
           </div>
@@ -72,7 +72,7 @@ function DSAPage() {
                     <span className="truncate">{p.name}</span>
                     <span className="font-mono text-muted-foreground">{p.solved}/{p.total}</span>
                   </div>
-                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
                     <div className={`h-full ${p.color === "accent" ? "bg-accent" : "bg-primary"}`} style={{ width: `${(p.solved / p.total) * 100}%` }} />
                   </div>
                 </div>
@@ -85,15 +85,15 @@ function DSAPage() {
           title="Recent Activity"
           action={
             <div className="flex gap-2">
-              <button className="size-8 rounded-lg bg-white/5 border border-border grid place-items-center hover:bg-white/10"><Search className="size-3.5" /></button>
-              <button className="size-8 rounded-lg bg-white/5 border border-border grid place-items-center hover:bg-white/10"><Filter className="size-3.5" /></button>
+              <button className="size-8 rounded-lg bg-subtle border border-border grid place-items-center hover:bg-surface-hover"><Search className="size-3.5" /></button>
+              <button className="size-8 rounded-lg bg-subtle border border-border grid place-items-center hover:bg-surface-hover"><Filter className="size-3.5" /></button>
             </div>
           }
           className="col-span-12 lg:col-span-5"
         >
           <div className="space-y-2">
             {recent.map((r) => (
-              <div key={r.title} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] border border-border hover:border-primary/30 transition-colors">
+              <div key={r.title} className="flex items-center gap-3 p-3 rounded-lg bg-surface border border-border hover:border-primary/30 transition-colors">
                 <div className="size-8 rounded-lg bg-primary/10 border border-primary/20 grid place-items-center">
                   <Code2 className="size-4 text-primary" />
                 </div>

@@ -39,7 +39,7 @@ function Goals() {
                 <span className="text-2xl font-bold font-mono">{g.current}{g.pct && "%"}</span>
                 <span className="text-xs text-muted-foreground font-mono">/ {g.target}{g.pct && "%"}</span>
               </div>
-              <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+              <div className="h-2 w-full bg-subtle rounded-full overflow-hidden">
                 <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${pct}%` }} />
               </div>
             </Card>

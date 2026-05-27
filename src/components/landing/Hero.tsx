@@ -23,7 +23,7 @@ export function Hero() {
             <Link to="/dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
               Start Prep Now <ArrowRight className="size-4" />
             </Link>
-            <a href="#dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 font-bold rounded-xl backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <a href="#dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-surface border border-border font-bold rounded-xl backdrop-blur-sm hover:bg-surface-hover transition-colors">
               <Play className="size-4" /> Watch Demo
             </a>
           </div>
@@ -44,11 +44,11 @@ export function Hero() {
 
         <div className="animate-in-up [animation-delay:200ms] relative">
           <div className="absolute -inset-8 bg-[image:var(--gradient-glow)] blur-3xl opacity-60 pointer-events-none" />
-          <div className="relative glass-strong border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-            <div className="h-9 border-b border-border bg-white/5 flex items-center px-4 gap-1.5">
-              <div className="size-2.5 rounded-full bg-white/15" />
-              <div className="size-2.5 rounded-full bg-white/15" />
-              <div className="size-2.5 rounded-full bg-white/15" />
+          <div className="relative glass-strong border border-border rounded-2xl overflow-hidden shadow-2xl">
+            <div className="h-9 border-b border-border bg-subtle flex items-center px-4 gap-1.5">
+              <div className="size-2.5 rounded-full bg-muted-foreground/30" />
+              <div className="size-2.5 rounded-full bg-muted-foreground/30" />
+              <div className="size-2.5 rounded-full bg-muted-foreground/30" />
               <div className="ml-3 text-[10px] font-mono text-muted-foreground tracking-wider">placementos.app/dashboard</div>
             </div>
             <div className="p-5">
@@ -78,11 +78,11 @@ function MiniDashboard() {
         ))}
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <div className="p-3 bg-white/[0.03] border border-border rounded-lg">
+        <div className="p-3 bg-surface border border-border rounded-lg">
           <div className="text-[10px] text-muted-foreground uppercase">Streak</div>
           <div className="text-lg font-bold font-mono mt-0.5">18 days</div>
         </div>
-        <div className="p-3 bg-white/[0.03] border border-border rounded-lg">
+        <div className="p-3 bg-surface border border-border rounded-lg">
           <div className="text-[10px] text-muted-foreground uppercase">Mock Score</div>
           <div className="text-lg font-bold font-mono mt-0.5 text-accent">92.4%</div>
         </div>

@@ -7,7 +7,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-32 px-4 sm:px-6 bg-white/[0.01] border-y border-border">
+    <section id="testimonials" className="py-32 px-4 sm:px-6 bg-surface/50 border-y border-border">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl mb-16">
           <p className="text-xs font-mono uppercase tracking-widest text-primary mb-4">// SIGNAL</p>

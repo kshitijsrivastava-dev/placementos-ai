@@ -77,7 +77,7 @@ function DashboardHome() {
             <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
               <span>Less</span>
               <div className="flex gap-1">
-                <div className="size-2 bg-white/5 rounded-sm" />
+                <div className="size-2 bg-subtle rounded-sm" />
                 <div className="size-2 bg-primary/30 rounded-sm" />
                 <div className="size-2 bg-primary/60 rounded-sm" />
                 <div className="size-2 bg-primary rounded-sm" />
@@ -118,7 +118,7 @@ function DashboardHome() {
                   <span className="text-muted-foreground">{s.label}</span>
                   <span className="font-mono">{s.v}%</span>
                 </div>
-                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
                   <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${s.v}%` }} />
                 </div>
               </div>
@@ -130,14 +130,14 @@ function DashboardHome() {
         <Card title="Activity Timeline" className="col-span-12 lg:col-span-7">
           <ul className="space-y-4">
             {[
-              { icon: CheckCircle2, color: "text-[oklch(0.72_0.18_155)]", text: "Solved Trapping Rain Water — Hard · 28 min", time: "2h ago" },
+              { icon: CheckCircle2, color: "text-success", text: "Solved Trapping Rain Water — Hard · 28 min", time: "2h ago" },
               { icon: Sparkles, color: "text-primary", text: "Completed Mock Interview · Google L4 simulation · 92/100", time: "5h ago" },
               { icon: Flame, color: "text-accent", text: "Hit 18-day streak. Personal record extended.", time: "Today" },
               { icon: Code2, color: "text-primary", text: "Started new pattern: Sliding Window · 12 problems queued", time: "Yesterday" },
               { icon: Clock, color: "text-muted-foreground", text: "AI Roadmap re-calibrated for Meta E4 by Mar 2026", time: "2d ago" },
             ].map((a, i) => (
               <li key={i} className="flex items-start gap-3">
-                <div className={`size-8 rounded-lg bg-white/[0.03] border border-border grid place-items-center shrink-0 ${a.color}`}>
+                <div className={`size-8 rounded-lg bg-surface border border-border grid place-items-center shrink-0 ${a.color}`}>
                   <a.icon className="size-4" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -160,8 +160,8 @@ function DashboardHome() {
               { t: "Resume v3 — quantify metrics", done: false },
               { t: "Read: Meta engineering blog", done: false },
             ].map((task, i) => (
-              <li key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${task.done ? "bg-white/[0.02] border-border opacity-60" : "bg-white/[0.04] border-border"}`}>
-                <div className={`size-4 rounded border-2 flex items-center justify-center ${task.done ? "bg-primary border-primary" : "border-white/20"}`}>
+              <li key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${task.done ? "bg-surface border-border opacity-60" : "bg-surface-hover border-border"}`}>
+                <div className={`size-4 rounded border-2 flex items-center justify-center ${task.done ? "bg-primary border-primary" : "border-muted-foreground/40"}`}>
                   {task.done && <CheckCircle2 className="size-3 text-primary-foreground" />}
                 </div>
                 <span className={`text-sm flex-1 ${task.done ? "line-through" : ""}`}>{task.t}</span>

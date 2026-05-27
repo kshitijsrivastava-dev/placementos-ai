@@ -14,7 +14,7 @@ export function DashboardShowcase() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-3 bg-white/[0.02] border border-border rounded-2xl p-6 flex flex-col gap-6">
+          <div className="lg:col-span-3 bg-surface border border-border rounded-2xl p-6 flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <div className="size-10 rounded-lg bg-[image:var(--gradient-primary)]" />
               <div>
@@ -24,7 +24,7 @@ export function DashboardShowcase() {
             </div>
             <div className="space-y-1">
               {["Overview", "Roadmap", "DSA Tracker", "Mock Interviews", "Resume AI", "Analytics"].map((l, i) => (
-                <div key={l} className={`p-2.5 rounded-lg text-sm transition-colors ${i === 0 ? "bg-primary/10 text-primary border border-primary/20" : "text-muted-foreground hover:bg-white/5"}`}>
+                <div key={l} className={`p-2.5 rounded-lg text-sm transition-colors ${i === 0 ? "bg-primary/10 text-primary border border-primary/20" : "text-muted-foreground hover:bg-surface-hover"}`}>
                   {l}
                 </div>
               ))}
@@ -36,7 +36,7 @@ export function DashboardShowcase() {
           </div>
 
           <div className="lg:col-span-9 grid grid-cols-6 gap-6">
-            <div className="col-span-6 md:col-span-4 bg-white/[0.03] border border-border rounded-2xl p-6">
+            <div className="col-span-6 md:col-span-4 bg-surface border border-border rounded-2xl p-6">
               <div className="flex justify-between mb-6">
                 <h3 className="text-sm font-mono text-muted-foreground uppercase">Weekly Velocity</h3>
                 <span className="text-primary text-xs font-mono font-bold">+12% WoW</span>
@@ -51,17 +51,17 @@ export function DashboardShowcase() {
               </div>
             </div>
 
-            <div className="col-span-6 md:col-span-2 bg-white/[0.03] border border-border rounded-2xl p-6 flex flex-col items-center justify-center gap-3">
+            <div className="col-span-6 md:col-span-2 bg-surface border border-border rounded-2xl p-6 flex flex-col items-center justify-center gap-3">
               <ProgressRing value={82} sublabel="Mock Score" />
             </div>
 
-            <div className="col-span-6 bg-white/[0.03] border border-border rounded-2xl p-6">
+            <div className="col-span-6 bg-surface border border-border rounded-2xl p-6">
               <div className="flex justify-between items-center mb-5">
                 <h3 className="text-sm font-mono text-muted-foreground uppercase">Activity Heatmap</h3>
                 <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
                   <span>Less</span>
                   <div className="flex gap-1">
-                    <div className="size-2 bg-white/5 rounded-sm" />
+                    <div className="size-2 bg-subtle rounded-sm" />
                     <div className="size-2 bg-primary/30 rounded-sm" />
                     <div className="size-2 bg-primary/60 rounded-sm" />
                     <div className="size-2 bg-primary rounded-sm" />

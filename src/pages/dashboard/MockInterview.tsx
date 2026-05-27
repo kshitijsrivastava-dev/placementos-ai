@@ -21,28 +21,28 @@ function MockInterview() {
       <div className="grid grid-cols-12 gap-6">
         {/* Video stage */}
         <Card className="col-span-12 lg:col-span-8 p-0 overflow-hidden">
-          <div className="aspect-video bg-zinc-950 relative">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,oklch(0.66_0.19_256/0.2),transparent_60%)]" />
+          <div className="aspect-video bg-card relative">
+            <div className="absolute inset-0 bg-[image:var(--gradient-glow)]" />
             <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded-md bg-destructive/20 border border-destructive/40">
               <div className="size-1.5 rounded-full bg-destructive animate-pulse" />
               <span className="text-[10px] font-mono uppercase">REC · 14:32</span>
             </div>
-            <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-white/5 border border-white/10">
+            <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-surface border border-border">
               <span className="text-[10px] font-mono uppercase">Google · L4 · System Design</span>
             </div>
             <div className="absolute inset-0 grid place-items-center">
-              <div className="size-32 rounded-full bg-[image:var(--gradient-primary)] grid place-items-center shadow-[0_0_80px_oklch(0.66_0.19_256/0.6)]">
+              <div className="size-32 rounded-full bg-[image:var(--gradient-primary)] grid place-items-center glow-primary">
                 <Sparkles className="size-12 text-primary-foreground" />
               </div>
             </div>
-            <div className="absolute bottom-4 right-4 w-40 aspect-video rounded-lg bg-zinc-900 border border-white/10 grid place-items-center">
+            <div className="absolute bottom-4 right-4 w-40 aspect-video rounded-lg bg-muted border border-border grid place-items-center">
               <Video className="size-6 text-muted-foreground" />
             </div>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 p-2 rounded-full bg-zinc-900/80 backdrop-blur border border-white/10">
-              <button className="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20"><Mic className="size-4" /></button>
-              <button className="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20"><Video className="size-4" /></button>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 p-2 rounded-full glass border border-border">
+              <button className="size-10 rounded-full bg-surface grid place-items-center hover:bg-surface-hover"><Mic className="size-4" /></button>
+              <button className="size-10 rounded-full bg-surface grid place-items-center hover:bg-surface-hover"><Video className="size-4" /></button>
               <button className="size-10 rounded-full bg-primary grid place-items-center"><Play className="size-4 text-primary-foreground" /></button>
-              <button className="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20"><Volume2 className="size-4" /></button>
+              <button className="size-10 rounded-full bg-surface grid place-items-center hover:bg-surface-hover"><Volume2 className="size-4" /></button>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ function MockInterview() {
                   <span className="text-muted-foreground">{m.l}</span>
                   <span className="font-mono">{m.v}</span>
                 </div>
-                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
                   <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${m.v}%` }} />
                 </div>
               </div>
@@ -74,13 +74,13 @@ function MockInterview() {
                 <div className={`size-7 shrink-0 rounded-full grid place-items-center text-[10px] font-bold ${m.who === "AI" ? "bg-primary/20 text-primary border border-primary/30" : "bg-accent/20 text-accent border border-accent/30"}`}>
                   {m.who === "AI" ? "AI" : "Y"}
                 </div>
-                <div className={`flex-1 p-3 rounded-xl text-sm ${m.who === "AI" ? "bg-white/[0.03] border border-border" : "bg-primary/10 border border-primary/20"}`}>
+                <div className={`flex-1 p-3 rounded-xl text-sm ${m.who === "AI" ? "bg-surface border border-border" : "bg-primary/10 border border-primary/20"}`}>
                   {m.text}
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-border">
+          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-surface border border-border">
             <MessageSquare className="size-4 text-muted-foreground" />
             <input className="flex-1 bg-transparent outline-none text-sm" placeholder="Speak or type your answer..." />
           </div>

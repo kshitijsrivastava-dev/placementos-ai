@@ -20,7 +20,7 @@ export function Features() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f) => (
-            <div key={f.title} className="group p-6 rounded-2xl border border-border bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/30 transition-all">
+            <div key={f.title} className="group p-6 rounded-2xl border border-border bg-surface hover:bg-surface-hover hover:border-primary/30 transition-all">
               <div className="size-11 rounded-lg bg-primary/10 border border-primary/20 grid place-items-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <f.icon className="size-5 text-primary" />
               </div>

@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import {
   LayoutDashboard,
   Code2,
@@ -35,7 +36,7 @@ export function Sidebar() {
         <span className="font-bold tracking-tighter text-lg">PlacementOS</span>
       </Link>
 
-      <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-border">
+      <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
         <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
         <div className="min-w-0">
           <div className="text-sm font-semibold truncate">Alex Chen</div>
@@ -53,7 +54,7 @@ export function Sidebar() {
               className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors border ${
                 active
                   ? "bg-primary/10 text-primary border-primary/20"
-                  : "text-muted-foreground hover:bg-white/5 hover:text-foreground border-transparent"
+                  : "text-muted-foreground hover:bg-surface-hover hover:text-foreground border-transparent"
               }`}
             >
               <item.icon className="size-4" />
@@ -66,16 +67,20 @@ export function Sidebar() {
       <div className="p-4 rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/20">
         <div className="text-[10px] font-mono uppercase text-primary mb-1">FAANG Ready</div>
         <div className="text-2xl font-bold mb-2">84%</div>
-        <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+        <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
           <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: "84%" }} />
         </div>
       </div>
 
       <div className="space-y-0.5">
-        <button className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground transition-colors w-full">
+        <div className="flex items-center gap-2 px-1 py-1">
+          <ThemeToggle className="shrink-0" />
+          <span className="text-xs text-muted-foreground">Theme</span>
+        </div>
+        <button className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors w-full">
           <Settings className="size-4" /> Settings
         </button>
-        <Link to="/login" className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground transition-colors">
+        <Link to="/login" className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors">
           <LogOut className="size-4" /> Sign out
         </Link>
       </div>
@@ -92,7 +97,7 @@ export function MobileTopbar() {
         </div>
         <span className="font-bold tracking-tighter">PlacementOS</span>
       </Link>
-      <div className="size-8 rounded-lg bg-[image:var(--gradient-primary)]" />
+      <ThemeToggle />
     </div>
   );
 }

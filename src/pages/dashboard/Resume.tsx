@@ -12,7 +12,7 @@ function ResumePage() {
           <p className="text-muted-foreground mt-1">ATS-optimized · JD-matched · powered by Lovable AI</p>
         </div>
         <div className="flex gap-2">
-          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-border rounded-xl font-semibold text-sm hover:bg-white/10">
+          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
             <Upload className="size-4" /> Upload PDF
           </button>
           <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
@@ -54,13 +54,13 @@ function ResumePage() {
           <Card title="AI Suggestions">
             <ul className="space-y-3">
               {[
-                { icon: CheckCircle2, color: "text-[oklch(0.72_0.18_155)]", text: "Quantified metrics detected in 4/4 bullets" },
-                { icon: AlertCircle, color: "text-[oklch(0.78_0.17_75)]", text: "Add keyword: 'distributed systems' (in JD 3x)" },
-                { icon: AlertCircle, color: "text-[oklch(0.78_0.17_75)]", text: "Action verbs could be stronger: replace 'made' → 'engineered'" },
+                { icon: CheckCircle2, color: "text-success", text: "Quantified metrics detected in 4/4 bullets" },
+                { icon: AlertCircle, color: "text-warning", text: "Add keyword: 'distributed systems' (in JD 3x)" },
+                { icon: AlertCircle, color: "text-warning", text: "Action verbs could be stronger: replace 'made' → 'engineered'" },
                 { icon: XCircle, color: "text-destructive", text: "Missing: 'system design' section for L4+ roles" },
-                { icon: CheckCircle2, color: "text-[oklch(0.72_0.18_155)]", text: "Resume length optimal at 1 page" },
+                { icon: CheckCircle2, color: "text-success", text: "Resume length optimal at 1 page" },
               ].map((s, i) => (
-                <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-border">
+                <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-surface border border-border">
                   <s.icon className={`size-4 mt-0.5 shrink-0 ${s.color}`} />
                   <span className="text-sm">{s.text}</span>
                 </li>
@@ -69,7 +69,7 @@ function ResumePage() {
           </Card>
 
           <Card title="JD Match">
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] border border-border">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-surface border border-border">
               <div className="size-10 rounded-lg bg-primary/10 border border-primary/20 grid place-items-center">
                 <FileText className="size-5 text-primary" />
               </div>

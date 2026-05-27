@@ -53,7 +53,7 @@ function Roadmap() {
           <span className="text-xs font-mono text-muted-foreground uppercase">Progress</span>
           <span className="text-xs font-mono ml-auto">55%</span>
         </div>
-        <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+        <div className="h-2 w-full bg-subtle rounded-full overflow-hidden">
           <div className="h-full bg-[image:var(--gradient-primary)] relative" style={{ width: "55%" }}>
             <div className="absolute inset-0 animate-shimmer bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)] bg-[length:200%_100%]" />
           </div>
@@ -67,16 +67,16 @@ function Roadmap() {
             const Icon = p.status === "done" ? CheckCircle2 : p.status === "active" ? Clock : Circle;
             const color =
               p.status === "done"
-                ? "text-[oklch(0.72_0.18_155)] border-[oklch(0.72_0.18_155/0.3)] bg-[oklch(0.72_0.18_155/0.1)]"
+                ? "text-success border-success/30 bg-success/10"
                 : p.status === "active"
-                ? "text-primary border-primary/40 bg-primary/10 shadow-[0_0_24px_oklch(0.66_0.19_256/0.3)]"
-                : "text-muted-foreground border-border bg-white/[0.02]";
+                ? "text-primary border-primary/40 bg-primary/10 shadow-[var(--shadow-glow)]"
+                : "text-muted-foreground border-border bg-surface";
             return (
               <div key={p.title} className="flex gap-5 relative">
                 <div className={`size-10 shrink-0 rounded-full border grid place-items-center ${color}`}>
                   <Icon className="size-5" />
                 </div>
-                <div className={`flex-1 p-5 rounded-2xl border ${p.status === "active" ? "border-primary/30 bg-primary/5" : "border-border bg-white/[0.02]"}`}>
+                <div className={`flex-1 p-5 rounded-2xl border ${p.status === "active" ? "border-primary/30 bg-primary/5" : "border-border bg-surface"}`}>
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{p.week}</div>

@@ -31,7 +31,7 @@ function Analytics() {
                   <span className="text-muted-foreground">{s.label}</span>
                   <span className="font-mono">{s.v}%</span>
                 </div>
-                <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-subtle rounded-full overflow-hidden">
                   <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${s.v}%` }} />
                 </div>
               </div>
@@ -45,7 +45,7 @@ function Analytics() {
               <ul className="space-y-2">
                 {["Tree problems", "Communication", "Pattern recognition"].map((s) => (
                   <li key={s} className="text-sm flex items-center gap-2">
-                    <div className="size-1.5 rounded-full bg-[oklch(0.72_0.18_155)]" />{s}
+                    <div className="size-1.5 rounded-full bg-success" />{s}
                   </li>
                 ))}
               </ul>

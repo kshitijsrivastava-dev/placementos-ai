@@ -29,7 +29,7 @@ function AptitudePage() {
               </div>
               <button className="text-xs font-semibold text-primary hover:text-primary/80">Resume →</button>
             </div>
-            <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
               <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${(s.solved / s.total) * 100}%` }} />
             </div>
           </Card>
@@ -42,7 +42,7 @@ function AptitudePage() {
             { name: "Infosys SP · Quant Section", score: "29/35", time: "3d ago" },
             { name: "Wipro Elite · Reasoning", score: "21/25", time: "1w ago" },
           ].map((t) => (
-            <div key={t.name} className="flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-border">
+            <div key={t.name} className="flex items-center justify-between p-3 rounded-lg bg-surface border border-border">
               <div>
                 <div className="text-sm font-medium">{t.name}</div>
                 <div className="text-[10px] text-muted-foreground font-mono">{t.time}</div>
