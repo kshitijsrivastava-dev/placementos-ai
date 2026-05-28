@@ -3,34 +3,10 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useEffect, useState } from "react";
-import {
-  LayoutDashboard,
-  Code2,
-  Calculator,
-  FileText,
-  MessageSquare,
-  Route as RouteIcon,
-  BarChart3,
-  Target,
-  Sparkles,
-  Settings,
-  LogOut,
-  Menu,
-} from "lucide-react";
-
-const nav = [
-  { to: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { to: "/dashboard/dsa", label: "DSA Tracker", icon: Code2 },
-  { to: "/dashboard/aptitude", label: "Aptitude", icon: Calculator },
-  { to: "/dashboard/resume", label: "Resume AI", icon: FileText },
-  { to: "/dashboard/mock-interview", label: "Mock Interview", icon: MessageSquare },
-  { to: "/dashboard/roadmap", label: "AI Roadmap", icon: RouteIcon },
-  { to: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
-  { to: "/dashboard/goals", label: "Goals", icon: Target },
-] as const;
+import { Sparkles, Settings, LogOut, Menu } from "lucide-react";
+import { DashboardNavList } from "./nav/DashboardNavList";
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
-  const path = useLocation().pathname;
   return (
     <div className="flex flex-col h-full w-full p-5 gap-6">
       <Link to="/" onClick={onNavigate} className="flex items-center gap-2">
@@ -48,26 +24,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         </div>
       </div>
 
-      <nav className="space-y-0.5 flex-1">
-        {nav.map((item) => {
-          const active = path === item.to;
-          return (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={onNavigate}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors border ${
-                active
-                  ? "bg-primary/10 text-primary border-primary/20"
-                  : "text-muted-foreground hover:bg-surface-hover hover:text-foreground border-transparent"
-              }`}
-            >
-              <item.icon className="size-4" />
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
+      <DashboardNavList onNavigate={onNavigate} />
 
       <div className="p-4 rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/20">
         <div className="text-[10px] font-mono uppercase text-primary mb-1">FAANG Ready</div>
