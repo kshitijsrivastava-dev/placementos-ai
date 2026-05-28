@@ -11,7 +11,7 @@ function ResumePage() {
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Resume Architect</h1>
           <p className="text-muted-foreground mt-1">ATS-optimized · JD-matched · powered by Lovable AI</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
             <Upload className="size-4" /> Upload PDF
           </button>

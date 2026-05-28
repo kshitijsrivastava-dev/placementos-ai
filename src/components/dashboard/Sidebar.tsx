@@ -65,28 +65,31 @@ export function MobileTopbar() {
     setOpen(false);
   }, [path]);
   return (
-    <div className="lg:hidden sticky top-0 z-40 glass-strong border-b border-border px-4 h-14 flex items-center justify-between">
+    <div className="lg:hidden sticky top-0 z-40 glass-strong border-b border-border px-3 sm:px-4 h-14 flex items-center justify-between gap-3">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <button
             aria-label="Open menu"
-            className="size-9 inline-flex items-center justify-center rounded-lg border border-border bg-surface hover:bg-surface-hover transition-colors"
+            className="size-10 inline-flex items-center justify-center rounded-lg border border-border bg-surface hover:bg-surface-hover active:bg-surface-hover transition-colors touch-manipulation"
           >
-            <Menu className="size-4" />
+            <Menu className="size-5" />
           </button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 p-0 bg-sidebar border-border">
+        <SheetContent
+          side="left"
+          className="w-[85vw] max-w-[320px] p-0 bg-sidebar border-border overflow-y-auto"
+        >
           <VisuallyHidden>
             <SheetTitle>Navigation</SheetTitle>
           </VisuallyHidden>
           <SidebarBody onNavigate={() => setOpen(false)} />
         </SheetContent>
       </Sheet>
-      <Link to="/" className="flex items-center gap-2">
+      <Link to="/" className="flex items-center gap-2 min-w-0">
         <div className="size-7 rounded-lg bg-[image:var(--gradient-primary)] flex items-center justify-center">
           <Sparkles className="size-3.5 text-primary-foreground" />
         </div>
-        <span className="font-bold tracking-tighter">PlacementOS</span>
+        <span className="font-bold tracking-tighter truncate">PlacementOS</span>
       </Link>
       <ThemeToggle />
     </div>

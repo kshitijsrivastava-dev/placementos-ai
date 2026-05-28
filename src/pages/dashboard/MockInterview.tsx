@@ -46,7 +46,7 @@ function MockInterview() {
             </div>
           </div>
 
-          <div className="p-5 grid grid-cols-4 gap-4 border-t border-border">
+          <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-border">
             {[
               { l: "Clarity", v: 92 },
               { l: "Depth", v: 86 },

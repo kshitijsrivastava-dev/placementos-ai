@@ -20,10 +20,18 @@ export function Heatmap({ cols = 53, rows = 7 }: { cols?: number; rows?: number 
   const total = cols * rows;
   const cells = Array.from({ length: total }, (_, i) => seededIntensity(i));
   return (
-    <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
-      {cells.map((c, i) => (
-        <div key={i} className={`aspect-square rounded-sm ${intensityClass[c]}`} />
-      ))}
+    <div className="-mx-2 px-2 overflow-x-auto">
+      <div
+        className="grid gap-1"
+        style={{
+          gridTemplateColumns: `repeat(${cols}, minmax(10px, 1fr))`,
+          minWidth: `${cols * 12}px`,
+        }}
+      >
+        {cells.map((c, i) => (
+          <div key={i} className={`aspect-square rounded-sm ${intensityClass[c]}`} />
+        ))}
+      </div>
     </div>
   );
 }
