@@ -1,4 +1,4 @@
-import type { DSAQuestion, DSATopic, ImportanceTier } from "@/types/dsa";
+import type { DSABaseQuestion, DSAQuestion, DSATopic, ImportanceTier } from "@/types/dsa";
 
 export const DSA_TOPICS: DSATopic[] = [
   { id: "arrays", name: "Arrays", slug: "arrays", description: "Hash maps, two-sum patterns, in-place mutations", problemCount: 48 },
@@ -17,9 +17,7 @@ export const DSA_TOPICS: DSATopic[] = [
   { id: "bit-manipulation", name: "Bit Manipulation", slug: "bit-manipulation", description: "XOR tricks, masks, bit counts", problemCount: 16 },
 ];
 
-type BaseQuestion = Omit<DSAQuestion, "askedScore" | "importanceTier" | "lastAttemptedDaysAgo">;
-
-const BASE_QUESTIONS: BaseQuestion[] = [
+const BASE_QUESTIONS: DSABaseQuestion[] = [
   {
     id: "q-1",
     title: "Two Sum",
@@ -687,7 +685,7 @@ function parseLastAttemptedDaysAgo(value?: string): number {
   return 9999;
 }
 
-function deriveAskedScore(q: BaseQuestion): number {
+function deriveAskedScore(q: DSABaseQuestion): number {
   const frequencyScore = q.frequency === "high" ? 60 : q.frequency === "medium" ? 35 : 15;
   const companyScore = Math.min(70, q.companies.length * 14);
   const acceptanceScore = q.acceptance * 0.4; // 0..40

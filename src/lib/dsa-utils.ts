@@ -1,10 +1,13 @@
 import type {
+  CompanyStats,
   Difficulty,
   DSAFilters,
+  DSAGlobalStats,
   DSAQuestion,
   DSATopic,
   ImportanceTier,
   QuestionStatus,
+  TopicProgress,
 } from "@/types/dsa";
 
 export const DIFFICULTY_STYLES: Record<Difficulty, string> = {
@@ -76,14 +79,6 @@ export function filterQuestions(
   });
 }
 
-export type TopicProgress = DSATopic & {
-  solved: number;
-  attempted: number;
-  reviewing: number;
-  total: number;
-  percent: number;
-};
-
 export function computeTopicProgress(
   topics: DSATopic[],
   questions: DSAQuestion[],
@@ -107,7 +102,7 @@ export function computeTopicProgress(
   });
 }
 
-export function computeGlobalStats(questions: DSAQuestion[]) {
+export function computeGlobalStats(questions: DSAQuestion[]): DSAGlobalStats {
   const solved = questions.filter((q) => q.status === "solved").length;
   const attempted = questions.filter((q) => q.status === "attempted").length;
   const reviewing = questions.filter((q) => q.status === "reviewing").length;
@@ -143,8 +138,6 @@ export function computeGlobalStats(questions: DSAQuestion[]) {
     acceptance: acceptance.toFixed(1),
   };
 }
-
-export type CompanyStats = { company: string; questionCount: number };
 
 export function computeCompanyStats(questions: DSAQuestion[]): CompanyStats[] {
   const map = new Map<string, number>();

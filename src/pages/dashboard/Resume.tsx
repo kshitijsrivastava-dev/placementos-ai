@@ -2,9 +2,17 @@ import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { FileText, Upload, Sparkles, CheckCircle2, AlertCircle, XCircle } from "lucide-react";
+import { RESUME_ANALYSIS } from "@/data/resume-mock";
+import {
+  formatJdMatchSummary,
+  RESUME_SUGGESTION_ICONS,
+  RESUME_SUGGESTION_TONE_CLASSES,
+} from "@/lib/resume-display";
+import { FileText, Upload, Sparkles } from "lucide-react";
 
 function ResumePage() {
+  const analysis = RESUME_ANALYSIS;
+
   return (
     <DashboardPage>
       <DashboardPageHeader
@@ -50,23 +58,25 @@ function ResumePage() {
 
         <div className="col-span-12 lg:col-span-5 space-y-6">
           <Card title="ATS Score" className="flex flex-col items-center">
-            <ProgressRing value={87} size={140} sublabel="Strong match · Meta E4" />
+            <ProgressRing value={analysis.atsScore} size={140} sublabel={analysis.atsSublabel} />
           </Card>
 
           <Card title="AI Suggestions">
             <ul className="space-y-3">
-              {[
-                { icon: CheckCircle2, color: "text-success", text: "Quantified metrics detected in 4/4 bullets" },
-                { icon: AlertCircle, color: "text-warning", text: "Add keyword: 'distributed systems' (in JD 3x)" },
-                { icon: AlertCircle, color: "text-warning", text: "Action verbs could be stronger: replace 'made' → 'engineered'" },
-                { icon: XCircle, color: "text-destructive", text: "Missing: 'system design' section for L4+ roles" },
-                { icon: CheckCircle2, color: "text-success", text: "Resume length optimal at 1 page" },
-              ].map((s, i) => (
-                <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-surface border border-border">
-                  <s.icon className={`size-4 mt-0.5 shrink-0 ${s.color}`} />
-                  <span className="text-sm">{s.text}</span>
-                </li>
-              ))}
+              {analysis.suggestions.map((suggestion) => {
+                const Icon = RESUME_SUGGESTION_ICONS[suggestion.severity];
+                return (
+                  <li
+                    key={suggestion.id}
+                    className="flex items-start gap-3 p-3 rounded-lg bg-surface border border-border"
+                  >
+                    <Icon
+                      className={`size-4 mt-0.5 shrink-0 ${RESUME_SUGGESTION_TONE_CLASSES[suggestion.severity]}`}
+                    />
+                    <span className="text-sm">{suggestion.text}</span>
+                  </li>
+                );
+              })}
             </ul>
           </Card>
 
@@ -76,8 +86,16 @@ function ResumePage() {
                 <FileText className="size-5 text-primary" />
               </div>
               <div className="flex-1">
-                <div className="text-sm font-semibold">Meta · Software Engineer, E4</div>
-                <div className="text-xs text-muted-foreground font-mono">87% keyword match · 12 of 14 skills aligned</div>
+                <div className="text-sm font-semibold">
+                  {analysis.jdMatch.company} · {analysis.jdMatch.role}
+                </div>
+                <div className="text-xs text-muted-foreground font-mono">
+                  {formatJdMatchSummary(
+                    analysis.jdMatch.keywordMatchPercent,
+                    analysis.jdMatch.alignedSkills,
+                    analysis.jdMatch.totalSkills,
+                  )}
+                </div>
               </div>
             </div>
           </Card>

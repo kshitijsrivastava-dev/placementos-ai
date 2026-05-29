@@ -3,8 +3,11 @@ import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import { PERFORMANCE_ANALYTICS } from "@/data/analytics-mock";
 
 function Analytics() {
+  const analytics = PERFORMANCE_ANALYTICS;
+
   return (
     <DashboardPage>
       <DashboardPageHeader
@@ -17,24 +20,25 @@ function Analytics() {
           <Heatmap cols={52} rows={7} />
         </Card>
         <Card title="Percentile Rank" className="col-span-12 lg:col-span-4 flex flex-col items-center">
-          <ProgressRing value={94} size={160} sublabel="Top 6% of cohort" />
+          <ProgressRing
+            value={analytics.percentileRank}
+            size={160}
+            sublabel={analytics.percentileSublabel}
+          />
         </Card>
         <Card title="Time Distribution" className="col-span-12 lg:col-span-6">
           <div className="space-y-3">
-            {[
-              { label: "DSA", v: 42 },
-              { label: "System Design", v: 18 },
-              { label: "Aptitude", v: 14 },
-              { label: "Mock Interviews", v: 16 },
-              { label: "Resume & Apply", v: 10 },
-            ].map((s) => (
-              <div key={s.label}>
+            {analytics.timeDistribution.map((item) => (
+              <div key={item.label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-muted-foreground">{s.label}</span>
-                  <span className="font-mono">{s.v}%</span>
+                  <span className="text-muted-foreground">{item.label}</span>
+                  <span className="font-mono">{item.percent}%</span>
                 </div>
                 <div className="h-2 w-full bg-subtle rounded-full overflow-hidden">
-                  <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${s.v}%` }} />
+                  <div
+                    className="h-full bg-[image:var(--gradient-primary)]"
+                    style={{ width: `${item.percent}%` }}
+                  />
                 </div>
               </div>
             ))}
@@ -45,9 +49,10 @@ function Analytics() {
             <div>
               <div className="text-xs text-muted-foreground uppercase font-mono mb-3">Top Strengths</div>
               <ul className="space-y-2">
-                {["Tree problems", "Communication", "Pattern recognition"].map((s) => (
-                  <li key={s} className="text-sm flex items-center gap-2">
-                    <div className="size-1.5 rounded-full bg-success" />{s}
+                {analytics.strengths.map((strength) => (
+                  <li key={strength} className="text-sm flex items-center gap-2">
+                    <div className="size-1.5 rounded-full bg-success" />
+                    {strength}
                   </li>
                 ))}
               </ul>
@@ -55,9 +60,10 @@ function Analytics() {
             <div>
               <div className="text-xs text-muted-foreground uppercase font-mono mb-3">Focus Areas</div>
               <ul className="space-y-2">
-                {["DP 2D", "Tries", "System scaling"].map((s) => (
-                  <li key={s} className="text-sm flex items-center gap-2">
-                    <div className="size-1.5 rounded-full bg-destructive" />{s}
+                {analytics.focusAreas.map((area) => (
+                  <li key={area} className="text-sm flex items-center gap-2">
+                    <div className="size-1.5 rounded-full bg-destructive" />
+                    {area}
                   </li>
                 ))}
               </ul>

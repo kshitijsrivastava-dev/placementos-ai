@@ -1,10 +1,17 @@
-import { Activity, Code2, Flame, Target, Sparkles, ArrowUpRight, CheckCircle2, Clock } from "lucide-react";
+import { Activity, Code2, Flame, Target, Sparkles, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import {
+  OVERVIEW_ACTIVITY_EVENTS,
+  OVERVIEW_DAILY_PLAN_SUMMARY,
+  OVERVIEW_DAILY_TASKS,
+  OVERVIEW_READINESS_DOMAINS,
+} from "@/data/overview-mock";
+import { ACTIVITY_EVENT_ICONS, ACTIVITY_EVENT_TONE_CLASSES } from "@/lib/overview-display";
 
 function DashboardHome() {
   return (
@@ -109,18 +116,17 @@ function DashboardHome() {
         <Card title="FAANG Readiness" className="col-span-12 lg:col-span-4 flex flex-col items-center justify-center">
           <ProgressRing value={84} size={160} sublabel="Across 6 domains" />
           <div className="mt-6 w-full space-y-3">
-            {[
-              { label: "Data Structures", v: 92 },
-              { label: "Algorithms", v: 78 },
-              { label: "System Design", v: 64 },
-            ].map((s) => (
-              <div key={s.label}>
+            {OVERVIEW_READINESS_DOMAINS.map((domain) => (
+              <div key={domain.label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-muted-foreground">{s.label}</span>
-                  <span className="font-mono">{s.v}%</span>
+                  <span className="text-muted-foreground">{domain.label}</span>
+                  <span className="font-mono">{domain.percent}%</span>
                 </div>
                 <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
-                  <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: `${s.v}%` }} />
+                  <div
+                    className="h-full bg-[image:var(--gradient-primary)]"
+                    style={{ width: `${domain.percent}%` }}
+                  />
                 </div>
               </div>
             ))}
@@ -130,42 +136,44 @@ function DashboardHome() {
         {/* Activity Timeline */}
         <Card title="Activity Timeline" className="col-span-12 lg:col-span-7">
           <ul className="space-y-4">
-            {[
-              { icon: CheckCircle2, color: "text-success", text: "Solved Trapping Rain Water — Hard · 28 min", time: "2h ago" },
-              { icon: Sparkles, color: "text-primary", text: "Completed Mock Interview · Google L4 simulation · 92/100", time: "5h ago" },
-              { icon: Flame, color: "text-accent", text: "Hit 18-day streak. Personal record extended.", time: "Today" },
-              { icon: Code2, color: "text-primary", text: "Started new pattern: Sliding Window · 12 problems queued", time: "Yesterday" },
-              { icon: Clock, color: "text-muted-foreground", text: "AI Roadmap re-calibrated for Meta E4 by Mar 2026", time: "2d ago" },
-            ].map((a, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <div className={`size-8 rounded-lg bg-surface border border-border grid place-items-center shrink-0 ${a.color}`}>
-                  <a.icon className="size-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-foreground/90">{a.text}</p>
-                  <p className="text-xs text-muted-foreground font-mono mt-0.5">{a.time}</p>
-                </div>
-              </li>
-            ))}
+            {OVERVIEW_ACTIVITY_EVENTS.map((event) => {
+              const Icon = ACTIVITY_EVENT_ICONS[event.icon];
+              const toneClass = ACTIVITY_EVENT_TONE_CLASSES[event.tone];
+              return (
+                <li key={event.id} className="flex items-start gap-3">
+                  <div
+                    className={`size-8 rounded-lg bg-surface border border-border grid place-items-center shrink-0 ${toneClass}`}
+                  >
+                    <Icon className="size-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-foreground/90">{event.text}</p>
+                    <p className="text-xs text-muted-foreground font-mono mt-0.5">{event.timeLabel}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </Card>
 
         {/* Upcoming */}
-        <Card title="Today's Plan" subtitle="3 of 6 complete" className="col-span-12 lg:col-span-5">
+        <Card
+          title="Today's Plan"
+          subtitle={`${OVERVIEW_DAILY_PLAN_SUMMARY.completed} of ${OVERVIEW_DAILY_PLAN_SUMMARY.total} complete`}
+          className="col-span-12 lg:col-span-5"
+        >
           <ul className="space-y-2">
-            {[
-              { t: "Binary Tree · 5 medium problems", done: true },
-              { t: "Aptitude · Quant section 4", done: true },
-              { t: "Mock interview · System design", done: true },
-              { t: "Review DP notes", done: false },
-              { t: "Resume v3 — quantify metrics", done: false },
-              { t: "Read: Meta engineering blog", done: false },
-            ].map((task, i) => (
-              <li key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${task.done ? "bg-surface border-border opacity-60" : "bg-surface-hover border-border"}`}>
-                <div className={`size-4 rounded border-2 flex items-center justify-center ${task.done ? "bg-primary border-primary" : "border-muted-foreground/40"}`}>
+            {OVERVIEW_DAILY_TASKS.map((task) => (
+              <li
+                key={task.id}
+                className={`flex items-center gap-3 p-3 rounded-lg border ${task.done ? "bg-surface border-border opacity-60" : "bg-surface-hover border-border"}`}
+              >
+                <div
+                  className={`size-4 rounded border-2 flex items-center justify-center ${task.done ? "bg-primary border-primary" : "border-muted-foreground/40"}`}
+                >
                   {task.done && <CheckCircle2 className="size-3 text-primary-foreground" />}
                 </div>
-                <span className={`text-sm flex-1 ${task.done ? "line-through" : ""}`}>{task.t}</span>
+                <span className={`text-sm flex-1 ${task.done ? "line-through" : ""}`}>{task.title}</span>
               </li>
             ))}
           </ul>

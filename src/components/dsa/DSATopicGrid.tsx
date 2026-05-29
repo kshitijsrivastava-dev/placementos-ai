@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { TopicProgress } from "@/lib/dsa-utils";
+import type { TopicProgress } from "@/types/dsa";
 
 export function DSATopicGrid({
   topics,

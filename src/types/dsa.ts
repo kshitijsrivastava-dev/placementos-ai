@@ -1,8 +1,18 @@
+import type { ProgressMetrics } from "./shared";
+
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export type QuestionStatus = "solved" | "attempted" | "reviewing" | "unsolved";
 
 export type ImportanceTier = "Must Do" | "Very Important" | "High Frequency";
+
+export type QuestionFrequency = "high" | "medium" | "low";
+
+export type DSASortOption =
+  | "most-asked"
+  | "most-important"
+  | "highest-acceptance"
+  | "recently-attempted";
 
 export type DSATopic = {
   id: string;
@@ -22,10 +32,10 @@ export type DSAQuestion = {
   acceptance: number;
   companies: string[];
   tags: string[];
-  frequency: "high" | "medium" | "low";
+  frequency: QuestionFrequency;
   /** Derived from mock metadata: used for "Most Asked" sorting. */
   askedScore: number;
-  /** Derived from mock metadata: drives "Must Do / Very Important / High Frequency" badges. */
+  /** Derived from mock metadata: drives importance badges. */
   importanceTier: ImportanceTier;
   /** Derived numeric recency for sorting by "Recently attempted". */
   lastAttemptedDaysAgo: number;
@@ -41,5 +51,40 @@ export type DSAFilters = {
   bookmarkedOnly: boolean;
   companies: string[];
   importanceTiers: ImportanceTier[];
-  sortBy: "most-asked" | "most-important" | "highest-acceptance" | "recently-attempted";
+  sortBy: DSASortOption;
 };
+
+export type TopicProgress = DSATopic & {
+  solved: number;
+  attempted: number;
+  reviewing: number;
+  total: number;
+  percent: Percent;
+};
+
+export type DifficultyBucketStats = ProgressMetrics & {
+  pct: Percent;
+};
+
+export type DSAGlobalStats = {
+  solved: number;
+  attempted: number;
+  reviewing: number;
+  total: number;
+  overallPercent: Percent;
+  easy: DifficultyBucketStats;
+  medium: DifficultyBucketStats;
+  hard: DifficultyBucketStats;
+  acceptance: string;
+};
+
+export type CompanyStats = {
+  company: string;
+  questionCount: number;
+};
+
+/** Question shape before derived scoring fields are applied in mock data. */
+export type DSABaseQuestion = Omit<
+  DSAQuestion,
+  "askedScore" | "importanceTier" | "lastAttemptedDaysAgo"
+>;

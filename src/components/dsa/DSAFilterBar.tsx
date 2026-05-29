@@ -6,7 +6,7 @@ import type {
   ImportanceTier,
   QuestionStatus,
 } from "@/types/dsa";
-import type { CompanyStats } from "@/lib/dsa-utils";
+import type { CompanyStats } from "@/types/dsa";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
