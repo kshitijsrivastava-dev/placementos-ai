@@ -227,7 +227,7 @@ export function DSAQuestionList({
         </table>
       </div>
 
-      <div className="md:hidden space-y-2.5 -mx-1">
+      <div className="md:hidden space-y-2.5">
         {questions.map((question) => (
           <QuestionCard key={question.id} {...itemProps(question)} />
         ))}
