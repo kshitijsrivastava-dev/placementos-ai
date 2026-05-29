@@ -13,38 +13,38 @@ export function DSAFilterBar({
   hasActiveAdvancedFilters,
   advancedFilterCount,
   companyOptions,
-  onSearchChange,
-  onToggleDifficulty,
-  onToggleStatus,
-  onBookmarkedOnlyChange,
-  onToggleCompany,
-  onToggleImportanceTier,
-  onSortByChange,
+  setSearch,
+  toggleDifficulty,
+  toggleStatus,
+  setBookmarkedOnly,
+  toggleCompany,
+  toggleImportanceTier,
+  setSortBy,
   pageSize,
   onPageSizeChange,
-  onClear,
+  clearFilters,
 }: DsaFilterBarState & { pageSize: number; onPageSizeChange: (pageSize: number) => void }) {
   return (
     <div className="space-y-4">
       <DSAFilterToolbar
         filters={filters}
         bookmarkCount={bookmarkCount}
-        onSearchChange={onSearchChange}
-        onBookmarkedOnlyChange={onBookmarkedOnlyChange}
+        onSearchChange={setSearch}
+        onBookmarkedOnlyChange={setBookmarkedOnly}
       />
 
       <div className="flex flex-col xl:flex-row xl:items-center gap-3 xl:gap-4">
         <div className="flex-1 min-w-0">
           <DSACoreFilters
             filters={filters}
-            onToggleDifficulty={onToggleDifficulty}
-            onToggleStatus={onToggleStatus}
+            onToggleDifficulty={toggleDifficulty}
+            onToggleStatus={toggleStatus}
           />
         </div>
         <DSAListControls
           sortBy={filters.sortBy}
           pageSize={pageSize}
-          onSortByChange={onSortByChange}
+          onSortByChange={setSortBy}
           onPageSizeChange={onPageSizeChange}
         />
       </div>
@@ -55,9 +55,9 @@ export function DSAFilterBar({
         hasActiveAdvancedFilters={hasActiveAdvancedFilters}
         advancedFilterCount={advancedFilterCount}
         hasActiveFilters={hasActiveFilters}
-        onToggleCompany={onToggleCompany}
-        onToggleImportanceTier={onToggleImportanceTier}
-        onClear={onClear}
+        onToggleCompany={toggleCompany}
+        onToggleImportanceTier={toggleImportanceTier}
+        onClear={clearFilters}
       />
 
       <p className="text-[11px] font-mono text-muted-foreground">

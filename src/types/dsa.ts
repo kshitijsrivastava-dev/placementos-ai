@@ -1,4 +1,4 @@
-import type { ProgressMetrics } from "./shared";
+import type { Percent } from "./shared";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
@@ -62,7 +62,9 @@ export type TopicProgress = DSATopic & {
   percent: Percent;
 };
 
-export type DifficultyBucketStats = ProgressMetrics & {
+export type DifficultyBucketStats = {
+  solved: number;
+  total: number;
   pct: Percent;
 };
 
