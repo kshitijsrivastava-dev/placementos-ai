@@ -14,9 +14,9 @@ export function Card({
   className?: string;
 }) {
   return (
-    <div className={`p-6 rounded-2xl bg-surface border border-border ${className}`}>
+    <div className={`p-4 sm:p-6 rounded-2xl bg-surface border border-border ${className}`}>
       {(title || action) && (
-        <div className="flex items-start justify-between mb-5 gap-4">
+        <div className="flex items-start justify-between mb-4 sm:mb-5 gap-3 sm:gap-4">
           <div>
             {title && <h3 className="text-sm font-mono text-muted-foreground uppercase tracking-wider">{title}</h3>}
             {subtitle && <p className="text-base font-semibold mt-1">{subtitle}</p>}

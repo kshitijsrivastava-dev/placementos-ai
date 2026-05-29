@@ -12,8 +12,8 @@ export function DSATopicGrid({
 }) {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-4">
-        <div>
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
           <h2 className="text-sm font-mono text-muted-foreground uppercase tracking-wider">
             Topics
           </h2>
@@ -25,7 +25,7 @@ export function DSATopicGrid({
           type="button"
           onClick={() => onSelectTopic("all")}
           className={cn(
-            "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors",
+            "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors shrink-0 touch-manipulation",
             selectedTopicId === "all"
               ? "bg-primary/10 text-primary border-primary/30"
               : "border-border text-muted-foreground hover:bg-surface-hover hover:text-foreground",
@@ -35,7 +35,7 @@ export function DSATopicGrid({
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-3">
         {topics.map((topic) => {
           const active = selectedTopicId === topic.id;
           return (

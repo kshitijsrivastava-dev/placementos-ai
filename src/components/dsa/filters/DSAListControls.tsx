@@ -25,10 +25,10 @@ export function DSAListControls({
   onPageSizeChange,
 }: DSAListControlsProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center shrink-0">
-      <div className="min-w-[180px]">
+    <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center shrink-0 w-full sm:w-auto">
+      <div className="sm:min-w-[180px] flex-1 sm:flex-none">
         <Select value={sortBy} onValueChange={onSortByChange}>
-          <SelectTrigger className="h-10 rounded-xl bg-surface border-border">
+          <SelectTrigger className="h-11 sm:h-10 rounded-xl bg-surface border-border">
             <SelectValue placeholder="Sort" />
           </SelectTrigger>
           <SelectContent>
@@ -41,9 +41,9 @@ export function DSAListControls({
         </Select>
       </div>
 
-      <div className="min-w-[140px]">
+      <div className="sm:min-w-[140px] flex-1 sm:flex-none">
         <Select value={String(pageSize)} onValueChange={(value) => onPageSizeChange(Number(value))}>
-          <SelectTrigger className="h-10 rounded-xl bg-surface border-border">
+          <SelectTrigger className="h-11 sm:h-10 rounded-xl bg-surface border-border">
             <SelectValue placeholder="Rows" />
           </SelectTrigger>
           <SelectContent>
