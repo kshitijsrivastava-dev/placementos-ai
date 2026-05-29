@@ -3,10 +3,10 @@ import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { PERFORMANCE_ANALYTICS } from "@/data/analytics-mock";
+import { useAnalytics } from "@/hooks/dashboard/use-analytics";
 
 function Analytics() {
-  const analytics = PERFORMANCE_ANALYTICS;
+  const { analytics } = useAnalytics();
 
   return (
     <DashboardPage>

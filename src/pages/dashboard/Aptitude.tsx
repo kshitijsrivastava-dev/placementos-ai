@@ -1,14 +1,17 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { APTITUDE_RECENT_TESTS, APTITUDE_SECTIONS } from "@/data/aptitude-mock";
+import { useAptitude } from "@/hooks/dashboard/use-aptitude";
 import {
   APTITUDE_SECTION_ICONS,
   formatAptitudeAccuracy,
   formatAptitudeTestScore,
+  getAptitudeSectionProgressPercent,
 } from "@/lib/aptitude-display";
 
 function AptitudePage() {
+  const { sections, recentTests } = useAptitude();
+
   return (
     <DashboardPage maxWidth="6xl">
       <DashboardPageHeader
@@ -17,7 +20,7 @@ function AptitudePage() {
         description="Adaptive difficulty · 600+ company-tagged questions"
       />
       <div className="grid sm:grid-cols-2 gap-5">
-        {APTITUDE_SECTIONS.map((section) => {
+        {sections.map((section) => {
           const Icon = APTITUDE_SECTION_ICONS[section.icon];
           return (
             <Card key={section.id}>
@@ -36,7 +39,7 @@ function AptitudePage() {
               <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
                 <div
                   className="h-full bg-[image:var(--gradient-primary)]"
-                  style={{ width: `${(section.solved / section.total) * 100}%` }}
+                  style={{ width: `${getAptitudeSectionProgressPercent(section)}%` }}
                 />
               </div>
             </Card>
@@ -45,7 +48,7 @@ function AptitudePage() {
       </div>
       <Card title="Recent Mock Tests">
         <div className="space-y-2">
-          {APTITUDE_RECENT_TESTS.map((test) => (
+          {recentTests.map((test) => (
             <div
               key={test.id}
               className="flex items-center justify-between p-3 rounded-lg bg-surface border border-border"

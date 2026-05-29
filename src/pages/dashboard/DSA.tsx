@@ -13,12 +13,14 @@ function DSAPage() {
   const {
     filters,
     bookmarkedIds,
+    bookmarkCount,
     topicProgress,
     globalStats,
     filteredQuestions,
     pagedQuestions,
     page,
     pageCount,
+    pageItemCount,
     pageSize,
     totalQuestions,
     setPage,
@@ -92,7 +94,7 @@ function DSAPage() {
           filters={filters}
           resultCount={filteredQuestions.length}
           totalCount={totalQuestions}
-          bookmarkCount={bookmarkedIds.size}
+          bookmarkCount={bookmarkCount}
           hasActiveFilters={hasActiveFilters}
           companyOptions={companyOptions}
           onSearchChange={setSearch}
@@ -124,9 +126,7 @@ function DSAPage() {
               {page} / {pageCount}
             </span>{" "}
             · showing{" "}
-            <span className="text-foreground font-semibold">
-              {Math.min(pageSize, filteredQuestions.length - (page - 1) * pageSize)}
-            </span>{" "}
+            <span className="text-foreground font-semibold">{pageItemCount}</span>{" "}
             of {filteredQuestions.length}
           </p>
 

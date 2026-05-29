@@ -1,10 +1,12 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { ROADMAP_PHASES, ROADMAP_PROGRESS } from "@/data/roadmap-mock";
+import { useRoadmap } from "@/hooks/dashboard/use-roadmap";
 import { CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
 
 function Roadmap() {
+  const { phases, progress } = useRoadmap();
+
   return (
     <DashboardPage maxWidth="5xl">
       <DashboardPageHeader
@@ -21,12 +23,12 @@ function Roadmap() {
       <Card>
         <div className="flex items-center gap-3 mb-2">
           <span className="text-xs font-mono text-muted-foreground uppercase">Progress</span>
-          <span className="text-xs font-mono ml-auto">{ROADMAP_PROGRESS.percent}%</span>
+          <span className="text-xs font-mono ml-auto">{progress.percent}%</span>
         </div>
         <div className="h-2 w-full bg-subtle rounded-full overflow-hidden">
           <div
             className="h-full bg-[image:var(--gradient-primary)] relative"
-            style={{ width: `${ROADMAP_PROGRESS.percent}%` }}
+            style={{ width: `${progress.percent}%` }}
           >
             <div className="absolute inset-0 animate-shimmer bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)] bg-[length:200%_100%]" />
           </div>
@@ -36,7 +38,7 @@ function Roadmap() {
       <div className="relative">
         <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border" />
         <div className="space-y-4">
-          {ROADMAP_PHASES.map((phase) => {
+          {phases.map((phase) => {
             const Icon =
               phase.status === "done" ? CheckCircle2 : phase.status === "active" ? Clock : Circle;
             const color =

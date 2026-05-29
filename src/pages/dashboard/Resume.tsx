@@ -2,7 +2,7 @@ import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { RESUME_ANALYSIS } from "@/data/resume-mock";
+import { useResumeAnalysis } from "@/hooks/dashboard/use-resume-analysis";
 import {
   formatJdMatchSummary,
   RESUME_SUGGESTION_ICONS,
@@ -11,7 +11,7 @@ import {
 import { FileText, Upload, Sparkles } from "lucide-react";
 
 function ResumePage() {
-  const analysis = RESUME_ANALYSIS;
+  const { analysis } = useResumeAnalysis();
 
   return (
     <DashboardPage>

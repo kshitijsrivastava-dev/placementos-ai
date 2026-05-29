@@ -1,3 +1,4 @@
+import { getProgressPercentFromMetrics } from "@/lib/progress";
 import type { Goal, GoalUnit } from "@/types/goals";
 
 export function formatGoalValue(value: number, unit: GoalUnit = "count"): string {
@@ -5,5 +6,5 @@ export function formatGoalValue(value: number, unit: GoalUnit = "count"): string
 }
 
 export function getGoalProgressPercent(goal: Goal): number {
-  return (goal.current / goal.target) * 100;
+  return getProgressPercentFromMetrics(goal);
 }

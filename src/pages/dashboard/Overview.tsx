@@ -5,15 +5,12 @@ import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import {
-  OVERVIEW_ACTIVITY_EVENTS,
-  OVERVIEW_DAILY_PLAN_SUMMARY,
-  OVERVIEW_DAILY_TASKS,
-  OVERVIEW_READINESS_DOMAINS,
-} from "@/data/overview-mock";
+import { useOverview } from "@/hooks/dashboard/use-overview";
 import { ACTIVITY_EVENT_ICONS, ACTIVITY_EVENT_TONE_CLASSES } from "@/lib/overview-display";
 
 function DashboardHome() {
+  const { readinessDomains, activityEvents, dailyPlanSummary, dailyTasks } = useOverview();
+
   return (
     <DashboardPage>
       <DashboardPageHeader
@@ -116,7 +113,7 @@ function DashboardHome() {
         <Card title="FAANG Readiness" className="col-span-12 lg:col-span-4 flex flex-col items-center justify-center">
           <ProgressRing value={84} size={160} sublabel="Across 6 domains" />
           <div className="mt-6 w-full space-y-3">
-            {OVERVIEW_READINESS_DOMAINS.map((domain) => (
+            {readinessDomains.map((domain) => (
               <div key={domain.label}>
                 <div className="flex justify-between text-xs mb-1">
                   <span className="text-muted-foreground">{domain.label}</span>
@@ -136,7 +133,7 @@ function DashboardHome() {
         {/* Activity Timeline */}
         <Card title="Activity Timeline" className="col-span-12 lg:col-span-7">
           <ul className="space-y-4">
-            {OVERVIEW_ACTIVITY_EVENTS.map((event) => {
+            {activityEvents.map((event) => {
               const Icon = ACTIVITY_EVENT_ICONS[event.icon];
               const toneClass = ACTIVITY_EVENT_TONE_CLASSES[event.tone];
               return (
@@ -159,11 +156,11 @@ function DashboardHome() {
         {/* Upcoming */}
         <Card
           title="Today's Plan"
-          subtitle={`${OVERVIEW_DAILY_PLAN_SUMMARY.completed} of ${OVERVIEW_DAILY_PLAN_SUMMARY.total} complete`}
+          subtitle={`${dailyPlanSummary.completed} of ${dailyPlanSummary.total} complete`}
           className="col-span-12 lg:col-span-5"
         >
           <ul className="space-y-2">
-            {OVERVIEW_DAILY_TASKS.map((task) => (
+            {dailyTasks.map((task) => (
               <li
                 key={task.id}
                 className={`flex items-center gap-3 p-3 rounded-lg border ${task.done ? "bg-surface border-border opacity-60" : "bg-surface-hover border-border"}`}

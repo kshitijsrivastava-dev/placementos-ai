@@ -1,17 +1,19 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { GOALS, GOALS_SUMMARY } from "@/data/goals-mock";
+import { useGoals } from "@/hooks/dashboard/use-goals";
 import { formatGoalValue, getGoalProgressPercent } from "@/lib/goals-display";
 import { Target, Plus } from "lucide-react";
 
 function Goals() {
+  const { goals, summary } = useGoals();
+
   return (
     <DashboardPage maxWidth="5xl">
       <DashboardPageHeader
         eyebrow="// GOALS"
         title="Objectives & Key Results"
-        description={`${GOALS_SUMMARY.activeCount} active goals · ${GOALS_SUMMARY.dueThisMonthCount} due this month`}
+        description={`${summary.activeCount} active goals · ${summary.dueThisMonthCount} due this month`}
         actions={
           <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm">
             <Plus className="size-4" /> New Goal
@@ -19,7 +21,7 @@ function Goals() {
         }
       />
       <div className="grid sm:grid-cols-2 gap-5">
-        {GOALS.map((goal) => {
+        {goals.map((goal) => {
           const pct = getGoalProgressPercent(goal);
           const unit = goal.unit ?? "count";
           return (
