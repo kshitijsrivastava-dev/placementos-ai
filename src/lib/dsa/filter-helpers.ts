@@ -13,6 +13,14 @@ export function hasActiveDsaFilters(filters: DSAFilters): boolean {
   );
 }
 
+export function hasActiveAdvancedDsaFilters(filters: DSAFilters): boolean {
+  return filters.companies.length > 0 || filters.importanceTiers.length > 0;
+}
+
+export function getAdvancedDsaFilterCount(filters: DSAFilters): number {
+  return filters.companies.length + filters.importanceTiers.length;
+}
+
 /** Filter fields that should reset pagination when changed. */
 export function getDsaPaginationResetKey(filters: DSAFilters): string {
   return [

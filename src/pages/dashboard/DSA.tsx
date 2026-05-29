@@ -1,46 +1,21 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
-import { DSAFilterBar } from "@/components/dsa/DSAFilterBar";
+import { DSAFilterBar } from "@/components/dsa/filters/DSAFilterBar";
 import { DSAProgressStats } from "@/components/dsa/DSAProgressStats";
 import { DSAQuestionList } from "@/components/dsa/DSAQuestionList";
+import { DSATablePagination } from "@/components/dsa/DSATablePagination";
 import { DSATopicGrid } from "@/components/dsa/DSATopicGrid";
-import { getTopicById } from "@/data/dsa-mock";
 import { useDsaPractice } from "@/hooks/use-dsa-practice";
 import { ListFilter, Sparkles } from "lucide-react";
 
 function DSAPage() {
-  const {
-    filters,
-    bookmarkedIds,
-    bookmarkCount,
-    topicProgress,
-    globalStats,
-    filteredQuestions,
-    pagedQuestions,
-    page,
-    pageCount,
-    pageItemCount,
-    pageSize,
-    totalQuestions,
-    setPage,
-    toggleBookmark,
-    setTopic,
-    setSearch,
-    toggleDifficulty,
-    toggleStatus,
-    setBookmarkedOnly,
-    toggleCompany,
-    toggleImportanceTier,
-    setSortBy,
-    companyOptions,
-    setPageSize,
-    clearFilters,
-    hasActiveFilters,
-  } = useDsaPractice();
+  const { filterBar, table, topicProgress, globalStats, selectedTopicName, setTopic } =
+    useDsaPractice();
 
-  const selectedTopic =
-    filters.topicId !== "all" ? getTopicById(filters.topicId) : null;
+  const problemSetSubtitle = selectedTopicName
+    ? `${selectedTopicName} · ${table.filteredCount} problems`
+    : `All topics · ${table.filteredCount} problems`;
 
   return (
     <DashboardPage>
@@ -70,7 +45,7 @@ function DSAPage() {
         <div className="p-6 border-b border-border">
           <DSATopicGrid
             topics={topicProgress}
-            selectedTopicId={filters.topicId}
+            selectedTopicId={filterBar.filters.topicId}
             onSelectTopic={setTopic}
           />
         </div>
@@ -78,11 +53,7 @@ function DSAPage() {
 
       <Card
         title="Problem set"
-        subtitle={
-          selectedTopic
-            ? `${selectedTopic.name} · ${filteredQuestions.length} problems`
-            : `All topics · ${filteredQuestions.length} problems`
-        }
+        subtitle={problemSetSubtitle}
         action={
           <div className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground">
             <ListFilter className="size-3.5" />
@@ -91,63 +62,23 @@ function DSAPage() {
         }
       >
         <DSAFilterBar
-          filters={filters}
-          resultCount={filteredQuestions.length}
-          totalCount={totalQuestions}
-          bookmarkCount={bookmarkCount}
-          hasActiveFilters={hasActiveFilters}
-          companyOptions={companyOptions}
-          onSearchChange={setSearch}
-          onToggleDifficulty={toggleDifficulty}
-          onToggleStatus={toggleStatus}
-          onBookmarkedOnlyChange={setBookmarkedOnly}
-          onToggleCompany={toggleCompany}
-          onToggleImportanceTier={toggleImportanceTier}
-          onSortByChange={setSortBy}
-          pageSize={pageSize}
-          onPageSizeChange={setPageSize}
-          onClear={clearFilters}
+          {...filterBar}
+          pageSize={table.pagination.pageSize}
+          onPageSizeChange={table.pagination.setPageSize}
         />
 
         <div className="mt-6 pt-6 border-t border-border">
           <DSAQuestionList
-            questions={pagedQuestions}
-            bookmarkedIds={bookmarkedIds}
-            onToggleBookmark={toggleBookmark}
-            selectedCompanies={filters.companies}
-            onToggleCompany={toggleCompany}
+            questions={table.questions}
+            bookmarkedIds={table.bookmarkedIds}
+            onToggleBookmark={table.onToggleBookmark}
+            selectedCompanies={table.selectedCompanies}
+            onToggleCompany={table.onToggleCompany}
           />
         </div>
 
-        <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-[11px] font-mono text-muted-foreground">
-            Page{" "}
-            <span className="text-foreground font-semibold">
-              {page} / {pageCount}
-            </span>{" "}
-            · showing{" "}
-            <span className="text-foreground font-semibold">{pageItemCount}</span>{" "}
-            of {filteredQuestions.length}
-          </p>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setPage(Math.max(1, page - 1))}
-              disabled={page <= 1}
-              className="h-9 px-4 rounded-xl border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              Previous
-            </button>
-            <button
-              type="button"
-              onClick={() => setPage(Math.min(pageCount, page + 1))}
-              disabled={page >= pageCount}
-              className="h-9 px-4 rounded-xl border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              Next
-            </button>
-          </div>
+        <div className="mt-4">
+          <DSATablePagination pagination={table.pagination} filteredCount={table.filteredCount} />
         </div>
       </Card>
     </DashboardPage>
