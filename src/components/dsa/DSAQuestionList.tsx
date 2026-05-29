@@ -1,241 +1,169 @@
-import { ExternalLink, TrendingUp } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import { getTopicById } from "@/data/dsa-mock";
+import { useExpandedIds } from "@/hooks/use-expanded-ids";
 import { cn } from "@/lib/utils";
 import type { DSAQuestion } from "@/types/dsa";
 import { BookmarkButton } from "./BookmarkButton";
 import { DifficultyBadge } from "./DifficultyBadge";
-import { ImportanceTierBadge } from "./ImportanceTierBadge";
-import { InterviewFrequencyBadge } from "./InterviewFrequencyBadge";
+import { DSAQuestionDetails } from "./DSAQuestionDetails";
 import { QuestionStatusIcon } from "./QuestionStatusIcon";
 
-const frequencyIconStyle: Record<DSAQuestion["frequency"], string> = {
-  high: "text-success",
-  medium: "text-warning",
-  low: "text-muted-foreground",
-};
-
-function CompanyChips({
-  companies,
-  selectedCompanies,
-  onToggleCompany,
-  maxVisible = 3,
-}: {
-  companies: string[];
-  selectedCompanies: string[];
-  onToggleCompany: (company: string) => void;
-  maxVisible?: number;
-}) {
-  const visible = companies.slice(0, maxVisible);
-  const extra = companies.length - visible.length;
-
-  return (
-    <div className="flex flex-wrap gap-1 justify-end">
-      {visible.map((c) => {
-        const active = selectedCompanies.includes(c);
-        return (
-          <button
-            key={c}
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleCompany(c);
-            }}
-            aria-pressed={active}
-            className={cn(
-              "text-[10px] font-mono px-1.5 py-0.5 rounded border transition-colors",
-              active
-                ? "bg-primary/10 border-primary/30 text-primary"
-                : "bg-subtle text-muted-foreground border-border hover:bg-surface-hover hover:text-foreground",
-            )}
-          >
-            {c}
-          </button>
-        );
-      })}
-      {extra > 0 && (
-        <span className="text-[10px] font-mono text-muted-foreground">
-          +{extra}
-        </span>
-      )}
-    </div>
-  );
-}
-
-function QuestionRow({
-  question,
-  index,
-  bookmarked,
-  onToggleBookmark,
-  selectedCompanies,
-  onToggleCompany,
-}: {
+type QuestionListItemProps = {
   question: DSAQuestion;
-  index: number;
   bookmarked: boolean;
+  expanded: boolean;
+  onToggleExpanded: () => void;
   onToggleBookmark: () => void;
   selectedCompanies: string[];
   onToggleCompany: (company: string) => void;
-}) {
+};
+
+function QuestionRow({
+  question,
+  bookmarked,
+  expanded,
+  onToggleExpanded,
+  onToggleBookmark,
+  selectedCompanies,
+  onToggleCompany,
+}: QuestionListItemProps) {
   const topic = getTopicById(question.topicId);
 
   return (
-    <tr
-      className={cn(
-        "group border-b border-border last:border-0 transition-colors",
-        "hover:bg-surface-hover/80",
-      )}
-    >
-      <td className="py-3 pl-4 pr-2 w-10">
-        <span className="text-[10px] font-mono text-muted-foreground">
-          {index}
-        </span>
-      </td>
-      <td className="py-3 pr-2 w-10">
-        <QuestionStatusIcon status={question.status} />
-      </td>
-      <td className="py-3 pr-4 min-w-[200px]">
-        <div className="flex items-center gap-2">
+    <>
+      <tr
+        className={cn(
+          "group border-b border-border transition-colors cursor-pointer",
+          expanded ? "bg-surface-hover/60" : "hover:bg-surface-hover/80",
+        )}
+        onClick={onToggleExpanded}
+        aria-expanded={expanded}
+      >
+        <td className="py-3.5 pl-4 pr-2 w-11 align-middle">
+          <QuestionStatusIcon status={question.status} />
+        </td>
+        <td className="py-3.5 pr-3 min-w-[220px] align-middle">
+          <div className="flex items-start gap-2 min-w-0">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                  {question.title}
+                </span>
+                <ExternalLink className="size-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5 truncate">
+                {topic?.name ?? "—"}
+              </p>
+            </div>
+          </div>
+        </td>
+        <td className="py-3.5 pr-3 w-[88px] align-middle hidden sm:table-cell">
+          <DifficultyBadge difficulty={question.difficulty} />
+        </td>
+        <td className="py-3.5 pr-2 w-10 align-middle">
           <button
             type="button"
-            className="text-sm font-medium text-left hover:text-primary transition-colors group-hover:underline underline-offset-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleExpanded();
+            }}
+            aria-label={expanded ? "Hide details" : "Show details"}
+            className="size-8 inline-flex items-center justify-center rounded-lg text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"
           >
-            {question.title}
-          </button>
-          <ExternalLink className="size-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-        </div>
-        <div className="flex flex-wrap gap-1 mt-1.5">
-          {question.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-subtle text-muted-foreground"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </td>
-      <td className="py-3 pr-4 hidden md:table-cell">
-        <span className="text-xs text-muted-foreground">
-          {topic?.name ?? "—"}
-        </span>
-      </td>
-      <td className="py-3 pr-4">
-        <DifficultyBadge difficulty={question.difficulty} />
-      </td>
-      <td className="py-3 pr-4 hidden lg:table-cell">
-        <span className="text-xs font-mono text-muted-foreground">
-          {question.acceptance.toFixed(1)}%
-        </span>
-      </td>
-      <td className="py-3 pr-4 hidden xl:table-cell">
-        <div className="flex flex-col items-end gap-1 justify-center">
-          <div className="flex items-center gap-2">
-            <TrendingUp
-              className={cn("size-3", frequencyIconStyle[question.frequency])}
+            <ChevronDown
+              className={cn("size-4 transition-transform", expanded && "rotate-180")}
             />
-            <InterviewFrequencyBadge frequency={question.frequency} />
-          </div>
-          <ImportanceTierBadge tier={question.importanceTier} />
-        </div>
-      </td>
-      <td className="py-3 pr-4 hidden lg:table-cell">
-        <CompanyChips
-          companies={question.companies}
-          selectedCompanies={selectedCompanies}
-          onToggleCompany={onToggleCompany}
-        />
-      </td>
-      <td className="py-3 pr-4 hidden sm:table-cell">
-        <span className="text-[10px] font-mono text-muted-foreground">
-          {question.lastAttempted ?? "—"}
-        </span>
-      </td>
-      <td className="py-3 pr-4 w-12">
-        <BookmarkButton active={bookmarked} onClick={onToggleBookmark} />
-      </td>
-    </tr>
+          </button>
+        </td>
+        <td
+          className="py-3.5 pr-4 w-12 align-middle"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <BookmarkButton active={bookmarked} onClick={onToggleBookmark} />
+        </td>
+      </tr>
+      {expanded && (
+        <tr className="border-b border-border bg-surface/30">
+          <td colSpan={5} className="px-4 pb-3.5 pt-0">
+            <div className="pl-9 sm:pl-9">
+              <div className="sm:hidden mb-3">
+                <DifficultyBadge difficulty={question.difficulty} />
+              </div>
+              <DSAQuestionDetails
+                question={question}
+                selectedCompanies={selectedCompanies}
+                onToggleCompany={onToggleCompany}
+              />
+            </div>
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 
 function QuestionCard({
   question,
-  index,
   bookmarked,
+  expanded,
+  onToggleExpanded,
   onToggleBookmark,
   selectedCompanies,
   onToggleCompany,
-}: {
-  question: DSAQuestion;
-  index: number;
-  bookmarked: boolean;
-  onToggleBookmark: () => void;
-  selectedCompanies: string[];
-  onToggleCompany: (company: string) => void;
-}) {
+}: QuestionListItemProps) {
   const topic = getTopicById(question.topicId);
 
   return (
     <div
       className={cn(
-        "p-4 rounded-xl border border-border bg-surface",
-        "hover:border-primary/30 hover:bg-surface-hover transition-all",
+        "rounded-xl border bg-surface transition-colors",
+        expanded ? "border-primary/25 bg-surface-hover/40" : "border-border hover:border-primary/20",
       )}
     >
-      <div className="flex items-start gap-3">
-        <span className="text-[10px] font-mono text-muted-foreground pt-1">
-          {String(index).padStart(2, "0")}
-        </span>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <div className="flex items-center gap-2 min-w-0">
-              <QuestionStatusIcon status={question.status} />
-              <button
-                type="button"
-                className="text-sm font-semibold text-left truncate hover:text-primary transition-colors"
+      <button
+        type="button"
+        className="w-full text-left p-4"
+        onClick={onToggleExpanded}
+        aria-expanded={expanded}
+      >
+        <div className="flex items-start gap-3">
+          <QuestionStatusIcon status={question.status} className="pt-0.5" />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-foreground leading-snug pr-2">
+                  {question.title}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">{topic?.name ?? "—"}</p>
+              </div>
+              <div
+                className="flex items-center gap-1 shrink-0"
+                onClick={(e) => e.stopPropagation()}
               >
-                {question.title}
-              </button>
+                <DifficultyBadge difficulty={question.difficulty} />
+                <BookmarkButton active={bookmarked} onClick={onToggleBookmark} />
+              </div>
             </div>
-            <BookmarkButton active={bookmarked} onClick={onToggleBookmark} />
           </div>
-
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="text-[10px] font-mono text-muted-foreground">
-              {topic?.name}
-            </span>
-            <DifficultyBadge difficulty={question.difficulty} />
-            <InterviewFrequencyBadge frequency={question.frequency} />
-            <ImportanceTierBadge tier={question.importanceTier} />
-          </div>
-
-          <div className="flex flex-wrap gap-1 mb-3">
-            {question.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-subtle text-muted-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between gap-2">
-            <CompanyChips
-              companies={question.companies}
-              selectedCompanies={selectedCompanies}
-              onToggleCompany={onToggleCompany}
-              maxVisible={4}
-            />
-
-            {question.lastAttempted && (
-              <span className="text-[10px] font-mono text-muted-foreground shrink-0">
-                {question.lastAttempted}
-                {question.timeMinutes != null && ` · ${question.timeMinutes}m`}
-              </span>
+          <ChevronDown
+            className={cn(
+              "size-4 text-muted-foreground shrink-0 mt-1 transition-transform",
+              expanded && "rotate-180",
             )}
-          </div>
+          />
         </div>
-      </div>
+      </button>
+
+      {expanded && (
+        <div className="px-4 pb-4 pt-0 border-t border-border/60">
+          <DSAQuestionDetails
+            question={question}
+            selectedCompanies={selectedCompanies}
+            onToggleCompany={onToggleCompany}
+            className="mt-3"
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -253,12 +181,12 @@ export function DSAQuestionList({
   selectedCompanies: string[];
   onToggleCompany: (company: string) => void;
 }) {
+  const { isExpanded, toggleExpanded } = useExpandedIds();
+
   if (questions.length === 0) {
     return (
       <div className="py-16 text-center">
-        <p className="text-sm text-muted-foreground">
-          No problems match your filters.
-        </p>
+        <p className="text-sm text-muted-foreground">No problems match your filters.</p>
         <p className="text-xs font-mono text-muted-foreground mt-1">
           Try clearing company, importance, or status filters.
         </p>
@@ -266,61 +194,42 @@ export function DSAQuestionList({
     );
   }
 
+  const itemProps = (question: DSAQuestion) => ({
+    question,
+    bookmarked: bookmarkedIds.has(question.id),
+    expanded: isExpanded(question.id),
+    onToggleExpanded: () => toggleExpanded(question.id),
+    onToggleBookmark: () => onToggleBookmark(question.id),
+    selectedCompanies,
+    onToggleCompany,
+  });
+
   return (
     <>
-      <div className="hidden md:block overflow-x-auto -mx-6">
-        <table className="w-full min-w-[720px]">
+      <div className="hidden md:block -mx-6">
+        <table className="w-full">
           <thead>
             <tr className="border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
-              <th className="py-3 pl-4 pr-2 text-left font-medium w-10">#</th>
-              <th className="py-3 pr-2 text-left font-medium w-10" />
-              <th className="py-3 pr-4 text-left font-medium">Problem</th>
-              <th className="py-3 pr-4 text-left font-medium hidden md:table-cell">
-                Topic
+              <th className="py-3 pl-4 pr-2 text-left font-medium w-11">Status</th>
+              <th className="py-3 pr-3 text-left font-medium">Problem</th>
+              <th className="py-3 pr-3 text-left font-medium hidden sm:table-cell w-[88px]">
+                Difficulty
               </th>
-              <th className="py-3 pr-4 text-left font-medium">Diff</th>
-              <th className="py-3 pr-4 text-left font-medium hidden lg:table-cell">
-                Acc.
-              </th>
-              <th className="py-3 pr-4 text-right font-medium hidden xl:table-cell">
-                Freq.
-              </th>
-              <th className="py-3 pr-4 text-right font-medium hidden lg:table-cell">
-                Companies
-              </th>
-              <th className="py-3 pr-4 text-left font-medium hidden sm:table-cell">
-                Last
-              </th>
-              <th className="py-3 pr-4 w-12" />
+              <th className="py-3 pr-2 w-10" aria-label="Details" />
+              <th className="py-3 pr-4 w-12" aria-label="Bookmark" />
             </tr>
           </thead>
           <tbody>
-            {questions.map((q, i) => (
-              <QuestionRow
-                key={q.id}
-                question={q}
-                index={i + 1}
-                bookmarked={bookmarkedIds.has(q.id)}
-                onToggleBookmark={() => onToggleBookmark(q.id)}
-                selectedCompanies={selectedCompanies}
-                onToggleCompany={onToggleCompany}
-              />
+            {questions.map((question) => (
+              <QuestionRow key={question.id} {...itemProps(question)} />
             ))}
           </tbody>
         </table>
       </div>
 
-      <div className="md:hidden space-y-3">
-        {questions.map((q, i) => (
-          <QuestionCard
-            key={q.id}
-            question={q}
-            index={i + 1}
-            bookmarked={bookmarkedIds.has(q.id)}
-            onToggleBookmark={() => onToggleBookmark(q.id)}
-            selectedCompanies={selectedCompanies}
-            onToggleCompany={onToggleCompany}
-          />
+      <div className="md:hidden space-y-2.5">
+        {questions.map((question) => (
+          <QuestionCard key={question.id} {...itemProps(question)} />
         ))}
       </div>
     </>
