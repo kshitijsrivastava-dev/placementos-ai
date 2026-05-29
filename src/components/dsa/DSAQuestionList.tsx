@@ -206,8 +206,8 @@ export function DSAQuestionList({
 
   return (
     <>
-      <div className="hidden md:block -mx-6">
-        <table className="w-full">
+      <div className="hidden md:block -mx-4 sm:-mx-6 overflow-x-auto">
+        <table className="w-full min-w-[520px]">
           <thead>
             <tr className="border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
               <th className="py-3 pl-4 pr-2 text-left font-medium w-11">Status</th>
@@ -227,7 +227,7 @@ export function DSAQuestionList({
         </table>
       </div>
 
-      <div className="md:hidden space-y-2.5">
+      <div className="md:hidden space-y-2.5 -mx-1">
         {questions.map((question) => (
           <QuestionCard key={question.id} {...itemProps(question)} />
         ))}
