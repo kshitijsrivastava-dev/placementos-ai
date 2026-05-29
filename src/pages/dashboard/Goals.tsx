@@ -1,4 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { Target, Plus } from "lucide-react";
 
 const goals = [
@@ -10,17 +12,17 @@ const goals = [
 
 function Goals() {
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// GOALS</p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Objectives &amp; Key Results</h1>
-          <p className="text-muted-foreground mt-1">4 active goals · 1 due this month</p>
-        </div>
-        <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm">
-          <Plus className="size-4" /> New Goal
-        </button>
-      </div>
+    <DashboardPage maxWidth="5xl">
+      <DashboardPageHeader
+        eyebrow="// GOALS"
+        title="Objectives & Key Results"
+        description="4 active goals · 1 due this month"
+        actions={
+          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm">
+            <Plus className="size-4" /> New Goal
+          </button>
+        }
+      />
       <div className="grid sm:grid-cols-2 gap-5">
         {goals.map((g) => {
           const pct = (g.current / g.target) * 100;
@@ -46,7 +48,7 @@ function Goals() {
           );
         })}
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 

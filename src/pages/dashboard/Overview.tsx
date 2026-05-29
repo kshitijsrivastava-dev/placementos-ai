@@ -3,21 +3,22 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 
 function DashboardHome() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// OVERVIEW</p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Good evening, Alex.</h1>
-          <p className="text-muted-foreground mt-1">You're 3 problems away from your daily goal. Keep the streak alive.</p>
-        </div>
-        <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
-          <Sparkles className="size-4" /> Generate AI Plan
-        </button>
-      </div>
+    <DashboardPage>
+      <DashboardPageHeader
+        eyebrow="// OVERVIEW"
+        title="Good evening, Alex."
+        description="You're 3 problems away from your daily goal. Keep the streak alive."
+        actions={
+          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
+            <Sparkles className="size-4" /> Generate AI Plan
+          </button>
+        }
+      />
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -170,7 +171,7 @@ function DashboardHome() {
           </ul>
         </Card>
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 

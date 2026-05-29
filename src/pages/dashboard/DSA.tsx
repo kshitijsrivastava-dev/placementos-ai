@@ -1,4 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { DSAFilterBar } from "@/components/dsa/DSAFilterBar";
 import { DSAProgressStats } from "@/components/dsa/DSAProgressStats";
 import { DSAQuestionList } from "@/components/dsa/DSAQuestionList";
@@ -39,28 +41,26 @@ function DSAPage() {
     filters.topicId !== "all" ? getTopicById(filters.topicId) : null;
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">
-            // DSA PRACTICE
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Problem Bank
-          </h1>
-          <p className="text-muted-foreground mt-1">
+    <DashboardPage>
+      <DashboardPageHeader
+        eyebrow="// DSA PRACTICE"
+        title="Problem Bank"
+        description={
+          <>
             {globalStats.solved} solved · {globalStats.reviewing} in review ·{" "}
             {globalStats.attempted} attempted · spaced-repetition active
-          </p>
-        </div>
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
-        >
-          <Sparkles className="size-4" />
-          AI Pattern Drill
-        </button>
-      </div>
+          </>
+        }
+        actions={
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
+          >
+            <Sparkles className="size-4" />
+            AI Pattern Drill
+          </button>
+        }
+      />
 
       <DSAProgressStats stats={globalStats} />
 
@@ -150,7 +150,7 @@ function DSAPage() {
           </div>
         </div>
       </Card>
-    </div>
+    </DashboardPage>
   );
 }
 

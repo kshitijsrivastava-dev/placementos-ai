@@ -1,4 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { Calculator, Brain, MessageCircle, Globe } from "lucide-react";
 
 const sections = [
@@ -10,12 +12,12 @@ const sections = [
 
 function AptitudePage() {
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <div>
-        <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// APTITUDE</p>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Aptitude Engine</h1>
-        <p className="text-muted-foreground mt-1">Adaptive difficulty · 600+ company-tagged questions</p>
-      </div>
+    <DashboardPage maxWidth="6xl">
+      <DashboardPageHeader
+        eyebrow="// APTITUDE"
+        title="Aptitude Engine"
+        description="Adaptive difficulty · 600+ company-tagged questions"
+      />
       <div className="grid sm:grid-cols-2 gap-5">
         {sections.map((s) => (
           <Card key={s.name}>
@@ -52,7 +54,7 @@ function AptitudePage() {
           ))}
         </div>
       </Card>
-    </div>
+    </DashboardPage>
   );
 }
 

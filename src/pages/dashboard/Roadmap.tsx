@@ -1,4 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
 
 const phases = [
@@ -36,17 +38,17 @@ const phases = [
 
 function Roadmap() {
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// AI ROADMAP</p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Your Path to Meta E4</h1>
-          <p className="text-muted-foreground mt-1">20-week sprint · calibrated weekly · 9 weeks remaining</p>
-        </div>
-        <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
-          <Sparkles className="size-4" /> Re-calibrate
-        </button>
-      </div>
+    <DashboardPage maxWidth="5xl">
+      <DashboardPageHeader
+        eyebrow="// AI ROADMAP"
+        title="Your Path to Meta E4"
+        description="20-week sprint · calibrated weekly · 9 weeks remaining"
+        actions={
+          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
+            <Sparkles className="size-4" /> Re-calibrate
+          </button>
+        }
+      />
 
       <Card>
         <div className="flex items-center gap-3 mb-2">
@@ -98,7 +100,7 @@ function Roadmap() {
           })}
         </div>
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 

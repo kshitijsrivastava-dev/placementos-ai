@@ -1,15 +1,17 @@
 import { Card } from "@/components/dashboard/Card";
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 
 function Analytics() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div>
-        <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// ANALYTICS</p>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Deep Performance Analytics</h1>
-        <p className="text-muted-foreground mt-1">Track every signal · understand every trend</p>
-      </div>
+    <DashboardPage>
+      <DashboardPageHeader
+        eyebrow="// ANALYTICS"
+        title="Deep Performance Analytics"
+        description="Track every signal · understand every trend"
+      />
       <div className="grid grid-cols-12 gap-6">
         <Card title="Yearly Heatmap" className="col-span-12 lg:col-span-8">
           <Heatmap cols={52} rows={7} />
@@ -63,7 +65,7 @@ function Analytics() {
           </div>
         </Card>
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 

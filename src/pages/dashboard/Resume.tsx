@@ -1,25 +1,27 @@
 import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { FileText, Upload, Sparkles, CheckCircle2, AlertCircle, XCircle } from "lucide-react";
 
 function ResumePage() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// RESUME AI</p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Resume Architect</h1>
-          <p className="text-muted-foreground mt-1">ATS-optimized · JD-matched · powered by Lovable AI</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
-            <Upload className="size-4" /> Upload PDF
-          </button>
-          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
-            <Sparkles className="size-4" /> Generate v4
-          </button>
-        </div>
-      </div>
+    <DashboardPage>
+      <DashboardPageHeader
+        eyebrow="// RESUME AI"
+        title="Resume Architect"
+        description="ATS-optimized · JD-matched · powered by Lovable AI"
+        actions={
+          <div className="flex gap-2">
+            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
+              <Upload className="size-4" /> Upload PDF
+            </button>
+            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
+              <Sparkles className="size-4" /> Generate v4
+            </button>
+          </div>
+        }
+      />
 
       <div className="grid grid-cols-12 gap-6">
         <Card title="Resume Preview" className="col-span-12 lg:col-span-7 min-h-[600px]">
@@ -81,7 +83,7 @@ function ResumePage() {
           </Card>
         </div>
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 

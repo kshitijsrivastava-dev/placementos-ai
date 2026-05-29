@@ -1,4 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
+import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
+import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { Mic, Video, Play, MessageSquare, Sparkles, Volume2 } from "lucide-react";
 
 const transcript = [
@@ -11,12 +13,12 @@ const transcript = [
 
 function MockInterview() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div>
-        <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">// AI MOCK INTERVIEWER</p>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Live Interview Simulator</h1>
-        <p className="text-muted-foreground mt-1">FAANG-grade scenarios · real-time scoring · powered by Lovable AI</p>
-      </div>
+    <DashboardPage>
+      <DashboardPageHeader
+        eyebrow="// AI MOCK INTERVIEWER"
+        title="Live Interview Simulator"
+        description="FAANG-grade scenarios · real-time scoring · powered by Lovable AI"
+      />
 
       <div className="grid grid-cols-12 gap-6">
         {/* Video stage */}
@@ -86,7 +88,7 @@ function MockInterview() {
           </div>
         </Card>
       </div>
-    </div>
+    </DashboardPage>
   );
 }
 
