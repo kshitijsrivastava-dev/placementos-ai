@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import NotFound from "@/pages/NotFound";
-import { DashboardRoutes } from "./dashboard-routes";
+import { Route, Routes } from "react-router-dom";
+import { dashboardRouteEntries } from "@/navigation/dashboard-routes";
+import { DashboardRouteOutlet } from "@/layouts/dashboard/DashboardRouteOutlet";
+import { DashboardLayout } from "@/layouts/DashboardLayout";
 
 export function AppRoutes() {
   return (
@@ -11,7 +13,17 @@ export function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <DashboardRoutes />
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route element={<DashboardRouteOutlet />}>
+          {dashboardRouteEntries.map(({ segment, Component }) =>
+            segment === "" ? (
+              <Route key="index" index element={<Component />} />
+            ) : (
+              <Route key={segment} path={segment} element={<Component />} />
+            ),
+          )}
+        </Route>
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
