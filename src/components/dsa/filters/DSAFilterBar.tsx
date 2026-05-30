@@ -60,7 +60,7 @@ export function DSAFilterBar({
         onClear={clearFilters}
       />
 
-      <p className="text-[11px] font-mono text-muted-foreground">
+      <p className="text-[11px] font-mono text-muted-foreground" aria-live="polite">
         Showing <span className="text-foreground font-semibold">{resultCount}</span> of{" "}
         {totalCount} problems
       </p>

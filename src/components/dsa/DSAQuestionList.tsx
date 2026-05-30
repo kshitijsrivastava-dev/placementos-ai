@@ -1,4 +1,4 @@
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink, Inbox } from "lucide-react";
 import { getTopicById } from "@/data/dsa-mock";
 import { useExpandedIds } from "@/hooks/use-expanded-ids";
 import { cn } from "@/lib/utils";
@@ -116,7 +116,7 @@ function QuestionCard({
   return (
     <div
       className={cn(
-        "rounded-xl border bg-surface transition-colors",
+        "rounded-xl border bg-surface transition-all duration-200",
         expanded ? "border-primary/25 bg-surface-hover/40" : "border-border hover:border-primary/20",
       )}
     >
@@ -185,11 +185,16 @@ export function DSAQuestionList({
 
   if (questions.length === 0) {
     return (
-      <div className="py-16 text-center">
-        <p className="text-sm text-muted-foreground">No problems match your filters.</p>
-        <p className="text-xs font-mono text-muted-foreground mt-1">
-          Try clearing company, importance, or status filters.
-        </p>
+      <div className="py-16 px-4 text-center flex flex-col items-center gap-3">
+        <div className="size-12 rounded-2xl border border-border bg-subtle/60 grid place-items-center text-muted-foreground">
+          <Inbox className="size-5" aria-hidden />
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm font-medium text-foreground">No problems match your filters</p>
+          <p className="text-xs font-mono text-muted-foreground">
+            Try clearing company, importance, or status filters.
+          </p>
+        </div>
       </div>
     );
   }

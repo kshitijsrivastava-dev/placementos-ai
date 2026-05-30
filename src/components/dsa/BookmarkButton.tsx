@@ -21,7 +21,7 @@ export function BookmarkButton({
       aria-pressed={active}
       className={cn(
         "size-9 sm:size-8 rounded-lg border border-border grid place-items-center transition-all touch-manipulation",
-        "hover:bg-surface-hover hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "hover:bg-surface-hover hover:border-primary/30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         active
           ? "bg-primary/10 border-primary/30 text-primary"
           : "bg-subtle text-muted-foreground hover:text-foreground",
@@ -29,7 +29,10 @@ export function BookmarkButton({
       )}
     >
       <Bookmark
-        className={cn("size-3.5 transition-transform", active && "fill-current scale-110")}
+        className={cn(
+          "size-3.5 transition-transform duration-200",
+          active && "fill-current scale-110",
+        )}
       />
     </button>
   );
