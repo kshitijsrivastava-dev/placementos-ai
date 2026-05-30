@@ -13,16 +13,20 @@ import { OverviewProgressSection } from "@/components/dashboard/sections/Overvie
 import { OverviewWeakTopicsSection } from "@/components/dashboard/sections/OverviewWeakTopicsSection";
 import { dashboardCol } from "@/lib/responsive-layout";
 import { MODULES } from "@/content/product-messaging";
+import { getOverviewGreeting } from "@/features/auth/auth-service";
+import { useAuth } from "@/features/auth/use-auth";
 import { useOverview } from "@/hooks/dashboard/use-overview";
 
 function DashboardHome() {
   const workspace = useOverview();
+  const { user, profile } = useAuth();
+  const headerTitle = user ? getOverviewGreeting(profile, user.email) : workspace.header.title;
 
   return (
     <DashboardPage>
       <DashboardPageHeader
         eyebrow={MODULES.overview.eyebrow}
-        title={workspace.header.title}
+        title={headerTitle}
         description={workspace.header.description}
         actions={
           <button

@@ -11,11 +11,16 @@ import {
   RESUME_SUGGESTION_TONE_CLASSES,
 } from "@/lib/resume-display";
 import { MODULES } from "@/content/product-messaging";
-import { DEMO_PERSONA } from "@/data/demo-persona";
+import { getProfileDisplayName } from "@/features/auth/auth-service";
+import { useAuth } from "@/features/auth/use-auth";
 import { FileText, Upload, Sparkles } from "lucide-react";
 
 function ResumePage() {
   const { analysis } = useResumeAnalysis();
+  const { user, profile } = useAuth();
+  const displayName = user ? getProfileDisplayName(profile, user.email) : "";
+  const contactEmail = profile?.email?.trim() || user?.email || "";
+  const githubHandle = contactEmail.split("@")[0] || "profile";
 
   return (
     <DashboardPage>
@@ -44,9 +49,9 @@ function ResumePage() {
       <DashboardGrid>
         <Card title="Resume Preview" className={`${dashboardCol.wide} min-h-[min(600px,80vh)]`}>
           <div className="bg-white text-zinc-900 rounded-lg p-8 font-serif min-h-[540px] shadow-2xl">
-            <h2 className="text-2xl font-bold">{DEMO_PERSONA.fullName}</h2>
+            <h2 className="text-2xl font-bold">{displayName}</h2>
             <p className="text-sm text-zinc-600 mt-1">
-              B.Tech CSE · {DEMO_PERSONA.email} · github.com/alexchen
+              B.Tech CSE · {contactEmail} · github.com/{githubHandle}
             </p>
             <div className="my-4 border-t border-zinc-200" />
             <h3 className="text-xs uppercase font-bold tracking-widest text-zinc-700 mb-2">Experience</h3>

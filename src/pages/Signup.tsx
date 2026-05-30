@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthShell, AuthInput } from "@/components/auth/AuthShell";
-import { signUp } from "@/features/auth/auth-service";
+import { createProfile, signUp } from "@/features/auth/auth-service";
 
 function Signup() {
   const navigate = useNavigate();
@@ -16,15 +16,29 @@ function Signup() {
     setError(null);
     setIsSubmitting(true);
 
-    const { error: signUpError } = await signUp(email, password);
-
-    setIsSubmitting(false);
+    const { data, error: signUpError } = await signUp(email, password);
 
     if (signUpError) {
+      setIsSubmitting(false);
       setError(signUpError.message);
       return;
     }
 
+    if (data.user) {
+      const { error: profileError } = await createProfile({
+        id: data.user.id,
+        full_name: fullName,
+        email,
+      });
+
+      if (profileError) {
+        setIsSubmitting(false);
+        setError(profileError.message);
+        return;
+      }
+    }
+
+    setIsSubmitting(false);
     navigate("/login");
   }
 
@@ -42,7 +56,7 @@ function Signup() {
         ) : null}
         <AuthInput
           label="Full Name"
-          placeholder="Alex Chen"
+          placeholder="Your full name"
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
           required

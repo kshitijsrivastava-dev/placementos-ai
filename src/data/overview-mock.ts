@@ -3,7 +3,7 @@ import { DEMO_PERSONA } from "./demo-persona";
 
 export const OVERVIEW_WORKSPACE: OverviewWorkspace = {
   header: {
-    title: `Good evening, ${DEMO_PERSONA.firstName}.`,
+    title: "Welcome back.",
     description: "3 tasks left today · DP revision is your highest-impact move.",
   },
   focusMetrics: [

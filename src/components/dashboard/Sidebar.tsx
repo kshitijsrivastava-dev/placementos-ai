@@ -6,10 +6,14 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useEffect, useState } from "react";
 import { Sparkles, Settings, LogOut, Menu } from "lucide-react";
 import { DEMO_PERSONA } from "@/data/demo-persona";
+import { getProfileDisplayName } from "@/features/auth/auth-service";
+import { useAuth } from "@/features/auth/use-auth";
 import { DashboardNavList } from "./nav/DashboardNavList";
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
   const navigate = useNavigate();
+  const { user, profile } = useAuth();
+  const displayName = user ? getProfileDisplayName(profile, user.email) : "";
 
   async function handleSignOut() {
     await signOut();
@@ -30,15 +34,17 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
           <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
           <div className="min-w-0">
-            <div className="text-sm font-semibold truncate">{DEMO_PERSONA.fullName}</div>
+            <div className="text-sm font-semibold truncate">{displayName}</div>
             <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
           </div>
         </div>
       </div>
 
-      <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto py-6">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-6">
         <DashboardNavList onNavigate={onNavigate} />
+      </div>
 
+      <div className="flex shrink-0 flex-col gap-6 pt-6">
         <div className="p-4 rounded-xl bg-surface border border-border">
           <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-1">
             Placement ready
@@ -51,9 +57,8 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
             />
           </div>
         </div>
-      </div>
 
-      <div className="shrink-0 space-y-0.5 pt-6">
+        <div className="space-y-0.5">
         <div className="flex items-center gap-2 px-1 py-1">
           <ThemeToggle className="shrink-0" />
           <span className="text-xs text-muted-foreground">Theme</span>
@@ -68,6 +73,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         >
           <LogOut className="size-4" /> Sign out
         </button>
+        </div>
       </div>
     </div>
   );
