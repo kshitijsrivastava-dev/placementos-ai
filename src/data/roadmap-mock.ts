@@ -1,7 +1,14 @@
 import type { RoadmapPhase, RoadmapProgress } from "@/types/roadmap";
+import { DEMO_PERSONA } from "./demo-persona";
 
 export const ROADMAP_PROGRESS: RoadmapProgress = {
   percent: 55,
+};
+
+/** Static page copy aligned with {@link ROADMAP_PROGRESS} (week 11 of 20). */
+export const ROADMAP_PAGE_META = {
+  title: `Path to ${DEMO_PERSONA.targetShort}`,
+  description: "20-week plan · Week 11 of 20 · 9 weeks remaining",
 };
 
 export const ROADMAP_PHASES: RoadmapPhase[] = [
@@ -11,10 +18,10 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     title: "Foundation Sprint",
     status: "done",
     items: [
-      "Arrays & Hashing (50)",
-      "Two Pointers (22)",
-      "Stack & Queue (18)",
-      "Binary Search basics (15)",
+      "Arrays & hashing (40 problems)",
+      "Two pointers (18)",
+      "Stack & queue basics (14)",
+      "Binary search fundamentals (12)",
     ],
   },
   {
@@ -23,10 +30,10 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     title: "Core Patterns",
     status: "done",
     items: [
-      "Sliding Window (18)",
-      "Linked List (20)",
-      "Trees & BFS/DFS (40)",
-      "Heaps (15)",
+      "Sliding window (16)",
+      "Linked list (16)",
+      "Trees · BFS/DFS (28)",
+      "Heaps & top-K (12)",
     ],
   },
   {
@@ -35,10 +42,10 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     title: "Advanced Algorithms",
     status: "active",
     items: [
-      "Graphs (BFS/DFS/Union-Find)",
-      "Dynamic Programming 1D & 2D",
-      "Greedy & Intervals",
-      "Mock interviews 2x/week",
+      "Graphs · BFS/DFS/union-find",
+      "Dynamic programming 1D & 2D",
+      "Greedy & intervals",
+      "1 mock interview / week",
     ],
   },
   {
@@ -48,9 +55,9 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     status: "upcoming",
     items: [
       "Scalability fundamentals",
-      "Caching & DB sharding",
-      "Design 8 systems end-to-end",
-      "STAR-method behavioral drills",
+      "Caching & data partitioning",
+      "4 end-to-end design walkthroughs",
+      "STAR behavioral drills",
     ],
   },
   {
@@ -59,10 +66,10 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     title: "Application Sprint",
     status: "upcoming",
     items: [
-      "Resume v4 final",
-      "30 referrals queued",
-      "Daily mock interviews",
-      "Negotiation prep",
+      "Resume final pass + referrals",
+      "Weekly mock interview cadence",
+      "Offer negotiation prep",
+      "Campus + off-campus pipeline tracking",
     ],
   },
 ];

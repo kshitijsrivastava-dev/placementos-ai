@@ -1,8 +1,8 @@
 const stats = [
-  { value: "14.2k", label: "DSA Problems Solved" },
-  { value: "98.4%", label: "Interview Match Rate" },
-  { value: "$185k", label: "Avg Starting Offer" },
-  { value: "420+", label: "Offers Signed" },
+  { value: "2.4k+", label: "Active prep workspaces" },
+  { value: "76%", label: "Avg weekly plan completion" },
+  { value: "14", label: "Avg problems / week" },
+  { value: "8", label: "Connected prep modules" },
 ];
 
 export function Stats() {
@@ -10,7 +10,7 @@ export function Stats() {
     <section className="px-4 sm:px-6 py-12 border-y border-border bg-surface/50">
       <div className="max-w-6xl mx-auto w-full min-w-0">
         <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mb-8 font-mono">
-          Trusted by engineers from Google, Meta, Microsoft, Amazon, Stripe & more
+          Built for campus and new-grad placement cycles
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (

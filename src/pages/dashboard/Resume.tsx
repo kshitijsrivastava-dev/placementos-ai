@@ -11,6 +11,7 @@ import {
   RESUME_SUGGESTION_TONE_CLASSES,
 } from "@/lib/resume-display";
 import { MODULES } from "@/content/product-messaging";
+import { DEMO_PERSONA } from "@/data/demo-persona";
 import { FileText, Upload, Sparkles } from "lucide-react";
 
 function ResumePage() {
@@ -43,24 +44,26 @@ function ResumePage() {
       <DashboardGrid>
         <Card title="Resume Preview" className={`${dashboardCol.wide} min-h-[min(600px,80vh)]`}>
           <div className="bg-white text-zinc-900 rounded-lg p-8 font-serif min-h-[540px] shadow-2xl">
-            <h2 className="text-2xl font-bold">Alex Chen</h2>
-            <p className="text-sm text-zinc-600 mt-1">Software Engineer · alex@chen.dev · github.com/alexchen</p>
+            <h2 className="text-2xl font-bold">{DEMO_PERSONA.fullName}</h2>
+            <p className="text-sm text-zinc-600 mt-1">
+              B.Tech CSE · {DEMO_PERSONA.email} · github.com/alexchen
+            </p>
             <div className="my-4 border-t border-zinc-200" />
             <h3 className="text-xs uppercase font-bold tracking-widest text-zinc-700 mb-2">Experience</h3>
             <div className="mb-4">
               <div className="flex justify-between text-sm font-semibold">
-                <span>SWE Intern · Stripe</span>
+                <span>SWE Intern · Razorpay</span>
                 <span className="text-zinc-500 font-normal">Summer 2025</span>
               </div>
               <ul className="mt-1 ml-4 list-disc text-sm text-zinc-700 space-y-1">
-                <li>Shipped payment retry orchestrator processing <span className="bg-yellow-100 px-1">$2.4M daily</span></li>
-                <li>Reduced p99 latency by <span className="bg-yellow-100 px-1">38%</span> via Redis pipelining</li>
+                <li>Built idempotent payout retry worker handling <span className="bg-yellow-100 px-1">18k events/day</span></li>
+                <li>Cut webhook reconciliation time by <span className="bg-yellow-100 px-1">32%</span> with batched DB writes</li>
               </ul>
             </div>
             <h3 className="text-xs uppercase font-bold tracking-widest text-zinc-700 mb-2">Projects</h3>
             <div className="text-sm text-zinc-700">
-              <p className="font-semibold">DistributedKV — Go, Raft, 8k★</p>
-              <p className="text-xs">Linearizable key-value store · 12k ops/sec sustained.</p>
+              <p className="font-semibold">PlacementOS Tracker — React, TypeScript</p>
+              <p className="text-xs">Personal prep workspace · DSA bank, mocks, and weekly plan in one dashboard.</p>
             </div>
           </div>
         </Card>

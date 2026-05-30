@@ -1,5 +1,6 @@
 import { Heatmap } from "@/components/dashboard/Heatmap";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { DEMO_PERSONA } from "@/data/demo-persona";
 
 export function DashboardShowcase() {
   return (
@@ -18,8 +19,8 @@ export function DashboardShowcase() {
             <div className="flex items-center gap-3">
               <div className="size-10 rounded-lg bg-[image:var(--gradient-primary)]" />
               <div>
-                <div className="text-sm font-bold">Alex Chen</div>
-                <div className="text-[10px] text-muted-foreground font-mono">PRO · ID 8829</div>
+                <div className="text-sm font-bold">{DEMO_PERSONA.fullName}</div>
+                <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
               </div>
             </div>
             <div className="space-y-1">
@@ -31,7 +32,7 @@ export function DashboardShowcase() {
             </div>
             <div className="mt-auto p-4 bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-xl">
               <div className="text-xs font-mono uppercase text-primary mb-1">Placement ready</div>
-              <div className="text-2xl font-bold">84%</div>
+              <div className="text-2xl font-bold">{DEMO_PERSONA.readinessPercent}%</div>
             </div>
           </div>
 
@@ -52,7 +53,7 @@ export function DashboardShowcase() {
             </div>
 
             <div className="col-span-6 md:col-span-2 bg-surface border border-border rounded-2xl p-6 flex flex-col items-center justify-center gap-3">
-              <ProgressRing value={82} sublabel="Mock Score" />
+              <ProgressRing value={78} sublabel="Last mock" />
             </div>
 
             <div className="col-span-6 bg-surface border border-border rounded-2xl p-6">

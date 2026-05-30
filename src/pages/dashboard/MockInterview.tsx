@@ -7,7 +7,7 @@ import { MODULES } from "@/content/product-messaging";
 import { Mic, Video, Play, MessageSquare, Sparkles, Volume2 } from "lucide-react";
 
 const transcript = [
-  { who: "AI", text: "Welcome Alex. Today we're going to walk through a system design problem: design a URL shortener at scale. Where would you like to start?" },
+  { who: "AI", text: "Welcome, Alex. Let's walk through a system design problem: design a URL shortener at scale. Where would you like to start?" },
   { who: "You", text: "Sure. Let me start with requirements — we'll handle ~100M URLs per day, with read-heavy traffic at roughly 100:1." },
   { who: "AI", text: "Good. Let's go deeper — what's your storage estimate over 5 years and which database would you pick?" },
   { who: "You", text: "Assuming 500 bytes per record, 100M/day * 365 * 5 ≈ 91TB. I'd go with Cassandra for write throughput..." },
@@ -52,10 +52,10 @@ function MockInterview() {
 
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-border">
             {[
-              { l: "Clarity", v: 92 },
-              { l: "Depth", v: 86 },
-              { l: "Structure", v: 78 },
-              { l: "Communication", v: 94 },
+              { l: "Clarity", v: 82 },
+              { l: "Depth", v: 76 },
+              { l: "Structure", v: 74 },
+              { l: "Communication", v: 80 },
             ].map((m) => (
               <div key={m.l}>
                 <div className="flex justify-between text-xs mb-1">

@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useEffect, useState } from "react";
 import { Sparkles, Settings, LogOut, Menu } from "lucide-react";
+import { DEMO_PERSONA } from "@/data/demo-persona";
 import { DashboardNavList } from "./nav/DashboardNavList";
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
@@ -19,18 +20,21 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
       <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
         <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
         <div className="min-w-0">
-          <div className="text-sm font-semibold truncate">Alex Chen</div>
-          <div className="text-[10px] text-muted-foreground font-mono">PRO · ID 8829</div>
+          <div className="text-sm font-semibold truncate">{DEMO_PERSONA.fullName}</div>
+          <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
         </div>
       </div>
 
       <DashboardNavList onNavigate={onNavigate} />
 
       <div className="p-4 rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/20">
-        <div className="text-[10px] font-mono uppercase text-primary mb-1">FAANG Ready</div>
-        <div className="text-2xl font-bold mb-2">84%</div>
+        <div className="text-[10px] font-mono uppercase text-primary mb-1">Placement ready</div>
+        <div className="text-2xl font-bold mb-2">{DEMO_PERSONA.readinessPercent}%</div>
         <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
-          <div className="h-full bg-[image:var(--gradient-primary)]" style={{ width: "84%" }} />
+          <div
+            className="h-full bg-[image:var(--gradient-primary)]"
+            style={{ width: `${DEMO_PERSONA.readinessPercent}%` }}
+          />
         </div>
       </div>
 

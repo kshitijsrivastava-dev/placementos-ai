@@ -1,41 +1,42 @@
 import type { Goal, GoalsSummary } from "@/types/goals";
+import { DEMO_PERSONA } from "./demo-persona";
 
 export const GOALS_SUMMARY: GoalsSummary = {
   activeCount: 4,
-  dueThisMonthCount: 1,
+  dueThisMonthCount: 2,
 };
 
 export const GOALS: Goal[] = [
   {
-    id: "goal-leetcode-500",
-    name: "Solve 500 LeetCode problems",
-    current: 412,
-    target: 500,
-    deadline: "Mar 15",
+    id: "goal-dsa-bank",
+    name: "Finish curated DSA bank",
+    current: DEMO_PERSONA.dsaBankSolved,
+    target: DEMO_PERSONA.dsaBankTotal,
+    deadline: "Jun 15",
     unit: "count",
   },
   {
     id: "goal-mock-interviews",
-    name: "Complete 20 mock interviews",
-    current: 14,
-    target: 20,
-    deadline: "Mar 30",
+    name: "Complete 12 mock interviews",
+    current: 8,
+    target: 12,
+    deadline: "Jul 15",
     unit: "count",
   },
   {
-    id: "goal-meta-offer",
-    name: "Land Meta E4 offer",
-    current: 84,
-    target: 100,
-    deadline: "Apr 30",
+    id: "goal-readiness",
+    name: "Reach placement readiness target",
+    current: DEMO_PERSONA.readinessPercent,
+    target: 85,
+    deadline: "Aug 30",
     unit: "percent",
   },
   {
     id: "goal-portfolio",
-    name: "Build 3 portfolio projects",
+    name: "Ship 3 portfolio projects",
     current: 2,
     target: 3,
-    deadline: "Feb 28",
+    deadline: "Jun 30",
     unit: "count",
   },
 ];

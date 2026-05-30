@@ -2,6 +2,7 @@ import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { MODULES } from "@/content/product-messaging";
+import { ROADMAP_PAGE_META } from "@/data/roadmap-mock";
 import { useRoadmap } from "@/hooks/dashboard/use-roadmap";
 import { CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
 
@@ -12,8 +13,8 @@ function Roadmap() {
     <DashboardPage maxWidth="5xl">
       <DashboardPageHeader
         eyebrow={MODULES.roadmap.eyebrow}
-        title="Your Path to Meta E4"
-        description="20-week sprint · calibrated weekly · 9 weeks remaining"
+        title={ROADMAP_PAGE_META.title}
+        description={ROADMAP_PAGE_META.description}
         actions={
           <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
             <Sparkles className="size-4" /> Re-calibrate

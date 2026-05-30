@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Activity, TrendingUp, Zap } from "lucide-react";
 import { PRODUCT_BADGE, PRODUCT_DEFINITION } from "@/content/product-messaging";
+import { DEMO_PERSONA } from "@/data/demo-persona";
 
 export function Hero() {
   return (
@@ -68,8 +69,11 @@ function MiniDashboard() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Weekly Velocity</div>
-          <div className="text-2xl font-bold mt-1">412 <span className="text-xs text-muted-foreground font-normal">problems</span></div>
+          <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Problems this week</div>
+          <div className="text-2xl font-bold mt-1">
+            {DEMO_PERSONA.problemsThisWeek}{" "}
+            <span className="text-xs text-muted-foreground font-normal">solved</span>
+          </div>
         </div>
         <span className="text-primary text-xs font-mono font-bold">+12% WoW</span>
       </div>
@@ -81,11 +85,11 @@ function MiniDashboard() {
       <div className="grid grid-cols-2 gap-3">
         <div className="p-3 bg-surface border border-border rounded-lg">
           <div className="text-[10px] text-muted-foreground uppercase">Streak</div>
-          <div className="text-lg font-bold font-mono mt-0.5">18 days</div>
+          <div className="text-lg font-bold font-mono mt-0.5">{DEMO_PERSONA.streakDays} days</div>
         </div>
         <div className="p-3 bg-surface border border-border rounded-lg">
           <div className="text-[10px] text-muted-foreground uppercase">Mock Score</div>
-          <div className="text-lg font-bold font-mono mt-0.5 text-accent">92.4%</div>
+          <div className="text-lg font-bold font-mono mt-0.5 text-accent">78%</div>
         </div>
       </div>
     </div>
