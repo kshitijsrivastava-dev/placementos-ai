@@ -13,7 +13,7 @@ export function Navbar() {
           <span className="font-bold tracking-tighter text-lg">PlacementOS</span>
         </Link>
         <div className="hidden md:flex gap-6 text-sm text-muted-foreground">
-          <a href="#features" className="hover:text-foreground transition-colors">Platform</a>
+          <a href="#features" className="hover:text-foreground transition-colors">Modules</a>
           <a href="#dashboard" className="hover:text-foreground transition-colors">Dashboard</a>
           <a href="#testimonials" className="hover:text-foreground transition-colors">Stories</a>
           <a href="#cta" className="hover:text-foreground transition-colors">Pricing</a>

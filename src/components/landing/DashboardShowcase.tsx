@@ -6,10 +6,10 @@ export function DashboardShowcase() {
     <section id="dashboard" className="py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto w-full min-w-0">
         <div className="text-center mb-16">
-          <p className="text-xs font-mono uppercase tracking-widest text-primary mb-4">// COCKPIT</p>
+          <p className="text-xs font-mono uppercase tracking-widest text-primary mb-4">// WORKSPACE</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Built for control.</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Every milestone, every problem, every mock interview analyzed by neural engines to surface your blindspots.
+            Every milestone, problem set, and mock session rolls into one view—so gaps surface before interview day.
           </p>
         </div>
 
@@ -23,14 +23,14 @@ export function DashboardShowcase() {
               </div>
             </div>
             <div className="space-y-1">
-              {["Overview", "Roadmap", "DSA Tracker", "Mock Interviews", "Resume AI", "Analytics"].map((l, i) => (
+              {["Overview", "Roadmap", "DSA Tracker", "Mock Interview", "Resume", "Analytics"].map((l, i) => (
                 <div key={l} className={`p-2.5 rounded-lg text-sm transition-colors ${i === 0 ? "bg-primary/10 text-primary border border-primary/20" : "text-muted-foreground hover:bg-surface-hover"}`}>
                   {l}
                 </div>
               ))}
             </div>
             <div className="mt-auto p-4 bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-xl">
-              <div className="text-xs font-mono uppercase text-primary mb-1">FAANG READY</div>
+              <div className="text-xs font-mono uppercase text-primary mb-1">Placement ready</div>
               <div className="text-2xl font-bold">84%</div>
             </div>
           </div>

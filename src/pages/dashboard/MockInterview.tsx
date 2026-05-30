@@ -3,6 +3,7 @@ import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { DashboardGrid } from "@/components/dashboard/page/DashboardGrid";
 import { dashboardCol } from "@/lib/responsive-layout";
+import { MODULES } from "@/content/product-messaging";
 import { Mic, Video, Play, MessageSquare, Sparkles, Volume2 } from "lucide-react";
 
 const transcript = [
@@ -17,9 +18,9 @@ function MockInterview() {
   return (
     <DashboardPage>
       <DashboardPageHeader
-        eyebrow="// AI MOCK INTERVIEWER"
-        title="Live Interview Simulator"
-        description="FAANG-grade scenarios · real-time scoring · powered by Lovable AI"
+        eyebrow={MODULES.mockInterview.eyebrow}
+        title={MODULES.mockInterview.pageTitle}
+        description="Structured scenarios · rubric scoring · session transcript"
       />
 
       <DashboardGrid>

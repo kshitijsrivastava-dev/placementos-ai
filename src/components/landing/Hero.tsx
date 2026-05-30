@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Activity, TrendingUp, Zap } from "lucide-react";
+import { PRODUCT_BADGE, PRODUCT_DEFINITION } from "@/content/product-messaging";
 
 export function Hero() {
   return (
@@ -11,27 +12,27 @@ export function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            V3.0 — AI ROADMAP ENGINE
+            {PRODUCT_BADGE.toUpperCase()}
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-balance mb-6 leading-[1.05]">
             Placement <span className="text-gradient">Precision</span> Engineering.
           </h1>
           <p className="text-lg text-muted-foreground max-w-[48ch] mb-8">
-            Stop guessing. PlacementOS is the AI-powered command center engineers use to track DSA mastery, simulate FAANG interviews, and ship interview-ready resumes.
+            {PRODUCT_DEFINITION}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
-              Start Prep Now <ArrowRight className="size-4" />
+              Open workspace <ArrowRight className="size-4" />
             </Link>
             <a href="#dashboard" className="inline-flex items-center gap-2 px-7 py-3.5 bg-surface border border-border font-bold rounded-xl backdrop-blur-sm hover:bg-surface-hover transition-colors">
-              <Play className="size-4" /> Watch Demo
+              <Play className="size-4" /> Preview dashboard
             </a>
           </div>
           <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
             {[
               { icon: Activity, label: "Active Users", value: "12.4k" },
               { icon: TrendingUp, label: "Avg Score Lift", value: "+38%" },
-              { icon: Zap, label: "AI Sessions", value: "1.2M" },
+              { icon: Zap, label: "Practice sessions", value: "1.2M" },
             ].map((s) => (
               <div key={s.label}>
                 <s.icon className="size-4 text-primary mb-1.5" />

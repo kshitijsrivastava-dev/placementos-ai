@@ -8,6 +8,7 @@ import {
   formatAptitudeTestScore,
   getAptitudeSectionProgressPercent,
 } from "@/lib/aptitude-display";
+import { MODULES } from "@/content/product-messaging";
 
 function AptitudePage() {
   const { sections, recentTests } = useAptitude();
@@ -15,9 +16,9 @@ function AptitudePage() {
   return (
     <DashboardPage maxWidth="6xl">
       <DashboardPageHeader
-        eyebrow="// APTITUDE"
-        title="Aptitude Engine"
-        description="Adaptive difficulty · 600+ company-tagged questions"
+        eyebrow={MODULES.aptitude.eyebrow}
+        title={MODULES.aptitude.pageTitle}
+        description="Section drills · adaptive difficulty · company-tagged sets"
       />
       <div className="grid sm:grid-cols-2 gap-5">
         {sections.map((section) => {

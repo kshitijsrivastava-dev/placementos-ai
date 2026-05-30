@@ -1,6 +1,7 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import { MODULES } from "@/content/product-messaging";
 import { useRoadmap } from "@/hooks/dashboard/use-roadmap";
 import { CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
 
@@ -10,7 +11,7 @@ function Roadmap() {
   return (
     <DashboardPage maxWidth="5xl">
       <DashboardPageHeader
-        eyebrow="// AI ROADMAP"
+        eyebrow={MODULES.roadmap.eyebrow}
         title="Your Path to Meta E4"
         description="20-week sprint · calibrated weekly · 9 weeks remaining"
         actions={

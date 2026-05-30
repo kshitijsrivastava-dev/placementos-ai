@@ -20,7 +20,7 @@ export function AuthShell({ title, subtitle, children, footer }: { title: string
         </div>
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-sm">
-            <p className="text-xs font-mono text-primary uppercase tracking-widest mb-3">// SECURE LOGIN</p>
+            <p className="text-xs font-mono text-primary uppercase tracking-widest mb-3">// WORKSPACE ACCESS</p>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{title}</h1>
             <p className="text-muted-foreground mb-8">{subtitle}</p>
             {children}
@@ -32,7 +32,7 @@ export function AuthShell({ title, subtitle, children, footer }: { title: string
         <div className="absolute inset-0 bg-[image:var(--gradient-glow)]" />
         <div className="relative max-w-md">
           <blockquote className="text-2xl font-medium leading-snug mb-6">
-            &ldquo;PlacementOS is what I wish existed when I was prepping. It's like Linear for your career.&rdquo;
+            &ldquo;PlacementOS is what I wish existed when I was prepping—a real operating system for placement prep, not another scattered tool stack.&rdquo;
           </blockquote>
           <div className="flex items-center gap-3">
             <div className="size-10 rounded-full bg-[image:var(--gradient-primary)]" />

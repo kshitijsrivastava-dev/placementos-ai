@@ -1,8 +1,8 @@
 const testimonials = [
-  { quote: "PlacementOS turned 6 months of chaotic prep into a 9-week sprint. The AI mock interviews caught failure modes I didn't know I had.", name: "Priya R.", role: "SWE @ Stripe" },
-  { quote: "The roadmap generator alone is worth it. It's like having a senior engineer plan your entire prep cycle.", name: "Marcus J.", role: "L4 @ Google" },
-  { quote: "I went from 80 LeetCode to 450 in three months with the spaced-repetition tracker. The streak dopamine is real.", name: "Aanya S.", role: "Intern → FT @ Meta" },
-  { quote: "Resume AI gave me feedback that matched word-for-word what my recruiter said. Wild.", name: "Devon K.", role: "Backend @ Datadog" },
+  { quote: "PlacementOS turned 6 months of chaotic prep into a 9-week sprint. Mock interviews surfaced failure modes I didn't know I had.", name: "Priya R.", role: "SWE @ Stripe" },
+  { quote: "The roadmap module alone is worth it. It's like having a senior engineer plan your entire prep cycle.", name: "Marcus J.", role: "L4 @ Google" },
+  { quote: "I went from 80 LeetCode to 450 in three months with the DSA Tracker. The streak momentum is real.", name: "Aanya S.", role: "Intern → FT @ Meta" },
+  { quote: "Resume feedback matched word-for-word what my recruiter said. Wild.", name: "Devon K.", role: "Backend @ Datadog" },
 ];
 
 export function Testimonials() {

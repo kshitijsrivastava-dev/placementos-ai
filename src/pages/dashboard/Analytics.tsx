@@ -5,6 +5,7 @@ import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { DashboardGrid } from "@/components/dashboard/page/DashboardGrid";
 import { dashboardCol } from "@/lib/responsive-layout";
+import { MODULES } from "@/content/product-messaging";
 import { useAnalytics } from "@/hooks/dashboard/use-analytics";
 
 function Analytics() {
@@ -13,9 +14,9 @@ function Analytics() {
   return (
     <DashboardPage>
       <DashboardPageHeader
-        eyebrow="// ANALYTICS"
-        title="Deep Performance Analytics"
-        description="Track every signal · understand every trend"
+        eyebrow={MODULES.analytics.eyebrow}
+        title={MODULES.analytics.pageTitle}
+        description="Prep signals across DSA, aptitude, and consistency"
       />
       <DashboardGrid>
         <Card title="Yearly Heatmap" className={dashboardCol.twoThirds}>

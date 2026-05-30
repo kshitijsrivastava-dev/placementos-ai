@@ -3,6 +3,7 @@ import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
 import { useGoals } from "@/hooks/dashboard/use-goals";
 import { formatGoalValue, getGoalProgressPercent } from "@/lib/goals-display";
+import { MODULES } from "@/content/product-messaging";
 import { Target, Plus } from "lucide-react";
 
 function Goals() {
@@ -11,8 +12,8 @@ function Goals() {
   return (
     <DashboardPage maxWidth="5xl">
       <DashboardPageHeader
-        eyebrow="// GOALS"
-        title="Objectives & Key Results"
+        eyebrow={MODULES.goals.eyebrow}
+        title={MODULES.goals.pageTitle}
         description={`${summary.activeCount} active goals · ${summary.dueThisMonthCount} due this month`}
         actions={
           <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm">

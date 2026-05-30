@@ -12,6 +12,7 @@ import { OverviewNextStepsSection } from "@/components/dashboard/sections/Overvi
 import { OverviewProgressSection } from "@/components/dashboard/sections/OverviewProgressSection";
 import { OverviewWeakTopicsSection } from "@/components/dashboard/sections/OverviewWeakTopicsSection";
 import { dashboardCol } from "@/lib/responsive-layout";
+import { MODULES } from "@/content/product-messaging";
 import { useOverview } from "@/hooks/dashboard/use-overview";
 
 function DashboardHome() {
@@ -20,7 +21,7 @@ function DashboardHome() {
   return (
     <DashboardPage>
       <DashboardPageHeader
-        eyebrow="// OVERVIEW"
+        eyebrow={MODULES.overview.eyebrow}
         title={workspace.header.title}
         description={workspace.header.description}
         actions={
@@ -28,7 +29,7 @@ function DashboardHome() {
             type="button"
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform touch-manipulation min-h-11 sm:min-h-0"
           >
-            <Sparkles className="size-4" /> Generate AI Plan
+            <Sparkles className="size-4" /> Update today&apos;s plan
           </button>
         }
       />

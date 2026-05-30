@@ -6,6 +6,7 @@ import { DSAProgressStats } from "@/components/dsa/DSAProgressStats";
 import { DSAQuestionList } from "@/components/dsa/DSAQuestionList";
 import { DSATablePagination } from "@/components/dsa/DSATablePagination";
 import { DSATopicGrid } from "@/components/dsa/DSATopicGrid";
+import { MODULES } from "@/content/product-messaging";
 import { useDsaPractice } from "@/hooks/use-dsa-practice";
 import { ListFilter, Sparkles } from "lucide-react";
 
@@ -20,8 +21,8 @@ function DSAPage() {
   return (
     <DashboardPage>
       <DashboardPageHeader
-        eyebrow="// DSA PRACTICE"
-        title="Problem Bank"
+        eyebrow={MODULES.dsa.eyebrow}
+        title={MODULES.dsa.pageTitle}
         description={
           <>
             {globalStats.solved} solved · {globalStats.reviewing} in review ·{" "}
@@ -34,7 +35,7 @@ function DSAPage() {
             className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
           >
             <Sparkles className="size-4" />
-            AI Pattern Drill
+            Pattern drill
           </button>
         }
       />

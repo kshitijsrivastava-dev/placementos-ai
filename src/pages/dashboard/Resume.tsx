@@ -10,6 +10,7 @@ import {
   RESUME_SUGGESTION_ICONS,
   RESUME_SUGGESTION_TONE_CLASSES,
 } from "@/lib/resume-display";
+import { MODULES } from "@/content/product-messaging";
 import { FileText, Upload, Sparkles } from "lucide-react";
 
 function ResumePage() {
@@ -18,9 +19,9 @@ function ResumePage() {
   return (
     <DashboardPage>
       <DashboardPageHeader
-        eyebrow="// RESUME AI"
-        title="Resume Architect"
-        description="ATS-optimized · JD-matched · powered by Lovable AI"
+        eyebrow={MODULES.resume.eyebrow}
+        title={MODULES.resume.pageTitle}
+        description="ATS checks · JD alignment · revision suggestions"
         actions={
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <button
@@ -33,7 +34,7 @@ function ResumePage() {
               type="button"
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 touch-manipulation min-h-11 sm:min-h-0"
             >
-              <Sparkles className="size-4" /> Generate v4
+              <Sparkles className="size-4" /> New version
             </button>
           </div>
         }
@@ -69,7 +70,7 @@ function ResumePage() {
             <ProgressRing value={analysis.atsScore} size={140} sublabel={analysis.atsSublabel} />
           </Card>
 
-          <Card title="AI Suggestions">
+          <Card title="Suggestions">
             <ul className="space-y-3">
               {analysis.suggestions.map((suggestion) => {
                 const Icon = RESUME_SUGGESTION_ICONS[suggestion.severity];

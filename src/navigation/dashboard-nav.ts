@@ -8,6 +8,7 @@ import {
   BarChart3,
   Target,
 } from "lucide-react";
+import { MODULES } from "@/content/product-messaging";
 import type { DashboardNavGroup, DashboardNavItem } from "./types";
 
 export const DASHBOARD_BASE_PATH = "/dashboard";
@@ -20,23 +21,23 @@ export function getDashboardNavHref(segment: string): string {
 export const dashboardNavGroups: DashboardNavGroup[] = [
   {
     id: "overview",
-    items: [{ segment: "", label: "Overview", icon: LayoutDashboard }],
+    items: [{ segment: "", label: MODULES.overview.label, icon: LayoutDashboard }],
   },
   {
     id: "practice",
     items: [
-      { segment: "dsa", label: "DSA Tracker", icon: Code2 },
-      { segment: "aptitude", label: "Aptitude", icon: Calculator },
-      { segment: "resume", label: "Resume AI", icon: FileText },
-      { segment: "mock-interview", label: "Mock Interview", icon: MessageSquare },
+      { segment: "dsa", label: MODULES.dsa.label, icon: Code2 },
+      { segment: "aptitude", label: MODULES.aptitude.label, icon: Calculator },
+      { segment: "resume", label: MODULES.resume.label, icon: FileText },
+      { segment: "mock-interview", label: MODULES.mockInterview.label, icon: MessageSquare },
     ],
   },
   {
     id: "growth",
     items: [
-      { segment: "roadmap", label: "AI Roadmap", icon: RouteIcon },
-      { segment: "analytics", label: "Analytics", icon: BarChart3 },
-      { segment: "goals", label: "Goals", icon: Target },
+      { segment: "roadmap", label: MODULES.roadmap.label, icon: RouteIcon },
+      { segment: "analytics", label: MODULES.analytics.label, icon: BarChart3 },
+      { segment: "goals", label: MODULES.goals.label, icon: Target },
     ],
   },
 ];
