@@ -211,7 +211,7 @@ export function DSAQuestionList({
 
   return (
     <>
-      <div className="hidden md:block -mx-4 sm:-mx-6 overflow-x-auto">
+      <div className="hidden md:block w-full overflow-x-auto overscroll-x-contain">
         <table className="w-full min-w-[520px]">
           <thead>
             <tr className="border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">

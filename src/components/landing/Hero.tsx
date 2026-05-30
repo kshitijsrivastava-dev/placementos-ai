@@ -4,8 +4,8 @@ import { ArrowRight, Play, Activity, TrendingUp, Zap } from "lucide-react";
 export function Hero() {
   return (
     <section className="relative pt-20 pb-16 px-4 sm:px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-12 items-center">
-        <div className="animate-in-up">
+      <div className="max-w-6xl mx-auto w-full min-w-0 grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12 items-center">
+        <div className="animate-in-up min-w-0">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
@@ -13,7 +13,7 @@ export function Hero() {
             </span>
             V3.0 — AI ROADMAP ENGINE
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance mb-6 leading-[1.05]">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-balance mb-6 leading-[1.05]">
             Placement <span className="text-gradient">Precision</span> Engineering.
           </h1>
           <p className="text-lg text-muted-foreground max-w-[48ch] mb-8">

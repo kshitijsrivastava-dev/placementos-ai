@@ -1,6 +1,7 @@
 import { Sparkles } from "lucide-react";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import { DashboardGrid } from "@/components/dashboard/page/DashboardGrid";
 import { DashboardSection } from "@/components/dashboard/sections/DashboardSection";
 import { OverviewActivitySection } from "@/components/dashboard/sections/OverviewActivitySection";
 import { OverviewConsistencySection } from "@/components/dashboard/sections/OverviewConsistencySection";
@@ -10,10 +11,8 @@ import { OverviewFocusMetrics } from "@/components/dashboard/sections/OverviewFo
 import { OverviewNextStepsSection } from "@/components/dashboard/sections/OverviewNextStepsSection";
 import { OverviewProgressSection } from "@/components/dashboard/sections/OverviewProgressSection";
 import { OverviewWeakTopicsSection } from "@/components/dashboard/sections/OverviewWeakTopicsSection";
+import { dashboardCol } from "@/lib/responsive-layout";
 import { useOverview } from "@/hooks/dashboard/use-overview";
-
-const overviewSectionWide = "col-span-12 md:col-span-6 lg:col-span-7";
-const overviewSectionNarrow = "col-span-12 md:col-span-6 lg:col-span-5";
 
 function DashboardHome() {
   const workspace = useOverview();
@@ -27,7 +26,7 @@ function DashboardHome() {
         actions={
           <button
             type="button"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform touch-manipulation min-h-11 sm:min-h-0"
           >
             <Sparkles className="size-4" /> Generate AI Plan
           </button>
@@ -36,38 +35,38 @@ function DashboardHome() {
 
       <OverviewFocusMetrics metrics={workspace.focusMetrics} />
 
-      <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
-        <DashboardSection className={overviewSectionWide}>
+      <DashboardGrid>
+        <DashboardSection className={dashboardCol.wide}>
           <OverviewDailyPlanSection
             summary={workspace.dailyPlan.summary}
             tasks={workspace.dailyPlan.tasks}
           />
         </DashboardSection>
 
-        <DashboardSection className={overviewSectionNarrow}>
+        <DashboardSection className={dashboardCol.narrow}>
           <OverviewNextStepsSection steps={workspace.nextSteps} />
         </DashboardSection>
 
-        <DashboardSection className={overviewSectionNarrow}>
+        <DashboardSection className={dashboardCol.narrow}>
           <OverviewFocusInsightSection insight={workspace.focusInsight} />
         </DashboardSection>
 
-        <DashboardSection className={overviewSectionWide}>
+        <DashboardSection className={dashboardCol.wide}>
           <OverviewWeakTopicsSection topics={workspace.weakTopics} />
         </DashboardSection>
 
-        <DashboardSection className={overviewSectionWide}>
+        <DashboardSection className={dashboardCol.wide}>
           <OverviewActivitySection events={workspace.activityEvents} />
         </DashboardSection>
 
-        <DashboardSection className={overviewSectionNarrow}>
+        <DashboardSection className={dashboardCol.narrow}>
           <OverviewProgressSection progress={workspace.progress} />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12">
+        <DashboardSection className={dashboardCol.full}>
           <OverviewConsistencySection />
         </DashboardSection>
-      </div>
+      </DashboardGrid>
     </DashboardPage>
   );
 }

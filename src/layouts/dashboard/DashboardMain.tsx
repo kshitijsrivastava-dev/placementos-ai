@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { responsiveLayout } from "@/lib/responsive-layout";
+import { cn } from "@/lib/utils";
 
 type DashboardMainProps = {
   children: ReactNode;
@@ -7,7 +9,13 @@ type DashboardMainProps = {
 /** Shared padded main region for all dashboard routes. */
 export function DashboardMain({ children }: DashboardMainProps) {
   return (
-    <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-6 sm:py-8 animate-fade">
+    <main
+      className={cn(
+        "flex-1 min-w-0 animate-fade",
+        responsiveLayout.pageX,
+        responsiveLayout.pageY,
+      )}
+    >
       {children}
     </main>
   );

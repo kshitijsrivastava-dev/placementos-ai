@@ -52,6 +52,7 @@ function DSAPage() {
       </Card>
 
       <Card
+        className="min-w-0 overflow-hidden"
         title="Problem set"
         subtitle={problemSetSubtitle}
         action={

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type DashboardPageHeaderProps = {
   eyebrow: string;
@@ -37,7 +38,15 @@ export function DashboardPageHeader({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
       {titleBlock}
-      <div className="shrink-0 w-full sm:w-auto [&>button]:w-full sm:[&>button]:w-auto">
+      <div
+        className={cn(
+          "shrink-0 w-full sm:w-auto",
+          "[&_button]:w-full sm:[&_button]:w-auto",
+          "[&_button]:touch-manipulation [&_button]:min-h-11 sm:[&_button]:min-h-0",
+          "[&>div]:flex [&>div]:flex-col [&>div]:gap-2 [&>div]:w-full",
+          "[&>div]:sm:flex-row [&>div]:sm:w-auto",
+        )}
+      >
         {actions}
       </div>
     </div>

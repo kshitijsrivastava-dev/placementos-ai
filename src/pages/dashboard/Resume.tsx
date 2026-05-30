@@ -2,6 +2,8 @@ import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import { DashboardGrid } from "@/components/dashboard/page/DashboardGrid";
+import { dashboardCol } from "@/lib/responsive-layout";
 import { useResumeAnalysis } from "@/hooks/dashboard/use-resume-analysis";
 import {
   formatJdMatchSummary,
@@ -20,19 +22,25 @@ function ResumePage() {
         title="Resume Architect"
         description="ATS-optimized · JD-matched · powered by Lovable AI"
         actions={
-          <div className="flex gap-2">
-            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-xl font-semibold text-sm hover:bg-surface-hover touch-manipulation min-h-11 sm:min-h-0"
+            >
               <Upload className="size-4" /> Upload PDF
             </button>
-            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 touch-manipulation min-h-11 sm:min-h-0"
+            >
               <Sparkles className="size-4" /> Generate v4
             </button>
           </div>
         }
       />
 
-      <div className="grid grid-cols-12 gap-6">
-        <Card title="Resume Preview" className="col-span-12 lg:col-span-7 min-h-[600px]">
+      <DashboardGrid>
+        <Card title="Resume Preview" className={`${dashboardCol.wide} min-h-[min(600px,80vh)]`}>
           <div className="bg-white text-zinc-900 rounded-lg p-8 font-serif min-h-[540px] shadow-2xl">
             <h2 className="text-2xl font-bold">Alex Chen</h2>
             <p className="text-sm text-zinc-600 mt-1">Software Engineer · alex@chen.dev · github.com/alexchen</p>
@@ -56,7 +64,7 @@ function ResumePage() {
           </div>
         </Card>
 
-        <div className="col-span-12 lg:col-span-5 space-y-6">
+        <div className={`${dashboardCol.narrow} space-y-5 sm:space-y-6`}>
           <Card title="ATS Score" className="flex flex-col items-center">
             <ProgressRing value={analysis.atsScore} size={140} sublabel={analysis.atsSublabel} />
           </Card>
@@ -100,7 +108,7 @@ function ResumePage() {
             </div>
           </Card>
         </div>
-      </div>
+      </DashboardGrid>
     </DashboardPage>
   );
 }

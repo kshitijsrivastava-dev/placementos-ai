@@ -4,7 +4,7 @@ import type { DSAGlobalStats } from "@/types/dsa";
 
 export function DSAProgressStats({ stats }: { stats: DSAGlobalStats }) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 min-w-0">
       <StatCard
         label="Problems Solved"
         value={`${stats.solved}`}

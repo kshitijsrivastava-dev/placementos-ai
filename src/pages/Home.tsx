@@ -10,10 +10,10 @@ import { GlowBackground } from "@/components/GlowBackground";
 
 function Index() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen min-h-dvh w-full min-w-0 overflow-x-clip">
       <GlowBackground />
       <Navbar />
-      <main>
+      <main className="min-w-0">
         <Hero />
         <Stats />
         <Features />

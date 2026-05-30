@@ -1,6 +1,8 @@
 import { Card } from "@/components/dashboard/Card";
 import { DashboardPage } from "@/components/dashboard/page/DashboardPage";
 import { DashboardPageHeader } from "@/components/dashboard/page/DashboardPageHeader";
+import { DashboardGrid } from "@/components/dashboard/page/DashboardGrid";
+import { dashboardCol } from "@/lib/responsive-layout";
 import { Mic, Video, Play, MessageSquare, Sparkles, Volume2 } from "lucide-react";
 
 const transcript = [
@@ -20,9 +22,8 @@ function MockInterview() {
         description="FAANG-grade scenarios · real-time scoring · powered by Lovable AI"
       />
 
-      <div className="grid grid-cols-12 gap-6">
-        {/* Video stage */}
-        <Card className="col-span-12 lg:col-span-8 p-0 overflow-hidden">
+      <DashboardGrid>
+        <Card className={`${dashboardCol.twoThirds} p-0 overflow-hidden min-w-0`}>
           <div className="aspect-video bg-card relative">
             <div className="absolute inset-0 bg-[image:var(--gradient-glow)]" />
             <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded-md bg-destructive/20 border border-destructive/40">
@@ -69,8 +70,8 @@ function MockInterview() {
         </Card>
 
         {/* Transcript */}
-        <Card title="Live Transcript" className="col-span-12 lg:col-span-4">
-          <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2">
+        <Card title="Live Transcript" className={`${dashboardCol.narrow} min-w-0 flex flex-col`}>
+          <div className="space-y-4 max-h-[min(480px,50vh)] sm:max-h-[480px] overflow-y-auto pr-1 sm:pr-2 min-h-0">
             {transcript.map((m, i) => (
               <div key={i} className={`flex gap-3 ${m.who === "You" ? "flex-row-reverse" : ""}`}>
                 <div className={`size-7 shrink-0 rounded-full grid place-items-center text-[10px] font-bold ${m.who === "AI" ? "bg-primary/20 text-primary border border-primary/30" : "bg-accent/20 text-accent border border-accent/30"}`}>
@@ -84,10 +85,10 @@ function MockInterview() {
           </div>
           <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-surface border border-border">
             <MessageSquare className="size-4 text-muted-foreground" />
-            <input className="flex-1 bg-transparent outline-none text-sm" placeholder="Speak or type your answer..." />
+            <input className="flex-1 min-w-0 bg-transparent outline-none text-sm" placeholder="Speak or type your answer..." />
           </div>
         </Card>
-      </div>
+      </DashboardGrid>
     </DashboardPage>
   );
 }

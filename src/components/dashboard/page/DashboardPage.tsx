@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { responsiveLayout } from "@/lib/responsive-layout";
 import { cn } from "@/lib/utils";
 
 export type DashboardPageMaxWidth = "5xl" | "6xl" | "7xl";
@@ -20,7 +21,8 @@ export function DashboardPage({ children, maxWidth = "7xl", className }: Dashboa
   return (
     <div
       className={cn(
-        "mx-auto w-full min-w-0 space-y-5 sm:space-y-6",
+        responsiveLayout.container,
+        responsiveLayout.sectionY,
         maxWidthClasses[maxWidth],
         className,
       )}

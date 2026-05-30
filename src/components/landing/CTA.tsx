@@ -5,7 +5,7 @@ export function CTA() {
   return (
     <section id="cta" className="py-32 px-4 sm:px-6 relative overflow-hidden">
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-96 bg-[image:var(--gradient-glow)] blur-3xl opacity-60 pointer-events-none" />
-      <div className="max-w-4xl mx-auto text-center relative">
+      <div className="max-w-4xl mx-auto w-full min-w-0 text-center relative">
         <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
           Ready for <span className="text-gradient">launch?</span>
         </h2>

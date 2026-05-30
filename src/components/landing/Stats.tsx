@@ -8,7 +8,7 @@ const stats = [
 export function Stats() {
   return (
     <section className="px-4 sm:px-6 py-12 border-y border-border bg-surface/50">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto w-full min-w-0">
         <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mb-8 font-mono">
           Trusted by engineers from Google, Meta, Microsoft, Amazon, Stripe & more
         </p>

@@ -178,6 +178,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -186,6 +188,13 @@
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "cv11", "ss01";
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  #root {
+    min-height: 100dvh;
+    min-width: 0;
   }
 
   /* Smooth theme transitions (brief, on class change only) */
