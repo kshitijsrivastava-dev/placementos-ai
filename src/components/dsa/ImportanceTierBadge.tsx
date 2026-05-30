@@ -11,8 +11,8 @@ export function ImportanceTierBadge({ tier }: { tier: ImportanceTier }) {
   return (
     <span
       className={[
-        "inline-flex items-center justify-center text-[10px] font-mono uppercase tracking-wide",
-        "border px-2 py-0.5 rounded-lg whitespace-nowrap",
+        "inline-flex items-center justify-center text-[10px] font-mono font-semibold uppercase tracking-wide",
+        "border px-2 py-0.5 rounded whitespace-nowrap",
         className,
       ].join(" ")}
     >
