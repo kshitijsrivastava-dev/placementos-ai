@@ -24,7 +24,7 @@ export function DSAFilterToolbar({
           value={filters.search}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search problems, tags, companies…"
-          className="w-full h-11 sm:h-10 pl-10 pr-4 rounded-xl bg-surface border border-border text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
+          className="w-full h-11 sm:h-10 pl-10 pr-4 rounded-xl bg-surface border border-border text-sm placeholder:text-muted-foreground focus:outline-none focus:border-border focus:ring-1 focus:ring-foreground/10 transition-colors"
         />
       </div>
 
@@ -34,7 +34,7 @@ export function DSAFilterToolbar({
         className={cn(
           "inline-flex items-center justify-center gap-2 h-11 sm:h-10 px-4 rounded-xl border text-sm font-medium transition-colors shrink-0 touch-manipulation",
           filters.bookmarkedOnly
-            ? "bg-primary/10 text-primary border-primary/30"
+            ? "bg-subtle text-foreground border-border"
             : "bg-surface border-border text-muted-foreground hover:bg-surface-hover hover:text-foreground",
         )}
       >

@@ -7,9 +7,9 @@ import type { Difficulty, DSAFilters, QuestionStatus } from "@/types/dsa";
 import { FilterChipGroup } from "./FilterChipGroup";
 
 const difficultyActiveClass: Record<Difficulty, string> = {
-  Easy: "bg-success/10 text-success border-success/30",
-  Medium: "bg-warning/10 text-warning border-warning/30",
-  Hard: "bg-destructive/10 text-destructive border-destructive/30",
+  Easy: "bg-success/5 text-success/90 border-border",
+  Medium: "bg-warning/5 text-warning/90 border-border",
+  Hard: "bg-destructive/5 text-destructive/90 border-border",
 };
 
 type DSACoreFiltersProps = {
@@ -61,7 +61,7 @@ export function DSACoreFilters({
               className={cn(
                 "text-xs font-mono px-3 py-2 sm:py-1.5 rounded-lg border transition-colors touch-manipulation",
                 active
-                  ? "bg-primary/10 text-primary border-primary/30"
+                  ? "bg-subtle text-foreground border-border"
                   : "border-border text-muted-foreground hover:bg-surface-hover",
               )}
             >

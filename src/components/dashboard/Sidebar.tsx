@@ -27,12 +27,14 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
 
       <DashboardNavList onNavigate={onNavigate} />
 
-      <div className="p-4 rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/20">
-        <div className="text-[10px] font-mono uppercase text-primary mb-1">Placement ready</div>
+      <div className="p-4 rounded-xl bg-surface border border-border">
+        <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-1">
+          Placement ready
+        </div>
         <div className="text-2xl font-bold mb-2">{DEMO_PERSONA.readinessPercent}%</div>
         <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
           <div
-            className="h-full bg-[image:var(--gradient-primary)]"
+            className="h-full bg-primary/70"
             style={{ width: `${DEMO_PERSONA.readinessPercent}%` }}
           />
         </div>

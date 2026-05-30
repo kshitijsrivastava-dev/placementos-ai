@@ -14,7 +14,7 @@ export function DSATopicGrid({
     <div className="space-y-4">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div className="min-w-0">
-          <h2 className="text-sm font-mono text-muted-foreground uppercase tracking-wider">
+          <h2 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Topics
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
@@ -27,7 +27,7 @@ export function DSATopicGrid({
           className={cn(
             "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors shrink-0 touch-manipulation",
             selectedTopicId === "all"
-              ? "bg-primary/10 text-primary border-primary/30"
+              ? "bg-subtle text-foreground border-border"
               : "border-border text-muted-foreground hover:bg-surface-hover hover:text-foreground",
           )}
         >
@@ -45,15 +45,15 @@ export function DSATopicGrid({
               onClick={() => onSelectTopic(topic.id)}
               className={cn(
                 "group text-left p-4 rounded-xl border transition-all",
-                "hover:border-primary/30 hover:bg-surface-hover",
+                "hover:bg-surface-hover hover:border-border",
                 active
-                  ? "bg-primary/5 border-primary/30 shadow-[var(--shadow-glow)]"
+                  ? "bg-subtle border-border"
                   : "bg-surface border-border",
               )}
             >
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div className="min-w-0">
-                  <h3 className="text-sm font-semibold truncate group-hover:text-primary transition-colors">
+                  <h3 className="text-sm font-semibold text-foreground truncate">
                     {topic.name}
                   </h3>
                   <p className="text-[11px] text-muted-foreground line-clamp-1 mt-0.5">
@@ -63,7 +63,7 @@ export function DSATopicGrid({
                 <div
                   className={cn(
                     "shrink-0 size-11 rounded-full border-2 grid place-items-center text-[10px] font-mono font-bold",
-                    active ? "border-primary text-primary" : "border-border text-muted-foreground",
+                    active ? "border-foreground/20 text-foreground" : "border-border text-muted-foreground",
                   )}
                   style={{
                     background: `conic-gradient(var(--primary) ${topic.percent * 3.6}deg, var(--subtle) 0deg)`,
@@ -76,7 +76,7 @@ export function DSATopicGrid({
               </div>
               <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden mb-2">
                 <div
-                  className="h-full bg-[image:var(--gradient-primary)] transition-all duration-500"
+                  className="h-full bg-primary/70 transition-all duration-500"
                   style={{ width: `${topic.percent}%` }}
                 />
               </div>
@@ -85,7 +85,7 @@ export function DSATopicGrid({
                   {topic.solved}/{topic.total} solved
                 </span>
                 {topic.reviewing > 0 && (
-                  <span className="text-primary">{topic.reviewing} reviewing</span>
+                  <span className="text-muted-foreground">{topic.reviewing} reviewing</span>
                 )}
               </div>
             </button>

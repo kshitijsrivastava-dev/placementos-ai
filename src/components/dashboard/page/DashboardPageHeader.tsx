@@ -17,7 +17,7 @@ export function DashboardPageHeader({
 }: DashboardPageHeaderProps) {
   const titleBlock = (
     <div className="min-w-0">
-      <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
         {eyebrow}
       </p>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight">

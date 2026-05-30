@@ -15,9 +15,9 @@ import { CompanyFilterChip } from "./CompanyFilterChip";
 import { FilterChipGroup } from "./FilterChipGroup";
 
 const tierActiveClass: Record<ImportanceTier, string> = {
-  "Must Do": "bg-destructive/10 text-destructive border-destructive/30",
-  "Very Important": "bg-warning/10 text-warning border-warning/30",
-  "High Frequency": "bg-success/10 text-success border-success/30",
+  "Must Do": "bg-destructive/5 text-destructive/90 border-border",
+  "Very Important": "bg-warning/5 text-warning/90 border-border",
+  "High Frequency": "bg-success/5 text-success/90 border-border",
 };
 
 type DSAAdvancedFiltersProps = {
@@ -54,7 +54,7 @@ export function DSAAdvancedFilters({
           >
             Advanced filters
             {advancedFilterCount > 0 && (
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-subtle text-muted-foreground border border-border">
                 {advancedFilterCount}
               </span>
             )}

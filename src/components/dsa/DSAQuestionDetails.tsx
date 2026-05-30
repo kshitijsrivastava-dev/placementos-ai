@@ -31,16 +31,16 @@ export function DSAQuestionDetails({
   return (
     <div
       className={cn(
-        "rounded-lg border border-border/60 bg-subtle/40 px-3 py-3 space-y-3",
+        "rounded-lg border border-border bg-subtle/30 px-3 py-3 space-y-2.5",
         className,
       )}
     >
       {question.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1">
           {question.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface text-muted-foreground border border-border/60"
+              className="text-[10px] font-mono px-1.5 py-0.5 rounded-md text-muted-foreground border border-border/80 bg-transparent"
             >
               {tag}
             </span>

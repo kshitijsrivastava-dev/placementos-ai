@@ -15,7 +15,7 @@ export function CompanyChips({
   const extra = companies.length - visible.length;
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-1">
       {visible.map((company) => {
         const active = selectedCompanies.includes(company);
         return (
@@ -30,8 +30,8 @@ export function CompanyChips({
             className={cn(
               "text-[10px] font-mono px-2 py-1 sm:px-1.5 sm:py-0.5 rounded border transition-colors touch-manipulation",
               active
-                ? "bg-primary/10 border-primary/30 text-primary"
-                : "bg-surface text-muted-foreground border-border hover:bg-surface-hover hover:text-foreground",
+                ? "bg-subtle border-border text-foreground"
+                : "bg-transparent text-muted-foreground border-border/70 hover:bg-surface-hover hover:text-foreground",
             )}
           >
             {company}

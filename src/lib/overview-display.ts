@@ -18,8 +18,8 @@ export const ACTIVITY_EVENT_ICONS: Record<ActivityEventIcon, LucideIcon> = {
 };
 
 export const ACTIVITY_EVENT_TONE_CLASSES: Record<ActivityEventTone, string> = {
-  success: "text-success",
-  primary: "text-primary",
-  accent: "text-accent",
+  success: "text-success/80",
+  primary: "text-muted-foreground",
+  accent: "text-muted-foreground",
   muted: "text-muted-foreground",
 };

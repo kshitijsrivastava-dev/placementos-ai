@@ -12,7 +12,7 @@ export function DifficultyBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center text-[10px] font-mono font-semibold uppercase tracking-wide px-2 py-0.5 rounded border",
+        "inline-flex items-center text-[10px] font-mono font-medium uppercase tracking-normal px-2 py-0.5 rounded-md border",
         DIFFICULTY_STYLES[difficulty],
         className,
       )}

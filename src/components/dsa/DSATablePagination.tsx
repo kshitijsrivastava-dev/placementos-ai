@@ -12,8 +12,8 @@ export function DSATablePagination({ pagination, filteredCount }: DSATablePagina
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <p className="text-[11px] font-mono text-muted-foreground text-center sm:text-left">
-        Page <span className="text-foreground font-semibold">{page} / {pageCount}</span>
-        {" "}· showing <span className="text-foreground font-semibold">{pageItemCount}</span> of{" "}
+        Page <span className="text-foreground font-medium">{page} / {pageCount}</span>
+        {" "}· showing <span className="text-foreground font-medium">{pageItemCount}</span> of{" "}
         {filteredCount}
       </p>
 

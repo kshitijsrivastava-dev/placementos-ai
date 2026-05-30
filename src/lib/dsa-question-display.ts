@@ -15,7 +15,7 @@ export function questionTableRowClass(expanded: boolean): string {
 
 export function questionCardShellClass(expanded: boolean): string {
   return cn(
-    "rounded-xl border bg-surface transition-all duration-200",
-    expanded ? "border-primary/25 bg-surface-hover/40" : "border-border hover:border-primary/20",
+    "rounded-xl border bg-surface transition-colors",
+    expanded ? "border-border bg-surface-hover/50" : "border-border hover:bg-surface-hover/40",
   );
 }

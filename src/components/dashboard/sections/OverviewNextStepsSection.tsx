@@ -18,17 +18,17 @@ export function OverviewNextStepsSection({
           <li key={step.id}>
             <Link
               to={step.href}
-              className="flex items-start gap-3 p-3 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-primary/30 transition-colors group"
+              className="flex items-start gap-3 p-3 rounded-lg border border-border bg-surface hover:bg-surface-hover transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                <p className="text-sm font-medium text-foreground">
                   {step.label}
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed break-words">
                   {step.detail}
                 </p>
               </div>
-              <ArrowUpRight className="size-4 text-muted-foreground shrink-0 mt-0.5 group-hover:text-primary transition-colors" />
+              <ArrowUpRight className="size-4 text-muted-foreground/70 shrink-0 mt-0.5" />
             </Link>
           </li>
         ))}

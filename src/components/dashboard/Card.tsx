@@ -22,15 +22,17 @@ export function Card({
       )}
     >
       {(title || action) && (
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-5 sm:gap-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-5 sm:gap-3">
           <div className="min-w-0 flex-1">
             {title && (
-              <h3 className="text-sm font-mono text-muted-foreground uppercase tracking-wider">
+              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-sm sm:text-base font-semibold mt-1 leading-snug">{subtitle}</p>
+              <p className="text-sm sm:text-base font-semibold text-foreground mt-1 leading-snug">
+                {subtitle}
+              </p>
             )}
           </div>
           {action ? <div className="shrink-0 self-start sm:self-auto">{action}</div> : null}

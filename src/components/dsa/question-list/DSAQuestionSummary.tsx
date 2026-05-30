@@ -21,7 +21,7 @@ export function DSAQuestionSummary({ question, variant }: DSAQuestionSummaryProp
       <div className="flex items-start gap-2 min-w-0">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
+            <span className="text-sm font-medium text-foreground truncate">
               {question.title}
             </span>
             <ExternalLink className="size-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />

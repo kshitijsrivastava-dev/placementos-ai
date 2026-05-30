@@ -28,7 +28,7 @@ export function OverviewProgressSection({
             </div>
             <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
               <div
-                className="h-full bg-[image:var(--gradient-primary)]"
+                className="h-full bg-primary/70"
                 style={{ width: `${domain.percent}%` }}
               />
             </div>

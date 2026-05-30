@@ -22,7 +22,7 @@ export function OverviewDailyPlanSection({
       subtitle={`${summary.completed} of ${summary.total} complete`}
       action={
         remaining > 0 ? (
-          <span className="text-[10px] font-mono text-primary">{remaining} left</span>
+          <span className="text-[10px] font-mono text-muted-foreground">{remaining} left</span>
         ) : undefined
       }
       className={cn("h-full", className)}
@@ -34,7 +34,7 @@ export function OverviewDailyPlanSection({
             className={`flex items-start sm:items-center gap-3 p-3 rounded-lg border ${
               task.done
                 ? "bg-surface border-border opacity-60"
-                : "bg-surface-hover border-border"
+                : "bg-surface border-border"
             }`}
           >
             <div

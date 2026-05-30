@@ -11,7 +11,7 @@ export function DSAQuestionListTable({ questions, getItemProps }: DSAQuestionLis
   return (
     <table className="w-full min-w-[520px]">
       <thead>
-        <tr className="border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+        <tr className="border-b border-border text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
           <th className="py-3 pl-4 pr-2 text-left font-medium w-11">Status</th>
           <th className="py-3 pr-3 text-left font-medium">Problem</th>
           <th className="py-3 pr-3 text-left font-medium hidden sm:table-cell w-[88px]">

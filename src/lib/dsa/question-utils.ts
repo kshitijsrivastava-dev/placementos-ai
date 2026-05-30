@@ -11,9 +11,9 @@ import type {
 } from "@/types/dsa";
 
 export const DIFFICULTY_STYLES: Record<Difficulty, string> = {
-  Easy: "text-success bg-success/10 border-success/20",
-  Medium: "text-warning bg-warning/10 border-warning/20",
-  Hard: "text-destructive bg-destructive/10 border-destructive/20",
+  Easy: "text-success/90 bg-success/5 border-border",
+  Medium: "text-warning/90 bg-warning/5 border-border",
+  Hard: "text-destructive/90 bg-destructive/5 border-border",
 };
 
 export const STATUS_LABELS: Record<QuestionStatus, string> = {
