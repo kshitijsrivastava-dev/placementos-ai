@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { signOut } from "@/features/auth/auth-service";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -8,39 +9,51 @@ import { DEMO_PERSONA } from "@/data/demo-persona";
 import { DashboardNavList } from "./nav/DashboardNavList";
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
+  const navigate = useNavigate();
+
+  async function handleSignOut() {
+    await signOut();
+    onNavigate?.();
+    navigate("/login");
+  }
+
   return (
-    <div className="flex flex-col h-full w-full p-5 gap-6">
-      <Link to="/" onClick={onNavigate} className="flex items-center gap-2">
-        <div className="size-8 rounded-lg bg-[image:var(--gradient-primary)] flex items-center justify-center">
-          <Sparkles className="size-4 text-primary-foreground" />
-        </div>
-        <span className="font-bold tracking-tighter text-lg">PlacementOS</span>
-      </Link>
+    <div className="flex h-full min-h-0 w-full flex-col p-5">
+      <div className="flex shrink-0 flex-col gap-6">
+        <Link to="/" onClick={onNavigate} className="flex items-center gap-2">
+          <div className="size-8 rounded-lg bg-[image:var(--gradient-primary)] flex items-center justify-center">
+            <Sparkles className="size-4 text-primary-foreground" />
+          </div>
+          <span className="font-bold tracking-tighter text-lg">PlacementOS</span>
+        </Link>
 
-      <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
-        <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
-        <div className="min-w-0">
-          <div className="text-sm font-semibold truncate">{DEMO_PERSONA.fullName}</div>
-          <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
-        </div>
-      </div>
-
-      <DashboardNavList onNavigate={onNavigate} />
-
-      <div className="p-4 rounded-xl bg-surface border border-border">
-        <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-1">
-          Placement ready
-        </div>
-        <div className="text-2xl font-bold mb-2">{DEMO_PERSONA.readinessPercent}%</div>
-        <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
-          <div
-            className="h-full bg-primary/70"
-            style={{ width: `${DEMO_PERSONA.readinessPercent}%` }}
-          />
+        <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
+          <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
+          <div className="min-w-0">
+            <div className="text-sm font-semibold truncate">{DEMO_PERSONA.fullName}</div>
+            <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
+          </div>
         </div>
       </div>
 
-      <div className="space-y-0.5">
+      <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto py-6">
+        <DashboardNavList onNavigate={onNavigate} />
+
+        <div className="p-4 rounded-xl bg-surface border border-border">
+          <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-1">
+            Placement ready
+          </div>
+          <div className="text-2xl font-bold mb-2">{DEMO_PERSONA.readinessPercent}%</div>
+          <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
+            <div
+              className="h-full bg-primary/70"
+              style={{ width: `${DEMO_PERSONA.readinessPercent}%` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="shrink-0 space-y-0.5 pt-6">
         <div className="flex items-center gap-2 px-1 py-1">
           <ThemeToggle className="shrink-0" />
           <span className="text-xs text-muted-foreground">Theme</span>
@@ -48,9 +61,13 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         <button className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors w-full">
           <Settings className="size-4" /> Settings
         </button>
-        <Link to="/login" onClick={onNavigate} className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors">
+        <button
+          type="button"
+          onClick={handleSignOut}
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors w-full"
+        >
           <LogOut className="size-4" /> Sign out
-        </Link>
+        </button>
       </div>
     </div>
   );
@@ -83,7 +100,7 @@ export function MobileTopbar() {
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="w-[85vw] max-w-[320px] p-0 bg-sidebar border-border overflow-y-auto"
+          className="flex h-full w-[85vw] max-w-[320px] flex-col p-0 bg-sidebar border-border overflow-hidden"
         >
           <VisuallyHidden>
             <SheetTitle>Navigation</SheetTitle>

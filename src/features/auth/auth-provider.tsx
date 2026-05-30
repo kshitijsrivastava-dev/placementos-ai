@@ -1,7 +1,8 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import type { User } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
 import type { AuthState, AuthUser } from "./auth-types";
-import { getCurrentUser } from "./auth-service";
 
 type AuthContextValue = AuthState;
 
@@ -11,25 +12,32 @@ export const AuthContext = createContext<AuthContextValue>({
   isAuthenticated: false,
 });
 
+function mapAuthUser(user: User | null | undefined): AuthUser | null {
+  if (!user) {
+    return null;
+  }
+
+  return {
+    id: user.id,
+    email: user.email ?? "",
+  };
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadUser() {
-      const currentUser = await getCurrentUser();
-
-      if (currentUser) {
-        setUser({
-          id: currentUser.id,
-          email: currentUser.email ?? "",
-        });
-      }
-
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(mapAuthUser(session?.user));
       setIsLoading(false);
-    }
+    });
 
-    loadUser();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const value = useMemo(
@@ -38,12 +46,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       isLoading,
       isAuthenticated: !!user,
     }),
-    [user, isLoading]
+    [user, isLoading],
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

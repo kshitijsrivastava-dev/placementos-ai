@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { dashboardRouteEntries } from "@/navigation/dashboard-routes";
 import { DashboardRouteOutlet } from "@/layouts/dashboard/DashboardRouteOutlet";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
+import { ProtectedRoute } from "@/features/auth/protected-route";
 
 export function AppRoutes() {
   return (
@@ -13,7 +14,15 @@ export function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<DashboardLayout />}>
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route element={<DashboardRouteOutlet />}>
           {dashboardRouteEntries.map(({ segment, Component }) =>
             segment === "" ? (
@@ -24,6 +33,7 @@ export function AppRoutes() {
           )}
         </Route>
       </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
