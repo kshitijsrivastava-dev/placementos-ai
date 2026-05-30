@@ -68,7 +68,7 @@ function QuestionRow({
               onToggleExpanded();
             }}
             aria-label={expanded ? "Hide details" : "Show details"}
-            className="size-8 inline-flex items-center justify-center rounded-lg text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"
+            className="size-9 sm:size-8 inline-flex items-center justify-center rounded-lg text-muted-foreground hover:bg-surface hover:text-foreground transition-colors touch-manipulation"
           >
             <ChevronDown
               className={cn("size-4 transition-transform", expanded && "rotate-180")}
@@ -122,14 +122,14 @@ function QuestionCard({
     >
       <button
         type="button"
-        className="w-full text-left p-4"
+        className="w-full text-left p-4 touch-manipulation"
         onClick={onToggleExpanded}
         aria-expanded={expanded}
       >
         <div className="flex items-start gap-3">
           <QuestionStatusIcon status={question.status} className="pt-0.5" />
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-foreground leading-snug pr-2">
                   {question.title}
@@ -137,7 +137,7 @@ function QuestionCard({
                 <p className="text-xs text-muted-foreground mt-1">{topic?.name ?? "—"}</p>
               </div>
               <div
-                className="flex items-center gap-1 shrink-0"
+                className="flex items-center gap-2 shrink-0"
                 onClick={(e) => e.stopPropagation()}
               >
                 <DifficultyBadge difficulty={question.difficulty} />
@@ -147,7 +147,7 @@ function QuestionCard({
           </div>
           <ChevronDown
             className={cn(
-              "size-4 text-muted-foreground shrink-0 mt-1 transition-transform",
+              "size-5 text-muted-foreground shrink-0 mt-0.5 transition-transform",
               expanded && "rotate-180",
             )}
           />

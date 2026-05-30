@@ -35,7 +35,7 @@ export function DSACoreFilters({
               onClick={() => onToggleDifficulty(difficulty)}
               aria-pressed={active}
               className={cn(
-                "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors",
+                "text-xs font-mono px-3 py-2 sm:py-1.5 rounded-lg border transition-colors touch-manipulation",
                 active
                   ? difficultyActiveClass[difficulty]
                   : "border-border text-muted-foreground hover:bg-surface-hover",
@@ -59,7 +59,7 @@ export function DSACoreFilters({
               onClick={() => onToggleStatus(value)}
               aria-pressed={active}
               className={cn(
-                "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors",
+                "text-xs font-mono px-3 py-2 sm:py-1.5 rounded-lg border transition-colors touch-manipulation",
                 active
                   ? "bg-primary/10 text-primary border-primary/30"
                   : "border-border text-muted-foreground hover:bg-surface-hover",

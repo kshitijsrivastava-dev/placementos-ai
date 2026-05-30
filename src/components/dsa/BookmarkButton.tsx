@@ -20,7 +20,7 @@ export function BookmarkButton({
       aria-label={active ? "Remove bookmark" : "Save question"}
       aria-pressed={active}
       className={cn(
-        "size-8 rounded-lg border border-border grid place-items-center transition-all",
+        "size-9 sm:size-8 rounded-lg border border-border grid place-items-center transition-all touch-manipulation",
         "hover:bg-surface-hover hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         active
           ? "bg-primary/10 border-primary/30 text-primary"
