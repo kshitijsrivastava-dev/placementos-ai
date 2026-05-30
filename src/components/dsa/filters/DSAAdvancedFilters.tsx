@@ -50,7 +50,7 @@ export function DSAAdvancedFilters({
         <CollapsibleTrigger asChild>
           <button
             type="button"
-            className="group inline-flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-lg border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors"
+            className="group inline-flex items-center gap-2 text-xs font-mono px-3 py-2 sm:py-1.5 rounded-lg border border-border bg-surface text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors touch-manipulation"
           >
             Advanced filters
             {advancedFilterCount > 0 && (
@@ -66,7 +66,7 @@ export function DSAAdvancedFilters({
           <button
             type="button"
             onClick={onClear}
-            className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-foreground ml-auto transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-foreground sm:ml-auto py-1.5 transition-colors touch-manipulation"
           >
             <X className="size-3" />
             Clear filters
@@ -129,7 +129,7 @@ export function DSAAdvancedFilters({
                 onClick={() => onToggleImportanceTier(tier)}
                 aria-pressed={active}
                 className={cn(
-                  "text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors",
+                  "text-xs font-mono px-3 py-2 sm:py-1.5 rounded-lg border transition-colors touch-manipulation",
                   active
                     ? tierActiveClass[tier]
                     : "border-border text-muted-foreground hover:bg-surface-hover",
