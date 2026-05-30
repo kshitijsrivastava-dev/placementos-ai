@@ -1,5 +1,6 @@
 import { Card } from "@/components/dashboard/Card";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { cn } from "@/lib/utils";
 import type { OverviewProgress } from "@/types/overview";
 
 export function OverviewProgressSection({
@@ -10,7 +11,7 @@ export function OverviewProgressSection({
   className?: string;
 }) {
   return (
-    <Card title="Readiness snapshot" className={`flex flex-col ${className ?? ""}`}>
+    <Card title="Readiness snapshot" className={cn("h-full flex flex-col", className)}>
       <div className="flex flex-col items-center py-2">
         <ProgressRing
           value={progress.readinessPercent}
@@ -22,7 +23,7 @@ export function OverviewProgressSection({
         {progress.domains.map((domain) => (
           <div key={domain.label}>
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-muted-foreground">{domain.label}</span>
+              <span className="text-muted-foreground truncate pr-2">{domain.label}</span>
               <span className="font-mono">{domain.percent}%</span>
             </div>
             <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">

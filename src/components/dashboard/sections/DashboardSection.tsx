@@ -6,7 +6,9 @@ type DashboardSectionProps = {
   className?: string;
 };
 
-/** Grid-span wrapper for overview dashboard sections. */
+/** Grid-span wrapper; stretches direct card children to equal height in a row. */
 export function DashboardSection({ children, className }: DashboardSectionProps) {
-  return <section className={cn(className)}>{children}</section>;
+  return (
+    <section className={cn("min-w-0 flex flex-col [&>*]:h-full", className)}>{children}</section>
+  );
 }

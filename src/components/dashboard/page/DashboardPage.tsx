@@ -18,7 +18,13 @@ type DashboardPageProps = {
 /** Standard inner page container for dashboard modules. */
 export function DashboardPage({ children, maxWidth = "7xl", className }: DashboardPageProps) {
   return (
-    <div className={cn("mx-auto space-y-6", maxWidthClasses[maxWidth], className)}>
+    <div
+      className={cn(
+        "mx-auto w-full min-w-0 space-y-5 sm:space-y-6",
+        maxWidthClasses[maxWidth],
+        className,
+      )}
+    >
       {children}
     </div>
   );

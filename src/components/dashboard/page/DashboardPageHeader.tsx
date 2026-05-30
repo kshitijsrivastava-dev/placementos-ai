@@ -15,12 +15,18 @@ export function DashboardPageHeader({
   actions,
 }: DashboardPageHeaderProps) {
   const titleBlock = (
-    <div>
+    <div className="min-w-0">
       <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">
         {eyebrow}
       </p>
-      <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{title}</h1>
-      {description ? <p className="text-muted-foreground mt-1">{description}</p> : null}
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+        {title}
+      </h1>
+      {description ? (
+        <p className="text-sm sm:text-base text-muted-foreground mt-1 leading-relaxed">
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 
@@ -29,9 +35,11 @@ export function DashboardPageHeader({
   }
 
   return (
-    <div className="flex flex-wrap items-end justify-between gap-4">
+    <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
       {titleBlock}
-      {actions}
+      <div className="shrink-0 w-full sm:w-auto [&>button]:w-full sm:[&>button]:w-auto">
+        {actions}
+      </div>
     </div>
   );
 }

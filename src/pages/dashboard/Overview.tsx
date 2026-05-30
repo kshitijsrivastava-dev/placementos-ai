@@ -12,6 +12,9 @@ import { OverviewProgressSection } from "@/components/dashboard/sections/Overvie
 import { OverviewWeakTopicsSection } from "@/components/dashboard/sections/OverviewWeakTopicsSection";
 import { useOverview } from "@/hooks/dashboard/use-overview";
 
+const overviewSectionWide = "col-span-12 md:col-span-6 lg:col-span-7";
+const overviewSectionNarrow = "col-span-12 md:col-span-6 lg:col-span-5";
+
 function DashboardHome() {
   const workspace = useOverview();
 
@@ -24,7 +27,7 @@ function DashboardHome() {
         actions={
           <button
             type="button"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform"
           >
             <Sparkles className="size-4" /> Generate AI Plan
           </button>
@@ -33,31 +36,31 @@ function DashboardHome() {
 
       <OverviewFocusMetrics metrics={workspace.focusMetrics} />
 
-      <div className="grid grid-cols-12 gap-6">
-        <DashboardSection className="col-span-12 lg:col-span-7">
+      <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+        <DashboardSection className={overviewSectionWide}>
           <OverviewDailyPlanSection
             summary={workspace.dailyPlan.summary}
             tasks={workspace.dailyPlan.tasks}
           />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12 lg:col-span-5">
+        <DashboardSection className={overviewSectionNarrow}>
           <OverviewNextStepsSection steps={workspace.nextSteps} />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12 lg:col-span-5">
+        <DashboardSection className={overviewSectionNarrow}>
           <OverviewFocusInsightSection insight={workspace.focusInsight} />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12 lg:col-span-7">
+        <DashboardSection className={overviewSectionWide}>
           <OverviewWeakTopicsSection topics={workspace.weakTopics} />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12 lg:col-span-7">
+        <DashboardSection className={overviewSectionWide}>
           <OverviewActivitySection events={workspace.activityEvents} />
         </DashboardSection>
 
-        <DashboardSection className="col-span-12 lg:col-span-5">
+        <DashboardSection className={overviewSectionNarrow}>
           <OverviewProgressSection progress={workspace.progress} />
         </DashboardSection>
 

@@ -1,5 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { Card } from "@/components/dashboard/Card";
+import { cn } from "@/lib/utils";
 import type { DailyPlanSummary, DailyTask } from "@/types/overview";
 
 type OverviewDailyPlanSectionProps = {
@@ -24,13 +25,13 @@ export function OverviewDailyPlanSection({
           <span className="text-[10px] font-mono text-primary">{remaining} left</span>
         ) : undefined
       }
-      className={className}
+      className={cn("h-full", className)}
     >
       <ul className="space-y-2">
         {tasks.map((task) => (
           <li
             key={task.id}
-            className={`flex items-center gap-3 p-3 rounded-lg border ${
+            className={`flex items-start sm:items-center gap-3 p-3 rounded-lg border ${
               task.done
                 ? "bg-surface border-border opacity-60"
                 : "bg-surface-hover border-border"
@@ -43,7 +44,9 @@ export function OverviewDailyPlanSection({
             >
               {task.done && <CheckCircle2 className="size-3 text-primary-foreground" />}
             </div>
-            <span className={`text-sm flex-1 ${task.done ? "line-through text-muted-foreground" : ""}`}>
+            <span
+              className={`text-sm flex-1 min-w-0 leading-snug ${task.done ? "line-through text-muted-foreground" : ""}`}
+            >
               {task.title}
             </span>
           </li>

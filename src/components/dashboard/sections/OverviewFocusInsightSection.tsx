@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Card } from "@/components/dashboard/Card";
+import { cn } from "@/lib/utils";
 import type { OverviewFocusInsight } from "@/types/overview";
 
 export function OverviewFocusInsightSection({
@@ -12,7 +13,10 @@ export function OverviewFocusInsightSection({
 }) {
   return (
     <Card
-      className={`bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20 relative overflow-hidden ${className ?? ""}`}
+      className={cn(
+        "h-full bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20 relative overflow-hidden",
+        className,
+      )}
     >
       <div className="absolute -right-8 -bottom-8 size-40 bg-primary/20 blur-3xl rounded-full pointer-events-none" />
       <div className="relative">

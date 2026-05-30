@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AlertCircle, ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/dashboard/Card";
 import { getProgressPercent } from "@/lib/progress";
+import { cn } from "@/lib/utils";
 import type { WeakTopic } from "@/types/overview";
 
 export function OverviewWeakTopicsSection({
@@ -12,7 +13,7 @@ export function OverviewWeakTopicsSection({
   className?: string;
 }) {
   return (
-    <Card title="Revision focus" subtitle="Weak topics to address" className={className}>
+    <Card title="Revision focus" subtitle="Weak topics to address" className={cn("h-full", className)}>
       <ul className="space-y-3">
         {topics.map((topic) => (
           <li key={topic.id}>
@@ -27,7 +28,9 @@ export function OverviewWeakTopicsSection({
                     <p className="text-sm font-medium group-hover:text-primary transition-colors">
                       {topic.name}
                     </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{topic.reason}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed break-words">
+                      {topic.reason}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">

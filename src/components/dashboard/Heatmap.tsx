@@ -19,10 +19,11 @@ const intensityClass = [
 export function Heatmap({ cols = 53, rows = 7 }: { cols?: number; rows?: number }) {
   const total = cols * rows;
   const cells = Array.from({ length: total }, (_, i) => seededIntensity(i));
+
   return (
-    <div className="-mx-2 px-2 overflow-x-auto">
+    <div className="w-full max-w-full overflow-x-auto overscroll-x-contain">
       <div
-        className="grid gap-1"
+        className="grid gap-1 w-max max-w-none mx-auto sm:mx-0"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(10px, 1fr))`,
           minWidth: `${cols * 12}px`,
