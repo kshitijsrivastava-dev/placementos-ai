@@ -9,13 +9,15 @@ import { useAuth } from "@/features/auth/use-auth";
 function Settings() {
   const { user, profile, refreshProfile } = useAuth();
   const [fullName, setFullName] = useState("");
+  const [targetCompany, setTargetCompany] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setFullName(profile?.full_name?.trim() ?? "");
-  }, [profile?.full_name]);
+    setTargetCompany(profile?.target_company?.trim() ?? "");
+  }, [profile?.full_name, profile?.target_company]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,6 +33,7 @@ function Settings() {
     const { data, error: updateError } = await updateProfile({
       id: user.id,
       full_name: trimmedName,
+      target_company: targetCompany,
     });
 
     setIsSubmitting(false);
@@ -54,7 +57,7 @@ function Settings() {
       <DashboardPageHeader
         eyebrow="// SETTINGS"
         title="Profile settings"
-        description="Update how your name appears across PlacementOS."
+        description="Update your profile and placement target."
       />
 
       <Card title="Profile" subtitle="Account details">
@@ -78,6 +81,15 @@ function Settings() {
             required
             disabled={isSubmitting}
             autoComplete="name"
+          />
+
+          <AuthInput
+            label="Target company"
+            placeholder="e.g. Meta, Google, Amazon"
+            value={targetCompany}
+            onChange={(event) => setTargetCompany(event.target.value)}
+            disabled={isSubmitting}
+            autoComplete="organization"
           />
 
           <label className="block mb-6">

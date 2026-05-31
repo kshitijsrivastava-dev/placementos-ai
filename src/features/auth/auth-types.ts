@@ -7,6 +7,7 @@ export type Profile = {
   id: string;
   full_name: string | null;
   email: string | null;
+  target_company: string | null;
   created_at: string;
   updated_at: string;
 };

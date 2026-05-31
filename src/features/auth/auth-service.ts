@@ -5,6 +5,7 @@ export type CreateProfileInput = {
   id: string;
   full_name: string;
   email: string;
+  target_company?: string | null;
 };
 
 export async function signUp(email: string, password: string) {
@@ -37,11 +38,17 @@ export async function getSession() {
   return supabase.auth.getSession();
 }
 
+function normalizeTargetCompany(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
 export async function createProfile(input: CreateProfileInput) {
   return supabase.from("profiles").insert({
     id: input.id,
     full_name: input.full_name,
     email: input.email,
+    target_company: normalizeTargetCompany(input.target_company),
   });
 }
 
@@ -67,6 +74,7 @@ export async function ensureProfile(input: { id: string; email: string }) {
     id: input.id,
     email: input.email,
     full_name: "",
+    target_company: null,
   });
 
   if (insertError) {
@@ -83,12 +91,16 @@ export async function ensureProfile(input: { id: string; email: string }) {
 export type UpdateProfileInput = {
   id: string;
   full_name: string;
+  target_company?: string | null;
 };
 
 export async function updateProfile(input: UpdateProfileInput) {
   return supabase
     .from("profiles")
-    .update({ full_name: input.full_name })
+    .update({
+      full_name: input.full_name,
+      target_company: normalizeTargetCompany(input.target_company),
+    })
     .eq("id", input.id)
     .select()
     .maybeSingle<Profile>();
