@@ -7,6 +7,7 @@ import MockInterview from "@/pages/dashboard/MockInterview";
 import Roadmap from "@/pages/dashboard/Roadmap";
 import Analytics from "@/pages/dashboard/Analytics";
 import Goals from "@/pages/dashboard/Goals";
+import Settings from "@/pages/dashboard/Settings";
 import { dashboardNavItems } from "./dashboard-nav";
 import type { DashboardNavSegment } from "./types";
 
@@ -19,6 +20,7 @@ const dashboardPageComponents: Record<DashboardNavSegment, ComponentType> = {
   roadmap: Roadmap,
   analytics: Analytics,
   goals: Goals,
+  settings: Settings,
 };
 
 export type DashboardRouteEntry = {
@@ -27,9 +29,10 @@ export type DashboardRouteEntry = {
 };
 
 /** Route entries aligned with sidebar navigation config. */
-export const dashboardRouteEntries: DashboardRouteEntry[] = dashboardNavItems.map(
-  (item) => ({
+export const dashboardRouteEntries: DashboardRouteEntry[] = [
+  ...dashboardNavItems.map((item) => ({
     segment: item.segment,
     Component: dashboardPageComponents[item.segment],
-  }),
-);
+  })),
+  { segment: "settings", Component: Settings },
+];

@@ -5,15 +5,20 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useEffect, useState } from "react";
 import { Sparkles, Settings, LogOut, Menu } from "lucide-react";
-import { DEMO_PERSONA } from "@/data/demo-persona";
-import { getProfileDisplayName } from "@/features/auth/auth-service";
+import { getDashboardNavHref } from "@/navigation/dashboard-nav";
+import { getProfileDisplayName, getProfileInitials } from "@/features/auth/auth-service";
 import { useAuth } from "@/features/auth/use-auth";
+import { useOverview } from "@/hooks/dashboard/use-overview";
 import { DashboardNavList } from "./nav/DashboardNavList";
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
   const navigate = useNavigate();
   const { user, profile } = useAuth();
+  const { progress } = useOverview();
   const displayName = user ? getProfileDisplayName(profile, user.email) : "";
+  const profileEmail = profile?.email?.trim() || user?.email || "";
+  const profileInitials = user ? getProfileInitials(profile, user.email) : "";
+  const readinessPercent = progress.readinessPercent;
 
   async function handleSignOut() {
     await signOut();
@@ -32,10 +37,12 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         </Link>
 
         <div className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border">
-          <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)]" />
+          <div className="size-9 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center text-[10px] font-bold text-primary-foreground">
+            {profileInitials}
+          </div>
           <div className="min-w-0">
             <div className="text-sm font-semibold truncate">{displayName}</div>
-            <div className="text-[10px] text-muted-foreground font-mono">Prep plan · 2026</div>
+            <div className="text-[10px] text-muted-foreground font-mono truncate">{profileEmail}</div>
           </div>
         </div>
       </div>
@@ -49,11 +56,11 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
           <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-1">
             Placement ready
           </div>
-          <div className="text-2xl font-bold mb-2">{DEMO_PERSONA.readinessPercent}%</div>
+          <div className="text-2xl font-bold mb-2">{readinessPercent}%</div>
           <div className="h-1.5 w-full bg-subtle rounded-full overflow-hidden">
             <div
               className="h-full bg-primary/70"
-              style={{ width: `${DEMO_PERSONA.readinessPercent}%` }}
+              style={{ width: `${readinessPercent}%` }}
             />
           </div>
         </div>
@@ -63,9 +70,13 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
           <ThemeToggle className="shrink-0" />
           <span className="text-xs text-muted-foreground">Theme</span>
         </div>
-        <button className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors w-full">
+        <Link
+          to={getDashboardNavHref("settings")}
+          onClick={onNavigate}
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-surface-hover hover:text-foreground transition-colors w-full"
+        >
           <Settings className="size-4" /> Settings
-        </button>
+        </Link>
         <button
           type="button"
           onClick={handleSignOut}

@@ -16,4 +16,5 @@ export type AuthState = {
   profile: Profile | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  refreshProfile: () => Promise<void>;
 };
